@@ -12,6 +12,10 @@ class Cargador extends Model
     protected $fillable = [
         'id','companyName', 'phone',
     ];
+
+    public function proveedor(){
+        return $this->belongsTo(proveedor::class);
+    }
 }
 
 

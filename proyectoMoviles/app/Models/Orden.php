@@ -13,6 +13,10 @@ class Orden extends Model
         'id','customerID', 'employeeID', 'orderDate',
         'shipAddress', 'orderDetailsID', 'shipperID',
     ];
+
+    public function producto(){
+        return $this->hasMany(producto::class);
+    }
 }
 
 

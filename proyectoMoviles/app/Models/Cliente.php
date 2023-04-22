@@ -14,5 +14,9 @@ class Cliente extends Model
         'password', 'birthday', 'address', 
         'phone','companyName',
     ];
+
+    public function orden(){
+        return $this->hasMany(orden::class);
+    }
 }
 

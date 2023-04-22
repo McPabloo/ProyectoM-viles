@@ -13,5 +13,13 @@ class Proveedor extends Model
         'id','companyName', 'contactName', 'address',
         'city', 'country', 'phone', 'homePage'
     ];
+
+    public function producto(){
+        return $this->hasMany(producto::class);
+    }
+
+    public function orden(){
+        return $this->hasMany(Orden::class);
+    }
 }
 

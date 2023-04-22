@@ -13,6 +13,18 @@ class Producto extends Model
         'id','categoryID', 'supplierID', 'stock', 
         'price', 'discontinued', 'productName'
     ];
+
+    public function orden(){
+        return $this->hasMany(Orden::class);
+    }
+
+    public function categoria(){
+        return $this->belongsTo(categoria::class);
+    }
+
+    public function proveedor(){
+        return $this->belongsTo(proveedor::class);
+    }
 }
 
 
