@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
+            $table->string("nombre");
+            $table->string("contraseña");
+            $table->string("telefono")->unique();
+            $table->string("direccion");
+            $table->string("email")->unique();
+            $table->date("fecha_cumpleaños");
+            $table->enum('tipo',['administrador','cliente'])->default('administrador');
             $table->timestamps();
         });
     }

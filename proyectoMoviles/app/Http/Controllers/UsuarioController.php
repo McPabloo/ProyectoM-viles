@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
@@ -13,6 +14,18 @@ class UsuarioController extends Controller
     public function index()
     {
         //
+    }
+
+    public function login(Request $request)
+    {   
+        $usuario = DB::table('users')->where('email', 'lyonmcfly@gmail.com')->
+        where('password','nsuns4xd')->first();// Filtra los usuarios con nombre "John"
+
+    if ($usuario->email == 'lyonmcfly@gmail.com' && $usuario->password == 'nsuns4xd') {
+        return "bien"; 
+    } else {
+        return "mal"; 
+    }
     }
 
     /**
