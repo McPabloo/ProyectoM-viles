@@ -3,6 +3,7 @@ import { Button, FormControl, Input, VStack, Text, Select, CheckIcon, WarningOut
 import { validate } from "react-native-web/dist/cjs/exports/StyleSheet/validate";
 import { useState } from "react";
 import axios from "axios";
+import { API_URL } from './config';
 
 export default function Login(){
 
@@ -26,16 +27,24 @@ export default function Login(){
         return isValid
     }
 
-    const send_request=async()=>{
+    const send_request=async(e)=>{
+        if (e && e.preventDefault()) e.preventDefault();
         console.log('ok',formData);
-        try {
-            const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
-            const data = response.data;
-            console.log('ya logeaste',data);
-            // Aquí deberías hacer algo con la respuesta del servidor, como redirigir al usuario a una nueva página si el inicio de sesión es exitoso.
-        } catch (error) {
+        const formDatum = new FormData();
+            formDatum.append("nickname", formData.nickname);
+            formDatum.append("password", formData.password);
+            await axios.post("http://127.0.0.1:8000/api/login/login", formDatum,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Accept': 'application/json'
+                }
+            }
+        ).then(response => {
+            console.log('yup')
+        }).catch(error => {
             console.log(error);
-        }
+        });
     } 
 
     function submit() { (validate()) ? send_request() : console.log("Error",errors) }
