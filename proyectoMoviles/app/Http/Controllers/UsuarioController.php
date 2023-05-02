@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
@@ -13,6 +14,14 @@ class UsuarioController extends Controller
     public function index()
     {
         //
+    }
+
+    public function login(Request $request)
+    {   
+        $nickname = $request->input('nickname');
+        $password = $request->input('password');
+
+        return $password;
     }
 
     /**
