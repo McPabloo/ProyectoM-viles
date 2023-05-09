@@ -36,7 +36,7 @@ return [
     'connections' => [
 
         'db4free.net' => [
-            'driver' => 'mysqlimage.png',
+            'driver' => 'mysql',
             'host' => env('DB_HOST', 'db4free.net'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'proyectomoviles1'),
