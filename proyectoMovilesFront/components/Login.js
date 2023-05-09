@@ -33,7 +33,7 @@ export default function Login(){
         const formDatum = new FormData();
             formDatum.append("nickname", formData.nickname);
             formDatum.append("password", formData.password);
-            await axios.post("http://localhost:8000/api/login", formDatum,
+            const res = await axios.post("http://192.168.100.30:8000/api/login", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -41,7 +41,8 @@ export default function Login(){
                 }
             }
         ).then(response => {
-            console.log('yup')
+            console.log(response.data[0].email);
+
         }).catch(error => {
             console.log(error);
         });

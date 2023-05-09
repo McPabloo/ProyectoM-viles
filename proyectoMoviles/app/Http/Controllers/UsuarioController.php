@@ -21,7 +21,9 @@ class UsuarioController extends Controller
         $nickname = $request->input('nickname');
         $password = $request->input('password');
 
-        return $password;
+        $carrito = User::where('email', $nickname)->where('password', $password)->get();
+        
+        return $carrito;
     }
 
     /**
