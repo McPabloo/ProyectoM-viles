@@ -16,7 +16,7 @@ class Cliente extends Model
     ];
 
     public function orden(){
-        return $this->hasMany(orden::class);
+        return $this->hasMany(Orden::class);
     }
 }
 

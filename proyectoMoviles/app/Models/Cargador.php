@@ -13,8 +13,8 @@ class Cargador extends Model
         'id','companyName', 'phone',
     ];
 
-    public function proveedor(){
-        return $this->belongsTo(proveedor::class);
+    public function company(){
+        return $this->belongsTo(Company::class);
     }
 }
 

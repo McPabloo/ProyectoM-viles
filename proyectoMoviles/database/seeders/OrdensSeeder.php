@@ -15,6 +15,35 @@ class OrdensSeeder extends Seeder
     {
         //
         $orden = new Orden();
-        $orden -> customerID = "";
+        $orden -> customerID = 1;
+        $orden -> employeeID = 1;
+        $orden -> orderDate = "2023-11-23";
+        $orden -> shipperID = 1;
+        $orden -> orderDetailsID = 1;
+        $orden -> shipAddress = "Margaritas";
+
+        $orden -> save();
+
+
+        $orden = new Orden();
+        $orden -> customerID = 1;
+        $orden -> employeeID = 1;
+        $orden -> orderDate = "2023-11-23";
+        $orden -> shipperID = 1;
+        $orden -> orderDetailsID = 1;
+        $orden -> shipAddress = "Margaritas";
+
+        $orden -> save();
+
+
+        $orden = new Orden();
+        $orden -> customerID = 1;
+        $orden -> employeeID = 1;
+        $orden -> orderDate = "2023-11-23";
+        $orden -> shipperID = 1;
+        $orden -> orderDetailsID = 1;
+        $orden -> shipAddress = "Margaritas";
+
+        $orden -> save();
     }
 }

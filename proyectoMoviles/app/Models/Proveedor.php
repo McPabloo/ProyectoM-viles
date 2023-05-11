@@ -11,15 +11,19 @@ class Proveedor extends Model
 
     protected $fillable = [
         'id','companyName', 'contactName', 'address',
-        'city', 'country', 'phone', 'homePage'
+        'city', 'country', 'phone'
     ];
 
     public function producto(){
-        return $this->hasMany(producto::class);
+        return $this->hasMany(Producto::class);
     }
 
     public function orden(){
         return $this->hasMany(Orden::class);
+    }
+
+    public function company(){
+        return $this->belongsTo(Company::class);
     }
 }
 

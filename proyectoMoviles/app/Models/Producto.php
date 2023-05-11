@@ -19,11 +19,11 @@ class Producto extends Model
     }
 
     public function categoria(){
-        return $this->belongsTo(categoria::class);
+        return $this->belongsTo(Categoria::class);
     }
 
     public function proveedor(){
-        return $this->belongsTo(proveedor::class);
+        return $this->belongsTo(Proveedor::class);
     }
 }
 

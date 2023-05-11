@@ -11,11 +11,23 @@ class Orden extends Model
 
     protected $fillable = [
         'id','customerID', 'employeeID', 'orderDate',
-        'shipAddress', 'orderDetailsID', 'shipperID',
+        'shipperID', 'orderDetailsID', 'shipAddress',  
     ];
 
-    public function producto(){
-        return $this->hasMany(producto::class);
+    public function cliente(){
+        return $this->hasMany(Cliente::class);
+    }
+
+    public function user(){
+        return $this->hasMany(User::class);
+    }
+
+    public function cargador(){
+        return $this->hasMany(Cargador::class);
+    }
+
+    public function ordenDetalles(){
+        return $this->hasMany(OrdenDetalles::class);
     }
 }
 

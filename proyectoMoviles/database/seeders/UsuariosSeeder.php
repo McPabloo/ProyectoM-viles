@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Usuario;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,38 +14,45 @@ class UsuariosSeeder extends Seeder
     public function run(): void
     {
         //
-        $usuario = new Usuario();
-        $usuario -> nombre = "Alexa";
-        $usuario -> contraseña = "Alexa123";
-        $usuario -> telefono = "449222222222";
-        $usuario -> direccion = "Juan Pablo #300";
-        $usuario -> email = "alexa@gmail.com";
-        $usuario -> fecha_cumpleaños = "2004-09-15";
-        $usuario -> tipo = "cliente";
+        $user = new User();
+        $user -> firstname = "Alexa";
+        $user -> lastname = "Carrillo";
+        $user -> phone = "449222222222";
+        $user -> address = "Juan Pablo #300";
+        $user -> password = "Alexa123";
+        $user -> email = "alexa@gmail.com";
+        $user -> birthday = "2004-09-15";
+        $user -> hiredate = "2019-07-06";
+        $user -> notes = "Muy buen trabajador";
 
-        $usuario ->save();
-
-
-        $usuario = new Usuario();
-        $usuario -> nombre = "Gustavo";
-        $usuario -> contraseña = "Gustavo123";
-        $usuario -> telefono = "4493336655";
-        $usuario -> direccion = "Morelos #126";
-        $usuario -> email = "gustavo@gmail.com";
-        $usuario -> fecha_cumpleaños = "1995-05-10";
-        $usuario -> tipo = "cliente";
+        $user ->save();
 
 
-        $usuario ->save();
-        $usuario = new Usuario();
-        $usuario -> nombre = "Manuel";
-        $usuario -> contraseña = "Manuel123";
-        $usuario -> telefono = "4490001234";
-        $usuario -> direccion = "Licenciazo Garza Sada #810";
-        $usuario -> email = "manuel@gmail.com";
-        $usuario -> fecha_cumpleaños = "2002-10-25";
-        $usuario -> tipo = "cliente";
+        $user = new User();
+        $user -> firstname = "Gustavo";
+        $user -> lastname = "Guzman";
+        $user -> phone = "4491111111";
+        $user -> address = "Morelos #180";
+        $user -> password = "Gustavo123";
+        $user -> email = "gustavo@gmail.com";
+        $user -> birthday = "2001-02-15";
+        $user -> hiredate = "2019-07-06";
+        $user -> notes = "Muy buen trabajador";
 
-        $usuario ->save();
+        $user ->save();
+
+
+        $user = new User();
+        $user -> firstname = "Manuel";
+        $user -> lastname = "Mendez";
+        $user -> phone = "44900000000";
+        $user -> address = "Polo norte #015";
+        $user -> password = "Manuel123";
+        $user -> email = "Manuel@gmail.com";
+        $user -> birthday = "2004-09-15";
+        $user -> hiredate = "2019-07-06";
+        $user -> notes = "Muy buen trabajador";
+
+        $user ->save();
     }
 }

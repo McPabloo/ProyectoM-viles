@@ -14,11 +14,11 @@ class OrdenDetalles extends Model
     ];
 
     public function cliente(){
-        return $this->hasMany(cliente::class);
+        return $this->hasMany(Cliente::class);
     }
 
     public function producto(){
-        return $this->hasMany(producto::class);
+        return $this->hasMany(Producto::class);
     }
 }
 
