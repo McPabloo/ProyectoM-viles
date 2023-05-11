@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cargador;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class CargadorController extends Controller
@@ -13,6 +14,8 @@ class CargadorController extends Controller
     public function index()
     {
         //
+        $cargador = Cargador::all();
+        return $cargador;
     }
 
     /**
@@ -29,6 +32,20 @@ class CargadorController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(),[
+            'companyName' => 'required',
+            'phone' => 'required',
+        ]);
+
+        if ($validator->fails()){
+            return $validator -> errors();
+        }
+
+        $cargador = Cargador::create([
+            'companyID' => $request -> companyName,
+            'phone' => $request -> phone,
+        ]);
+        echo $request->$cargador;
     }
 
     /**

@@ -10,7 +10,7 @@ class Cargador extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id','companyName', 'phone',
+        'id','companyID', 'phone',
     ];
 
     public function company(){

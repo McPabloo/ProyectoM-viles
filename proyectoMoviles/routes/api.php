@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\CargadorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,43 @@ use App\Http\Controllers\UsuarioController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+//Cargador routes
+
+Route::get('/cargador_index', [CargadorController::class, 'index']);
+Route::post('/create_cargador', [CargadorController::class, 'store']);
+
+
+//routes Category
+
+
+
+//routes Cliente
+
+
+
+//routes Company
+
+
+
+//routes Orden
+
+
+
+//routes Orden detalles
+
+
+
+//routes Producto
+
+
+
+//routes Proveedor
+
+
+
+//routes Usuario
+
 
 Route::post('/login', [UsuarioController::class, 'login']);
 
