@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
@@ -14,6 +15,8 @@ class UsuarioController extends Controller
     public function index()
     {
         //
+        $usuario = User::all();
+        return $usuario;
     }
 
     public function login(Request $request)
@@ -40,14 +43,44 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(),[
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'birthday' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'hireDate' => 'required',
+            'notes' => 'required',
+        ]);
+
+        if ($validator->fails()){
+            return $validator -> errors();
+        }
+
+        $usuario = User::create([
+            'firstName' => $request -> firstName,
+            'lastName' => $request -> lastName,
+            'email' => $request -> email,
+            'password' => $request -> password,
+            'birthday' => $request -> birthday,
+            'address' => $request -> address,
+            'phone' => $request -> phone,
+            'hireDate' => $request -> hireDate,
+            'notes' => $request -> notes,
+        ]);
+        echo $request->firstName;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Usuario $usuario)
+    public function show(Request $request)
     {
         //
+        $usuario = User::find($request->id);
+        return $usuario;
     }
 
     /**
@@ -61,16 +94,34 @@ class UsuarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, $id)
     {
         //
+        $usuario = User::findOrFail($request->id);
+        $usuario->firstName = $request -> firstName;
+        $usuario->lastName = $request -> lastName;
+        $usuario->email = $request -> email;
+        $usuario->password = $request -> password;
+        $usuario->birthday = $request -> birthday;
+        $usuario->address = $request -> address;
+        $usuario->phone = $request -> phone;
+        $usuario->hireDate = $request -> hireDate;
+        $usuario->notes = $request -> notes;
+
+        $usuario->save();
+        return $usuario;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Usuario $usuario)
+    public function destroy(Request $request, $id)
     {
         //
+        $usuario = User::find($request->id);
+        $usuario->delete();
+
+        $usuario = User::all();
+        return $usuario;
     }
 }

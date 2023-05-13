@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -13,6 +14,8 @@ class ClienteController extends Controller
     public function index()
     {
         //
+        $cliente = Cliente::all();
+        return $cliente;
     }
 
     /**
@@ -29,14 +32,42 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(),[
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'birthday' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'companyName' => 'required',
+        ]);
+
+        if ($validator->fails()){
+            return $validator -> errors();
+        }
+
+        $cliente = Cliente::create([
+            'firstName' => $request -> firstName,
+            'lastName' => $request -> lastName,
+            'email' => $request -> email,
+            'password' => $request -> password,
+            'birthday' => $request -> birthday,
+            'address' => $request -> address,
+            'phone' => $request -> phone,
+            'companyName' => $request -> companyName,
+        ]);
+        echo $request->firstName;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Cliente $cliente)
+    public function show(Request $request)
     {
         //
+        $cliente = Cliente::find($request->id);
+        return $cliente;
     }
 
     /**
@@ -50,16 +81,33 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, $id)
     {
         //
+        $cliente = Cliente::findOrFail($request->id);
+        $cliente->firstName = $request -> firstName;
+        $cliente->lastName = $request -> lastName;
+        $cliente->email = $request -> email;
+        $cliente->password = $request -> password;
+        $cliente->birthday = $request -> birthday;
+        $cliente->address = $request -> address;
+        $cliente->phone = $request -> phone;
+        $cliente->companyName = $request -> companyName;
+
+        $cliente->save();
+        return $cliente;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cliente $cliente)
+    public function destroy(Request $request, $id)
     {
         //
+        $cliente = Cliente::find($request->id);
+        $cliente->delete();
+
+        $cliente = Cliente::all();
+        return $cliente;
     }
 }

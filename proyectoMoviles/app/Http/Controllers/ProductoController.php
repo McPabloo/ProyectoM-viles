@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -13,6 +14,8 @@ class ProductoController extends Controller
     public function index()
     {
         //
+        $producto = Producto::all();
+        return $producto;
     }
 
     /**
@@ -29,14 +32,38 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(),[
+            'categoryID' => 'required',
+            'supplierID' => 'required',
+            'stock' => 'required',
+            'price' => 'required',
+            'discontinued' => 'required',
+            'productName' => 'required',
+        ]);
+
+        if ($validator->fails()){
+            return $validator -> errors();
+        }
+
+        $producto = Producto::create([
+            'categoryID' => $request -> categoryID,
+            'supplierID' => $request -> supplierID,
+            'stock' => $request -> stock,
+            'price' => $request -> price,
+            'discontinued' => $request -> discontinued,
+            'productName' => $request -> productName,
+        ]);
+        echo $request->productName;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Producto $producto)
+    public function show(Request $request)
     {
         //
+        $producto = Producto::find($request->id);
+        return $producto;
     }
 
     /**
@@ -50,16 +77,31 @@ class ProductoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
         //
+        $producto = Producto::findOrFail($request->id);
+        $producto->categoryID = $request -> categoryID;
+        $producto->supplierID = $request -> supplierID;
+        $producto->stock = $request -> stock;
+        $producto->price = $request -> price;
+        $producto->discontinued = $request -> discontinued;
+        $producto->productName = $request -> productName;
+
+        $producto->save();
+        return $producto;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Producto $producto)
+    public function destroy(Request $request, $id)
     {
         //
+        $producto = Producto::find($request->id);
+        $producto->delete();
+
+        $producto = Producto::all();
+        return $producto;
     }
 }

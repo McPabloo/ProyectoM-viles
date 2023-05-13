@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -13,6 +14,8 @@ class CategoriaController extends Controller
     public function index()
     {
         //
+        $categoria = Categoria::all();
+        return $categoria;
     }
 
     /**
@@ -29,14 +32,30 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(),[
+            'categoryName' => 'required',
+            'description' => 'required',
+        ]);
+
+        if ($validator->fails()){
+            return $validator -> errors();
+        }
+
+        $categoria = Categoria::create([
+            'categoryName' => $request -> categoryName,
+            'description' => $request -> description,
+        ]);
+        echo $request->categoryName;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Categoria $categoria)
+    public function show(Request $request)
     {
         //
+        $categoria = Categoria::find($request->id);
+        return $categoria;
     }
 
     /**
@@ -50,16 +69,27 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, $id)
     {
         //
+        $categoria = Categoria::findOrFail($request->id);
+        $categoria->categoryName = $request -> categoryName;
+        $categoria->description = $request -> description;
+
+        $categoria->save();
+        return $categoria;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(Request $request, $id)
     {
         //
+        $categoria = Categoria::find($request->id);
+        $categoria->delete();
+
+        $categoria = Categoria::all();
+        return $categoria;
     }
 }

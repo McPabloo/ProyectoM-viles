@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -13,6 +14,8 @@ class CompanyController extends Controller
     public function index()
     {
         //
+        $company = Company::all();
+        return $company;
     }
 
     /**
@@ -29,14 +32,30 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(),[
+            'companyName' => 'required',
+            'location' => 'required',
+        ]);
+
+        if ($validator->fails()){
+            return $validator -> errors();
+        }
+
+        $company = Company::create([
+            'companyName' => $request -> companyName,
+            'location' => $request -> location,
+        ]);
+        echo $request->companyName;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Company $company)
+    public function show(Request $request)
     {
         //
+        $company = Company::find($request->id);
+        return $company;
     }
 
     /**
@@ -50,16 +69,27 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, $id)
     {
         //
+        $company = Company::findOrFail($request->id);
+        $company->companyName = $request -> companyName;
+        $company->location = $request -> location;
+
+        $company->save();
+        return $company;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company $company)
+    public function destroy(Request $request, $id)
     {
         //
+        $company = Company::find($request->id);
+        $company->delete();
+
+        $company = Company::all();
+        return $company;
     }
 }

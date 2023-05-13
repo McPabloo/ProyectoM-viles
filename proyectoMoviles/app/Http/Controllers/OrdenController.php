@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Orden;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class OrdenController extends Controller
@@ -13,6 +14,9 @@ class OrdenController extends Controller
     public function index()
     {
         //
+        $orden = Orden::all();
+        return $orden;
+
     }
 
     /**
@@ -29,14 +33,38 @@ class OrdenController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(),[
+            'customerID' => 'required',
+            'employeeID' => 'required',
+            'orderDate' => 'required',
+            'shipperID' => 'required',
+            'orderDetailsID' => 'required',
+            'shipAddress' => 'required',
+        ]);
+
+        if ($validator->fails()){
+            return $validator -> errors();
+        }
+
+        $orden = Orden::create([
+            'customerID' => $request -> customerID,
+            'employeeID' => $request -> employeeID,
+            'orderDate' => $request -> orderDate,
+            'shipperID' => $request -> shipperID,
+            'orderDetailsID' => $request -> orderDetailsID,
+            'shipAddress' => $request -> shipAddress,
+        ]);
+        echo $request->shipAddress;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Orden $orden)
+    public function show(Request $request)
     {
         //
+        $orden = Orden::find($request->id);
+        return $orden;
     }
 
     /**
@@ -50,16 +78,31 @@ class OrdenController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Orden $orden)
+    public function update(Request $request, $id)
     {
         //
+        $orden = Orden::findOrFail($request->id);
+        $orden->customerID = $request -> customerID;
+        $orden->employeeID = $request -> employeeID;
+        $orden->orderDate = $request -> orderDate;
+        $orden->shipperID = $request -> shipperID;
+        $orden->orderDetailsID = $request -> orderDetailsID;
+        $orden->shipAddress = $request -> shipAddress;
+
+        $orden->save();
+        return $orden;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Orden $orden)
+    public function destroy(Request $request, $id)
     {
         //
+        $orden = Orden::find($request->id);
+        $orden->delete();
+
+        $orden = Orden::all();
+        return $orden;
     }
 }

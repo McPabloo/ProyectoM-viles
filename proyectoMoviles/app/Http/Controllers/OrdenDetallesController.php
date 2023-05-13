@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrdenDetalles;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class OrdenDetallesController extends Controller
@@ -13,6 +14,8 @@ class OrdenDetallesController extends Controller
     public function index()
     {
         //
+        $ordenDetalles = OrdenDetalles::all();
+        return $ordenDetalles;
     }
 
     /**
@@ -29,14 +32,33 @@ class OrdenDetallesController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(),[
+            'productID' => 'required',
+            'quantity' => 'required',
+            'discount' => 'required',
+        ]);
+
+        if ($validator->fails()){
+            return $validator -> errors();
+        }
+
+        $ordenDetalles = OrdenDetalles::create([
+            'productID' => $request -> productID,
+            'quantity' => $request -> quantity,
+            'discount' => $request -> discount,
+        ]);
+        echo $request->productID;
+        
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(OrdenDetalles $ordenDetalles)
+    public function show(Request $request)
     {
         //
+        $ordenDetalles = OrdenDetalles::find($request->id);
+        return $ordenDetalles;
     }
 
     /**
@@ -50,16 +72,28 @@ class OrdenDetallesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, OrdenDetalles $ordenDetalles)
+    public function update(Request $request, $id)
     {
         //
+        $ordenDetalles = OrdenDetalles::findOrFail($request->id);
+        $ordenDetalles->productID = $request -> productID;
+        $ordenDetalles->quantity = $request -> quantity;
+        $ordenDetalles->discount = $request -> discount;
+
+        $ordenDetalles->save();
+        return $ordenDetalles;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(OrdenDetalles $ordenDetalles)
+    public function destroy(Request $request, $id)
     {
         //
+        $ordenDetalles = OrdenDetalles::find($request->id);
+        $ordenDetalles->delete();
+
+        $ordenDetalles = OrdenDetalles::all();
+        return $ordenDetalles;
     }
 }
