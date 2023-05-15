@@ -1,11 +1,17 @@
 import * as React from 'react';
+import 'react-native-gesture-handler';
 import { Icon } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
 
 
 //Screens
+
+import HomeScreen from './Home';
+import Login from './Login';
+
 /*
 import HomeScreen from './HomeScreen';
 import OperationScreen from './OperationScreen';
@@ -21,33 +27,18 @@ const operationName = 'Operation';
 const settingsName = 'Settings';
 */
 
-const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
-export default function MainContainer(){
-    return(
+
+export default function MainContainer() {
+    return (
         <NavigationContainer>
-            <Tab.Navigator useLegacyImplementation initialRouteName={homeName} 
-                    screenOptions={({route}) => ({
-                        tabBarIcon: ({focused, color, size}) => {
-                            let iconName;
-                            let rn = route.name;
-
-                            if(rn===homeName){
-                                iconName = focused ? 'home' : 'home-outline'
-                            } else if(rn===operationName){
-                                iconName = focused ? 'list' : 'list-outline'
-                            } else if(rn===settingsName){
-                                iconName = focused ? 'settings' : 'settings-outline'
-                            } 
-
-                        },
-                    }) }>
-                <Tab.Screen name="HOME SCREEN" options={{headerShown:false, title: 'WELCOME'}} component={HomeScreen} />
-                <Tab.Screen name="OPERATIONS" options={{headerShown:false}} component={MainContainer2} />   
-                <Tab.Screen name="CONSULTANCIES" options={{headerShown:false}} component={MainContainer3} />    
-                <Tab.Screen name="DETAILS" options={{headerShown:false}} component={SettingsScreen} />
-            </Tab.Navigator>
+            <Stack.Navigator>
+                <Stack.Screen name="LOGIN" options={{ headerShown: false }} component={Login} />
+                <Stack.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={HomeScreen} />
+                
+            </Stack.Navigator>
         </NavigationContainer>
     )
 }

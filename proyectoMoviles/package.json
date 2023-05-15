@@ -5,24 +5,15 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "axios": "^1.3.6",
+        "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.7.2",
         "vite": "^4.0.0"
     },
-  "private": true,
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build"
-  },
-  "devDependencies": {
-    "axios": "^1.1.2",
-    "laravel-vite-plugin": "^0.7.2",
-    "vite": "^4.0.0"
-  },
-  "dependencies": {
-    "expo": "^44.0.6",
-    "react-dom": "^18.2.0",
-    "react-native": "^0.71.7",
-    "react-native-web": "0.17.1"
-  }
+    "dependencies": {
+        "@react-navigation/stack": "^6.3.16",
+        "expo": "^44.0.6",
+        "react-dom": "^18.2.0",
+        "react-native": "^0.71.7",
+        "react-native-web": "0.17.1"
+    }
 }
