@@ -1,9 +1,9 @@
 import React from "react";
-import { Button, FormControl, Input, VStack, Text, Center, CheckIcon, WarningOutlineIcon } from "native-base";
+import { Button, FormControl, Input, VStack, StyleSheet,Text, Center, CheckIcon, WarningOutlineIcon } from "native-base";
 import { validate } from "react-native-web/dist/cjs/exports/StyleSheet/validate";
 import { useState } from "react";
 import axios from "axios";
-import { API_URL } from './config';
+import colors from './colors';
 
 export default function Login({navigation}){
 
@@ -34,7 +34,7 @@ export default function Login({navigation}){
         const formDatum = new FormData();
             formDatum.append("nickname", formData.nickname);
             formDatum.append("password", formData.password);
-            const res = await axios.post("http://192.168.1.74:8000/api/login", formDatum,
+            const res = await axios.post("http://192.168.100.26:8000/api/login", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -45,7 +45,7 @@ export default function Login({navigation}){
             console.log(response.data[0].email);
             setValid(true);
             console.log(valid);
-
+            pass();
         }).catch(error => {
             console.log(error);
         });
@@ -56,52 +56,57 @@ export default function Login({navigation}){
 
     function pass(){
         if(valid===true){
-            prompt.arguments.navigation.navigatg('HOME SCREEN');
+            navigation.navigate('HOME SCREEN');
         }
     }
 
-    return   <Center 
-    _dark={{ bg: "blueGray.900" }}
-    _light={{ bg: "blueGray.50" }}
-    px={4}
-    flex={1}
-  >
-    <VStack>
+    return  (
 
-    <FormControl isRequired isInvalid={'nickname' in errors}>
-        <FormControl.Label>Nickname</FormControl.Label>
-        <Input p={1} color="black" name="nickname" placeholder="Enter your nickname"
-            onChangeText={value => setData({ ...formData, nickname: value })} />    
+        <Center flex={1}  style={{ backgroundColor: colors.dark }}>
 
-        {'nickname' in errors ? <Text>{errors.nickname}</Text>
-            : <FormControl.HelperText>
-                You must enter a least 6 characters
-              </FormControl.HelperText>
-        }
+        <Text bold color="white" fontSize="60" mb="4">
+            Inventario
+        </Text>
 
-    </FormControl>
-
-    <FormControl isRequired isInvalid={'password' in errors}>
-        <FormControl.Label>Password</FormControl.Label>
-        <Input p={1} color="black" name="password" placeholder="Enter your password"
-            onChangeText={value => setData({ ...formData, password: value })} />    
-
-        {'password' in errors ? <Text>{errors.password}</Text>
-            : <FormControl.HelperText>
-                Keep your password safe
-              </FormControl.HelperText>
-        }
-
-    </FormControl>
-
-    <Button colorScheme="primary"
-        onPress={submit}> onPress
-        Login
-    </Button>
-
+        <VStack>
     
-</VStack>
-</Center>
+        <FormControl isRequired isInvalid={'nickname' in errors}>
+            <FormControl.Label>Nickname</FormControl.Label>
+            <Input p={2} color="white" fontSize={18} name="nickname" placeholder="Enter your nickname"
+                onChangeText={value => setData({ ...formData, nickname: value })} />    
     
+            {'nickname' in errors ? <Text>{errors.nickname}</Text>
+                : <FormControl.HelperText>
+                    You must enter a least 6 characters
+                  </FormControl.HelperText>
+            }
+    
+        </FormControl>
+    
+        
+    
+        <FormControl isRequired isInvalid={'password' in errors}>
+            <FormControl.Label>Password</FormControl.Label>
+            <Input p={2} color="white" fontSize={18} name="password" placeholder="Enter password"
+                onChangeText={value => setData({ ...formData, password: value })} />    
+    
+            {'password' in errors ? <Text>{errors.password}</Text>
+                : <FormControl.HelperText>
+                    Keep your password safe
+                  </FormControl.HelperText>
+            }
+    
+        </FormControl>
+    
+        <Button style={{ backgroundColor: colors.primary }}
+            onPress={submit}>
+            Login
+        </Button>
+    
+        
+    </VStack>
+    </Center>
+        
+    );
     
 }
