@@ -9,7 +9,8 @@ import colors from './colors';
 export default function Register({navigation}){
 
     //estados
-    const [formData, setData] = React.useState({nickname : '', password : ''})
+    const [formData, setData] = React.useState({nickname : '', password : '',
+    firstname : '', lastname : '' , phone : '' , address : '', address : '', birthday : '', hireDate : '', notes : ''})
     const [errors, setErrors] = React.useState({})
     const [valid, setValid] = React.useState(false);
 
@@ -19,7 +20,7 @@ export default function Register({navigation}){
         setErrors({})
         let isValid = true
         
-        if(formData.nickname == '' || formData.password == ''){
+        if(formData.nickname == '' || formData.password == '' || formData.firstname == '' || formData.lastname == '' || formData.phone == '' || formData.address == '' || formData.birthday == '' || formData.hireDate == '' || formData.notes == ''){
             setErrors({...errors, nickname:'Nickname is required', password: 'Password is required'})
             isValid = false
         }else if(formData.nickname.length < 6){
@@ -35,7 +36,14 @@ export default function Register({navigation}){
         const formDatum = new FormData();
             formDatum.append("nickname", formData.nickname);
             formDatum.append("password", formData.password);
-            const res = await axios.post("http://192.168.100.26:8000/api/login", formDatum,
+            formDatum.append("password", formData.firstname);
+            formDatum.append("password", formData.lastname);
+            formDatum.append("password", formData.address);
+            formDatum.append("password", formData.phone);
+            formDatum.append("password", formData.birthday);
+            formDatum.append("password", formData.hireDate);
+            formDatum.append("password", formData.notes);
+            const res = await axios.post("http://192.168.100.26:8000/api/create_usuario", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -92,29 +100,47 @@ export default function Register({navigation}){
             <FormControl.Label>Nickname</FormControl.Label>
             <Input p={2} color="white" fontSize={18} name="nickname" placeholder="Enter your nickname"
                 onChangeText={value => setData({ ...formData, nickname: value })} />    
-    
             {'nickname' in errors ? <Text>{errors.nickname}</Text>
                 : <FormControl.HelperText>
                     You must enter a least 6 characters
                   </FormControl.HelperText>
             }
-    
         </FormControl>
-    
         
     
         <FormControl isRequired isInvalid={'password' in errors}>
             <FormControl.Label>Password</FormControl.Label>
             <Input p={2} color="white" fontSize={18} name="password" placeholder="Enter password"
                 onChangeText={value => setData({ ...formData, password: value })} />    
-    
             {'password' in errors ? <Text>{errors.password}</Text>
                 : <FormControl.HelperText>
                     Keep your password safe
                   </FormControl.HelperText>
             }
-    
         </FormControl>
+
+        <FormControl isRequired isInvalid={'nickname' in errors}>
+            <FormControl.Label>Phone</FormControl.Label>
+            <Input p={2} color="white" fontSize={18} name="phone" placeholder="Enter your nickname"
+                onChangeText={value => setData({ ...formData, phone: value })} />    
+            {'nickname' in errors ? <Text>{errors.nickname}</Text>
+                : <FormControl.HelperText>
+                    You must enter a least 6 characters
+                  </FormControl.HelperText>
+            }
+        </FormControl>
+
+        <FormControl isRequired isInvalid={'nickname' in errors}>
+            <FormControl.Label>Address</FormControl.Label>
+            <Input p={2} color="white" fontSize={18} name="address" placeholder="Enter your nickname"
+                onChangeText={value => setData({ ...formData, address: value })} />    
+            {'nickname' in errors ? <Text>{errors.nickname}</Text>
+                : <FormControl.HelperText>
+                    You must enter a least 6 characters
+                  </FormControl.HelperText>
+            }
+        </FormControl>
+        
     
         <Button style={{ backgroundColor: colors.primary }}
             onPress={submit}>
@@ -122,8 +148,8 @@ export default function Register({navigation}){
         </Button>
 
         <View style={styles.container}>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Register')}>
-                <Text style={styles.buttonText}>Registrarme</Text>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LOGIN')}>
+                <Text style={styles.buttonText}>Volver</Text>
             </TouchableOpacity>
         </View>
         
