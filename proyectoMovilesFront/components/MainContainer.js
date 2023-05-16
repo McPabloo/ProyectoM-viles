@@ -12,21 +12,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './Home';
 import Login from './Login';
 import Register from './Register';
+import Crud from '.Crud';
 
-/*
-import HomeScreen from './HomeScreen';
-import OperationScreen from './OperationScreen';
-import SettingsScreen from './SettingsScreen';
-import Caja from './CalcuProte';
-import MainContainer2 from './MainContainer2';
-import MainContainer3 from './MainContainer3';
 
-//Screen Names
-
-const homeName = 'Home';
-const operationName = 'Operation';
-const settingsName = 'Settings';
-*/
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -35,11 +23,13 @@ const Drawer = createDrawerNavigator();
 export default function MainContainer() {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="LOGIN" options={{ headerShown: false }} component={Login} />
-                <Stack.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={HomeScreen} />
-                <Stack.Screen name="Register" options={{ headerShown: false, title: 'Register' }} component={Register} />
-            </Stack.Navigator>
+            <Drawer.Navigator>
+                <Drawer.Screen name="LOGIN" options={{ headerShown: false }} component={Login} />
+                <Drawer.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={HomeScreen} />
+                <Drawer.Screen name="Crud" options={{ headerShown: false }} component={Crud}/>
+                <Drawer.Screen name="register" options={{ headerShown: false }} component={Register}/>
+            </Drawer.Navigator>
+
         </NavigationContainer>
     )
 }
