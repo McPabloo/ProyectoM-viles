@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import colors from './colors';
 
-export default function Login({navigation}){
+export default function Register({navigation}){
 
     //estados
     const [formData, setData] = React.useState({nickname : '', password : ''})
