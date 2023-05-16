@@ -92,13 +92,8 @@ export default function Register({navigation}){
 
         <Center flex={1}  style={{ backgroundColor: colors.dark }}>
 
-<<<<<<< HEAD
-        <Text bold color="white" fontSize="60" mb="4">
-            Inventario2
-=======
         <Text bold color="white" fontSize="60" mt="10">
             Formulario de Registro
->>>>>>> f27b9fc967a07a09c9dee5061ca9700f63ddea08
         </Text>
 
         <ScrollView contentContainerStyle={styles.container} width="80%">
