@@ -35,7 +35,7 @@ export default function Login({navigation}){
         const formDatum = new FormData();
             formDatum.append("nickname", formData.nickname);
             formDatum.append("password", formData.password);
-            const res = await axios.post("http://192.168.1.72:8000/api/login", formDatum,
+            const res = await axios.post("http://192.168.100.26:8000/api/login", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -43,10 +43,15 @@ export default function Login({navigation}){
                 }
             }
         ).then(response => {
-            console.log(response.data[0].email);
-            setValid(true);
-            console.log(valid);
-            pass();
+            if (response.data && response.data.length > 0) {
+                console.log(response.data[0].email);
+                setValid(true);
+                console.log(valid);
+                pass();
+              } else {
+                console.log('Empty response');
+                // Aquí puedes manejar el caso de una respuesta vacía según tus necesidades
+              }
         }).catch(error => {
             console.log(error);
         });

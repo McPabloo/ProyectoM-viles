@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, FormControl, View, Input, VStack, Text, Center, CheckIcon, WarningOutlineIcon } from "native-base";
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { validate } from "react-native-web/dist/cjs/exports/StyleSheet/validate";
 import { useState } from "react";
 import axios from "axios";
@@ -10,7 +10,7 @@ export default function Register({navigation}){
 
     //estados
     const [formData, setData] = React.useState({nickname : '', password : '',
-    firstname : '', lastname : '' , phone : '' , address : '', address : '', birthday : '', hireDate : '', notes : ''})
+    firstname : '', lastname : '' , phone : '' , address : '', birthday : '', notes : ''})
     const [errors, setErrors] = React.useState({})
     const [valid, setValid] = React.useState(false);
 
@@ -20,7 +20,7 @@ export default function Register({navigation}){
         setErrors({})
         let isValid = true
         
-        if(formData.nickname == '' || formData.password == '' || formData.firstname == '' || formData.lastname == '' || formData.phone == '' || formData.address == '' || formData.birthday == '' || formData.hireDate == '' || formData.notes == ''){
+        if(formData.nickname == '' || formData.password == '' ){
             setErrors({...errors, nickname:'Nickname is required', password: 'Password is required'})
             isValid = false
         }else if(formData.nickname.length < 6){
@@ -36,12 +36,11 @@ export default function Register({navigation}){
         const formDatum = new FormData();
             formDatum.append("nickname", formData.nickname);
             formDatum.append("password", formData.password);
-            formDatum.append("password", formData.firstname);
-            formDatum.append("password", formData.lastname);
-            formDatum.append("password", formData.address);
-            formDatum.append("password", formData.phone);
-            formDatum.append("password", formData.birthday);
-            formDatum.append("password", formData.hireDate);
+            formDatum.append("firstname", formData.firstname);
+            formDatum.append("lastname", formData.lastname);
+            formDatum.append("address", formData.address);
+            formDatum.append("phone", formData.phone);
+            formDatum.append("birthday", formData.birthday);
             formDatum.append("password", formData.notes);
             const res = await axios.post("http://192.168.100.26:8000/api/create_usuario", formDatum,
             {
@@ -51,7 +50,7 @@ export default function Register({navigation}){
                 }
             }
         ).then(response => {
-            console.log(response.data[0].email);
+            //console.log(response.data[0].email);
             setValid(true);
             console.log(valid);
             pass();
@@ -65,7 +64,7 @@ export default function Register({navigation}){
 
     function pass(){
         if(valid===true){
-            navigation.navigate('HOME SCREEN');
+            navigation.navigate('LOGIN');
         }
     }
 
@@ -73,6 +72,8 @@ export default function Register({navigation}){
         container: {
             justifyContent: 'center',
             alignItems: 'center',
+            flexGrow: 1,
+            paddingVertical: 20,
           },
         button: {
           borderBottomWidth: 1,
@@ -90,71 +91,116 @@ export default function Register({navigation}){
 
         <Center flex={1}  style={{ backgroundColor: colors.dark }}>
 
-        <Text bold color="white" fontSize="60" mb="4">
-            Inventario
+        <Text bold color="white" fontSize="60" mt="10">
+            Formulario de Registro
         </Text>
 
-        <VStack>
-    
-        <FormControl isRequired isInvalid={'nickname' in errors}>
-            <FormControl.Label>Nickname</FormControl.Label>
-            <Input p={2} color="white" fontSize={18} name="nickname" placeholder="Enter your nickname"
-                onChangeText={value => setData({ ...formData, nickname: value })} />    
-            {'nickname' in errors ? <Text>{errors.nickname}</Text>
-                : <FormControl.HelperText>
-                    You must enter a least 6 characters
-                  </FormControl.HelperText>
-            }
-        </FormControl>
+        <ScrollView contentContainerStyle={styles.container} width="80%">
+            <VStack width="100%">
         
-    
-        <FormControl isRequired isInvalid={'password' in errors}>
-            <FormControl.Label>Password</FormControl.Label>
-            <Input p={2} color="white" fontSize={18} name="password" placeholder="Enter password"
-                onChangeText={value => setData({ ...formData, password: value })} />    
-            {'password' in errors ? <Text>{errors.password}</Text>
-                : <FormControl.HelperText>
-                    Keep your password safe
-                  </FormControl.HelperText>
-            }
-        </FormControl>
+            <FormControl isRequired isInvalid={'nickname' in errors}>
+                <FormControl.Label>Email</FormControl.Label>
+                <Input p={2} color="white" fontSize={18} name="nickname" placeholder="Enter your nickname"
+                    onChangeText={value => setData({ ...formData, nickname: value })} />    
+                {'nickname' in errors ? <Text>{errors.nickname}</Text>
+                    : <FormControl.HelperText>
+                        You must enter a least 6 characters
+                    </FormControl.HelperText>
+                }
+            </FormControl>
+            
+        
+            <FormControl isRequired isInvalid={'password' in errors}>
+                <FormControl.Label>Password</FormControl.Label>
+                <Input p={2} color="white" fontSize={18} name="password" placeholder="Enter password"
+                    onChangeText={value => setData({ ...formData, password: value })} />    
+                {'password' in errors ? <Text>{errors.password}</Text>
+                    : <FormControl.HelperText>
+                        Keep your password safe
+                    </FormControl.HelperText>
+                }
+            </FormControl>
 
-        <FormControl isRequired isInvalid={'nickname' in errors}>
-            <FormControl.Label>Phone</FormControl.Label>
-            <Input p={2} color="white" fontSize={18} name="phone" placeholder="Enter your nickname"
-                onChangeText={value => setData({ ...formData, phone: value })} />    
-            {'nickname' in errors ? <Text>{errors.nickname}</Text>
-                : <FormControl.HelperText>
-                    You must enter a least 6 characters
-                  </FormControl.HelperText>
-            }
-        </FormControl>
+            <FormControl isRequired isInvalid={'nickname' in errors}>
+                <FormControl.Label>Phone</FormControl.Label>
+                <Input p={2} color="white" fontSize={18} name="phone" placeholder="Enter your phone"
+                    onChangeText={value => setData({ ...formData, phone: value })} />    
+                {'nickname' in errors ? <Text>{errors.nickname}</Text>
+                    : <FormControl.HelperText>
+                        You must enter a least 6 characters
+                    </FormControl.HelperText>
+                }
+            </FormControl>
 
-        <FormControl isRequired isInvalid={'nickname' in errors}>
-            <FormControl.Label>Address</FormControl.Label>
-            <Input p={2} color="white" fontSize={18} name="address" placeholder="Enter your nickname"
-                onChangeText={value => setData({ ...formData, address: value })} />    
-            {'nickname' in errors ? <Text>{errors.nickname}</Text>
-                : <FormControl.HelperText>
-                    You must enter a least 6 characters
-                  </FormControl.HelperText>
-            }
-        </FormControl>
-        
-    
-        <Button style={{ backgroundColor: colors.primary }}
-            onPress={submit}>
-            Login
-        </Button>
+            <FormControl isRequired isInvalid={'nickname' in errors}>
+                <FormControl.Label>Firstname</FormControl.Label>
+                <Input p={2} color="white" fontSize={18} name="firstname" placeholder="Enter your firstname"
+                    onChangeText={value => setData({ ...formData, firstname: value })} />    
+                {'nickname' in errors ? <Text>{errors.nickname}</Text>
+                    : <FormControl.HelperText>
+                        You must enter a least 6 characters
+                    </FormControl.HelperText>
+                }
+            </FormControl>
 
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LOGIN')}>
-                <Text style={styles.buttonText}>Volver</Text>
-            </TouchableOpacity>
-        </View>
+            <FormControl isRequired isInvalid={'nickname' in errors}>
+                <FormControl.Label>Lastname</FormControl.Label>
+                <Input p={2} color="white" fontSize={18} name="lastname" placeholder="Enter your lastname"
+                    onChangeText={value => setData({ ...formData, lastname: value })} />    
+                {'nickname' in errors ? <Text>{errors.nickname}</Text>
+                    : <FormControl.HelperText>
+                        You must enter a least 6 characters
+                    </FormControl.HelperText>
+                }
+            </FormControl>
+
+            <FormControl isRequired isInvalid={'nickname' in errors}>
+                <FormControl.Label>Birthday</FormControl.Label>
+                <Input p={2} color="white" fontSize={18} name="birthday" placeholder="Enter your birthday"
+                    onChangeText={value => setData({ ...formData, birthday: value })} />    
+                {'nickname' in errors ? <Text>{errors.nickname}</Text>
+                    : <FormControl.HelperText>
+                        You must enter a least 6 characters
+                    </FormControl.HelperText>
+                }
+            </FormControl>
+
+            <FormControl isRequired isInvalid={'nickname' in errors}>
+                <FormControl.Label>Address</FormControl.Label>
+                <Input p={2} color="white" fontSize={18} name="address" placeholder="Enter your address"
+                    onChangeText={value => setData({ ...formData, address: value })} />    
+                {'nickname' in errors ? <Text>{errors.nickname}</Text>
+                    : <FormControl.HelperText>
+                        You must enter a least 6 characters
+                    </FormControl.HelperText>
+                }
+            </FormControl>
+
+            <FormControl isRequired isInvalid={'nickname' in errors}>
+                <FormControl.Label>Notes</FormControl.Label>
+                <Input p={2} color="white" fontSize={18} name="notas" placeholder="Personal notes"
+                    onChangeText={value => setData({ ...formData, notas: value })} />    
+                {'nickname' in errors ? <Text>{errors.nickname}</Text>
+                    : <FormControl.HelperText>
+                        You must enter a least 6 characters
+                    </FormControl.HelperText>
+                }
+            </FormControl>
         
-        
-    </VStack>
+            <Button style={{ backgroundColor: colors.primary }}
+                onPress={submit}>
+                    Registrarme
+            </Button>
+
+            <View style={styles.container}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LOGIN')}>
+                    <Text style={styles.buttonText}>Volver</Text>
+                </TouchableOpacity>
+            </View>
+            
+        </VStack>
+    </ScrollView>
+
     </Center>
     
         

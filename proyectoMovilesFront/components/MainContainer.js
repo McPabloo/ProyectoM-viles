@@ -12,7 +12,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './Home';
 import Login from './Login';
 import Register from './Register';
-import Crud from '.Crud';
+import Crud from './Crud';
 
 
 
@@ -27,7 +27,7 @@ export default function MainContainer() {
                 <Drawer.Screen name="LOGIN" options={{ headerShown: false }} component={Login} />
                 <Drawer.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={HomeScreen} />
                 <Drawer.Screen name="Crud" options={{ headerShown: false }} component={Crud}/>
-                <Drawer.Screen name="register" options={{ headerShown: false }} component={Register}/>
+                <Drawer.Screen name="Register" options={{ headerShown: false }} component={Register}/>
             </Drawer.Navigator>
 
         </NavigationContainer>
