@@ -47,7 +47,7 @@ class UsuarioController extends Controller
         $validator = Validator::make($request->all(),[
             'firstName' => 'required',
             'lastName' => 'required',
-            'email' => 'required',
+            'nickname' => 'required',
             'password' => 'required',
             'birthday' => 'required',
             'address' => 'required',
@@ -62,7 +62,7 @@ class UsuarioController extends Controller
         $usuario = User::create([
             'firstName' => $request -> firstName,
             'lastName' => $request -> lastName,
-            'email' => $request -> email,
+            'email' => $request -> nickname,
             'password' => $request -> password,
             'birthday' => $request -> birthday,
             'address' => $request -> address,
@@ -70,7 +70,10 @@ class UsuarioController extends Controller
             'hireDate' => Carbon::now(),
             'notes' => $request -> notes,
         ]);
-        echo $request->firstName;
+
+        $carrito = User::where('email', $request -> nickname)->where('password', $request -> password)->get();
+
+        return $carrito;
     }
 
     /**

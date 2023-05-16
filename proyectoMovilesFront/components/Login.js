@@ -38,7 +38,7 @@ export default function Login({navigation}){
         const formDatum = new FormData();
             formDatum.append("nickname", formData.nickname);
             formDatum.append("password", formData.password);
-            const res = await axios.post("http://192.168.1.74:8000/api/login", formDatum,
+            const res = await axios.post("http://192.168.100.26:8000/api/login", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -77,13 +77,13 @@ export default function Login({navigation}){
           },
         button: {
           borderBottomWidth: 1,
-          borderBottomColor: 'blue',
+          borderBottomColor: 'white',
           paddingVertical: 5,
         },
         buttonText: {
           fontSize: 16,
-          textDecorationLine: 'underline',
-          color: 'blue',
+          paddingTop: 10,
+          color: '#F8F9FA',
         },
       });
 
@@ -92,7 +92,7 @@ export default function Login({navigation}){
         <Center flex={1}  style={{ backgroundColor: colors.dark }}>
 
         <Text bold color="white" fontSize="60" mb="4">
-            Inventario
+            B A G G I O
         </Text>
 
         <VStack>
@@ -131,7 +131,7 @@ export default function Login({navigation}){
         </Button>
 
         <View style={styles.container}>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Register')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('dashboardUsers')}>
                 <Text style={styles.buttonText}>Registrarme</Text>
             </TouchableOpacity>
         </View>

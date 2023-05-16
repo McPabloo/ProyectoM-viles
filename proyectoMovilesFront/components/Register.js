@@ -37,12 +37,12 @@ export default function Register({navigation}){
         const formDatum = new FormData();
             formDatum.append("nickname", formData.nickname);
             formDatum.append("password", formData.password);
-            formDatum.append("firstname", formData.firstname);
-            formDatum.append("lastname", formData.lastname);
+            formDatum.append("firstName", formData.firstname);
+            formDatum.append("lastName", formData.lastname);
             formDatum.append("address", formData.address);
             formDatum.append("phone", formData.phone);
             formDatum.append("birthday", formData.birthday);
-            formDatum.append("password", formData.notes);
+            formDatum.append("notes", formData.notes);
             const res = await axios.post("http://192.168.100.26:8000/api/create_usuario", formDatum,
             {
                 headers: {
@@ -51,10 +51,15 @@ export default function Register({navigation}){
                 }
             }
         ).then(response => {
-            //console.log(response.data[0].email);
-            setValid(true);
-            console.log(valid);
-            pass();
+            if (response.data && response.data.length > 0) {
+                console.log(response.data[0].email);
+                setValid(true);
+                console.log(valid);
+                pass();
+              } else {
+                console.log('Empty response');
+                // Aquí puedes manejar el caso de una respuesta vacía según tus necesidades
+              }
         }).catch(error => {
             console.log(error);
         });
@@ -76,16 +81,16 @@ export default function Register({navigation}){
             flexGrow: 1,
             paddingVertical: 20,
           },
-        button: {
-          borderBottomWidth: 1,
-          borderBottomColor: 'blue',
-          paddingVertical: 5,
-        },
-        buttonText: {
-          fontSize: 16,
-          textDecorationLine: 'underline',
-          color: 'blue',
-        },
+          button: {
+            borderBottomWidth: 1,
+            borderBottomColor: 'white',
+            paddingVertical: 5,
+          },
+          buttonText: {
+            fontSize: 16,
+            paddingTop: 10,
+            color: '#F8F9FA',
+          },
       });
 
     return  (
@@ -179,8 +184,8 @@ export default function Register({navigation}){
 
             <FormControl isRequired isInvalid={'nickname' in errors}>
                 <FormControl.Label>Notes</FormControl.Label>
-                <Input p={2} color="white" fontSize={18} name="notas" placeholder="Personal notes"
-                    onChangeText={value => setData({ ...formData, notas: value })} />    
+                <Input p={2} color="white" fontSize={18} name="notes" placeholder="Personal notes"
+                    onChangeText={value => setData({ ...formData, notes: value })} />    
                 {'nickname' in errors ? <Text>{errors.nickname}</Text>
                     : <FormControl.HelperText>
                         You must enter a least 6 characters

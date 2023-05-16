@@ -13,7 +13,7 @@ import { useState } from 'react';
 import HomeScreen from './Home';
 import Login from './Login';
 import Register from './Register';
-import Crud from './Crud';
+import dashboardUsers from './dashboardUsers';
 import MainContainer2 from './MainContainer2';
 
 
@@ -43,6 +43,8 @@ export default function MainContainer() {
                         <Drawer.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={HomeScreen} />
                         <Drawer.Screen name="CRUD" options={{ headerShown: false }} component={MainContainer2} />
                         <Drawer.Screen name="Register" options={{ headerShown: false }} component={Register} />
+
+                        <Drawer.Screen name="dashboardUsers" options={{ headerShown: false }} component={dashboardUsers} />
                     </>
                 ) : (
                     <>
