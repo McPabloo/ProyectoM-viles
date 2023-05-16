@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -51,7 +52,6 @@ class UsuarioController extends Controller
             'birthday' => 'required',
             'address' => 'required',
             'phone' => 'required',
-            'hireDate' => 'required',
             'notes' => 'required',
         ]);
 
@@ -67,7 +67,7 @@ class UsuarioController extends Controller
             'birthday' => $request -> birthday,
             'address' => $request -> address,
             'phone' => $request -> phone,
-            'hireDate' => $request -> hireDate,
+            'hireDate' => Carbon::now(),
             'notes' => $request -> notes,
         ]);
         echo $request->firstName;

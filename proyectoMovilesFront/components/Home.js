@@ -2,23 +2,21 @@ import * as React from "react";
 import {View, Button, Text, Box, HStack, Input, 
     Center, VStack, Heading, ScrollView, Image, AspectRatio,
     Stack, QuestionOutlineIcon, Icon, useToast, Divider,} from "native-base";
-import { DrawerContent, DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer";
 
     
 export default function HomeScreen({navigation}){
     const toast = useToast();
     return(
         <ScrollView>
-
             <Box safeAreaTop>
                 <Heading textAlign={"center"} bg={"#83E8BA"} size="2xl" color={"white"} 
-                shadow="9">Roberto Baggio</Heading>
+                shadow="9">MY HEALTH</Heading>
                 <Text/>
                 <Center>
                     {/* primeros textos */}
                     <VStack >
                         <HStack >
-                            <Text textAlign={"center"} fontSize='3xl' color='red' >El hombre que murio de pie</Text>
+                            <Text textAlign={"center"} fontSize='3xl' color='red' >WELCOME TO CHANGE YOUR LIFE</Text>
                         </HStack>
                         <HStack>
                             <Text textAlign={"justify"} fontSize='md' color='red' >Esta es una aplicacion en la cual 
