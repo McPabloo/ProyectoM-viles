@@ -1,92 +1,153 @@
 import * as React from "react";
-import {View, Button, Text, Box,
-  ScrollView, HStack, Badge, Spacer, Pressable, Flex, Heading,Divider} from "native-base";
+import {
+  View, Button, Text, Box,
+  ScrollView, HStack, Badge, Spacer, Pressable, Flex, Heading, Divider
+} from "native-base";
 
-export default function Crud({navigation}){
-    return(
-     <ScrollView>
+export default function Crud({ navigation }) {
+  return (
+    <ScrollView>
       <Box safeAreaTop>
-        <Heading textAlign={"center"} bg={"#219ebc"} size="2xl" color={"white"} 
-              shadow="9">TABLES</Heading>
-        <Text/>
+        <Heading textAlign={"center"} bg={"#219ebc"} size="2xl" color={"white"}
+          shadow="9">TABLES</Heading>
+        <Text />
         <Box alignItems="center">
-          <Box rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
+          <Box width="100%" rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
             <Box alignItems='center'>
               <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
-                Category
+                CATEGORY
               </Text>
               <Text textAlign={"justify"} mt="2" fontSize="sm" color="coolGray.700">
-                CRUD of category table
+                CRUD of Category table
               </Text>
-              <Text/>
-              <Button onPress={()=>navigation.navigate('Category')} >Go</Button>
+              <Text />
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Category')} >GO</Button>
             </Box>
           </Box>
-          <Text/>
+          <Text />
 
           {/*segundo card*/}
 
-          <Box rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
+          <Box width="100%" rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
             <Box alignItems='center'>
               <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
-                Fisioterapeuta
+                CLIENT
               </Text>
               <Text textAlign={"justify"} mt="2" fontSize="sm" color="coolGray.700">
-                Prevención y rehabilitación de lesiones o condiciones de salud
-                que afecten tu vida diaria
+                CRUD of Client table
               </Text>
-              <Text/>
-              <Button onPress={()=>navigation.navigate('FISIO')}>CALCULAR</Button>
+              <Text />
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Client')}>GO</Button>
             </Box>
           </Box>
-          <Text/>
+          <Text />
 
           {/*Tercer card*/}
 
-          <Box rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
+          <Box width="100%" rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
             <Box alignItems='center'>
               <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
-                Psicologo
+                COMPANY
               </Text>
               <Text textAlign={"justify"} mt="2" fontSize="sm" color="coolGray.700">
-                Atención psicologica de primer contacto para manejar de forma mejor tu vida
+                CRUD of Company table
               </Text>
-              <Text/>
-              <Button onPress={()=>navigation.navigate('PSICO')}>CALCULAR</Button>
+              <Text />
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Companay')}>GO</Button>
             </Box>
           </Box>
-          <Text/>
+          <Text />
           {/*Cuarto card*/}
 
-          <Box rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
+          <Box width="100%" rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
             <Box alignItems='center'>
               <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
-                Nutriologo
+                ORDER DETAILS
               </Text>
               <Text textAlign={"justify"} mt="2" fontSize="sm" color="coolGray.700">
-                Evalúa tu estado de nutrición y determina el plan de alimentación mejor para ti
+                CRUD of OrderDetails tables
               </Text>
-              <Text/>
-              <Button onPress={()=>navigation.navigate('NUTRI')}>CALCULAR</Button>
+              <Text />
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('OrderDetails')}>GO</Button>
             </Box>
           </Box>
-          <Text/>
+          <Text />
           {/*Quinto card*/}
 
-          <Box rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
+          <Box width="100%" rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
             <Box alignItems='center'>
               <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
-                Veterinario
+                ORDERS
               </Text>
               <Text textAlign={"justify"} mt="2" fontSize="sm" color="coolGray.700">
-                Prevención y tratamiento de enfermedades o lesiones en animales
+                CRUD of Orders table
               </Text>
-              <Text/>
-              <Button onPress={()=>navigation.navigate('VET')}>CALCULAR</Button>
+              <Text />
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Orders')}>GO</Button>
+            </Box>
+          </Box>
+
+          {/*Quinto card*/}
+
+          <Box width="100%" rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
+            <Box alignItems='center'>
+              <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
+                PRODUCTS
+              </Text>
+              <Text textAlign={"justify"} mt="2" fontSize="sm" color="coolGray.700">
+                CRUD of Products table
+              </Text>
+              <Text />
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Products')}>GO</Button>
+            </Box>
+          </Box>
+
+          {/*Quinto card*/}
+
+          <Box width="100%" rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
+            <Box alignItems='center'>
+              <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
+                SHIPPERS
+              </Text>
+              <Text textAlign={"justify"} mt="2" fontSize="sm" color="coolGray.700">
+                CRUD of Shipper table
+              </Text>
+              <Text />
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Shipper')}>GO</Button>
+            </Box>
+          </Box>
+
+          {/*octavo card*/}
+
+          <Box width="100%" rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
+            <Box alignItems='center'>
+              <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
+                SUPLIERS
+              </Text>
+              <Text textAlign={"justify"} mt="2" fontSize="sm" color="coolGray.700">
+                CRUD of Supliers table
+              </Text>
+              <Text />
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Supliers')}>GO</Button>
+            </Box>
+          </Box>
+
+          {/*Noveno card*/}
+
+          <Box width="100%" rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
+            <Box alignItems='center'>
+              <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
+                USERS
+              </Text>
+              <Text textAlign={"justify"} mt="2" fontSize="sm" color="coolGray.700">
+                CRUD of Users table
+              </Text>
+              <Text />
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Users')}>GO</Button>
             </Box>
           </Box>
         </Box>
       </Box>
     </ScrollView>
-    )
+  )
 }
