@@ -9,11 +9,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 //Screens
 
-import HomeScreen from './Home';
-import Login from './Login';
-import Crud from './Crud';
-
-
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -22,11 +17,11 @@ const Drawer = createDrawerNavigator();
 export default function MainContainer() {
     return (
         <NavigationContainer>
-            <Drawer.Navigator>
-                <Drawer.Screen name="LOGIN" options={{ headerShown: false }} component={Login} />
-                <Drawer.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={HomeScreen} />
-                <Drawer.Screen name="Crud" options={{ headerShown: false }} component={Crud}/>
-            </Drawer.Navigator>
+            <Stack.Navigator>
+                <Stack.Screen name="LOGIN" options={{ headerShown: false }} component={Login} />
+                <Stack.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={HomeScreen} />
+                <Stack.Screen name="Crud" options={{ headerShown: false }} component={Crud}/>
+            </Stack.Navigator>
 
         </NavigationContainer>
     )
