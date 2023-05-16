@@ -9,26 +9,25 @@ export default function HomeScreen({navigation}){
     return(
         <ScrollView>
             <Box safeAreaTop>
-                <Heading textAlign={"center"} bg={"#83E8BA"} size="2xl" color={"white"} 
-                shadow="9">MY HEALTH</Heading>
+                <Heading textAlign={"center"} bg={"#219ebc"} size="2xl" color={"white"} 
+                shadow="9">ROBERTO BAGGIO</Heading>
                 <Text/>
                 <Center>
                     {/* primeros textos */}
                     <VStack >
                         <HStack >
-                            <Text textAlign={"center"} fontSize='3xl' color='red' >WELCOME TO CHANGE YOUR LIFE</Text>
+                            <Text textAlign={"center"} fontSize='3xl' color='red' >El hombre que murió de pie</Text>
                         </HStack>
                         <HStack>
-                            <Text textAlign={"justify"} fontSize='md' color='red' >Esta es una aplicacion en la cual 
-                                puedes monitorear tu cuerpo y realizar diferentes cálculos en 
-                                cuanto a salud se refiere. </Text>
+                            <Text width={"90%"} textAlign={"justify"} fontSize='md' color='red' >Esta es una aplicacion en la cual 
+                                puedes administrar tu empresa. Desde un control de inventario hasta uno de personal, etc. </Text>
                         </HStack>
                     </VStack>
                     <Text/>
 
                     {/* Imagen */}
                     <Image source={{
-                    uri: "https://www.noticiasensalud.com/wp-content/uploads/2021/04/Medios-actuales-para-cuidar-de-la-salud-bienestar-fisico-y-mental-1000x600.jpg"
+                    uri: "https://clearspider.net/wp-content/uploads/2019/05/stock-control-tips-techniques.png"
                     }} alt="Alternate Text" size="2xl" />
                     <Text/>
 

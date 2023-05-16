@@ -42,7 +42,7 @@ export default function MainContainer() {
                         <Drawer.Screen name="LOGIN" options={{ headerShown: false }} component={Login} />
                         <Drawer.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={HomeScreen} />
                         <Drawer.Screen name="CRUD" options={{ headerShown: false }} component={MainContainer2} />
-                        <Drawer.Screen name="Register" options={{ headerShown: false }} component={Register} />
+                        <Drawer.Screen name="REGISTER" options={{ headerShown: false }} component={Register} />
                     </>
                 ) : (
                     <>
