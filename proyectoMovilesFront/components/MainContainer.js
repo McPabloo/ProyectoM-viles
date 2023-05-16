@@ -12,9 +12,21 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './Home';
 import Login from './Login';
 import Register from './Register';
-import Crud from './Crud';
 
+/*
+import HomeScreen from './HomeScreen';
+import OperationScreen from './OperationScreen';
+import SettingsScreen from './SettingsScreen';
+import Caja from './CalcuProte';
+import MainContainer2 from './MainContainer2';
+import MainContainer3 from './/MainContainer3';
 
+//Screen Names
+
+const homeName = 'Home';
+const operationName = 'Operation';
+const settingsName = 'Settings';
+*/
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
