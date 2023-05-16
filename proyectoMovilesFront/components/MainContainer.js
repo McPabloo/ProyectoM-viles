@@ -14,6 +14,7 @@ import HomeScreen from './Home';
 import Login from './Login';
 import Register from './Register';
 import Crud from './Crud';
+import MainContainer2 from './MainContainer2';
 
 
 const Stack = createStackNavigator();
@@ -21,26 +22,26 @@ const Drawer = createDrawerNavigator();
 ;
 
 
-const getIsSignedIn =  async () => {
+const getIsSignedIn = () => {
 
-return true;
-    
+    return true;
+
 
 };
 
 
 export default function MainContainer() {
 
-    const isSignedIn =  getIsSignedIn();
+    const isSignedIn = getIsSignedIn();
 
     return (
         <NavigationContainer>
             <Drawer.Navigator>
                 {isSignedIn ? (
                     <>
-                        <Drawer.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={HomeScreen} />
-                        <Drawer.Screen name="Crud" options={{ headerShown: false }} component={Crud} />
                         <Drawer.Screen name="LOGIN" options={{ headerShown: false }} component={Login} />
+                        <Drawer.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={HomeScreen} />
+                        <Drawer.Screen name="CRUD" options={{ headerShown: false }} component={MainContainer2} />
                         <Drawer.Screen name="Register" options={{ headerShown: false }} component={Register} />
                     </>
                 ) : (
