@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Center, Container, Heading, Text } from 'native-base';
 
 export default function OrderDetails() {

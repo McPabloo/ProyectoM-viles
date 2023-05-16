@@ -5,6 +5,7 @@ import { validate } from "react-native-web/dist/cjs/exports/StyleSheet/validate"
 import { useState } from "react";
 import axios from "axios";
 import colors from './colors';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Register({navigation}){
 
@@ -83,7 +84,7 @@ export default function Register({navigation}){
         <Center flex={1}  style={{ backgroundColor: colors.dark }}>
 
         <Text bold color="white" fontSize="60" mb="4">
-            Inventario
+            Inventario2
         </Text>
 
         <VStack>

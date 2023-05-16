@@ -13,14 +13,13 @@ export default function Crud({navigation}){
           <Box rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
             <Box alignItems='center'>
               <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
-                Médico general
+                Category
               </Text>
               <Text textAlign={"justify"} mt="2" fontSize="sm" color="coolGray.700">
-                Es el primer paso para el diagnóstico, tratamiento y recuperación
-                de tu salud
+                CRUD of category table
               </Text>
               <Text/>
-              <Button onPress={()=>navigation.navigate('DOCTOR')} >CALCULAR</Button>
+              <Button onPress={()=>navigation.navigate('Category')} >Go</Button>
             </Box>
           </Box>
           <Text/>

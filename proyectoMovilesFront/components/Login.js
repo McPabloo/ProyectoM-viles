@@ -5,13 +5,16 @@ import { validate } from "react-native-web/dist/cjs/exports/StyleSheet/validate"
 import { useState } from "react";
 import axios from "axios";
 import colors from './colors';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 export default function Login({navigation}){
+    AsyncStorage.clear();
 
     //estados
     const [formData, setData] = React.useState({nickname : '', password : ''})
     const [errors, setErrors] = React.useState({})
-    const [valid, setValid] = React.useState(false);
+    const [valid, setValid] = React.useState('0');
 
     //validacion
     const validate = () => {
@@ -35,7 +38,7 @@ export default function Login({navigation}){
         const formDatum = new FormData();
             formDatum.append("nickname", formData.nickname);
             formDatum.append("password", formData.password);
-            const res = await axios.post("http://192.168.1.72:8000/api/login", formDatum,
+            const res = await axios.post("http://192.168.1.74:8000/api/login", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -44,19 +47,22 @@ export default function Login({navigation}){
             }
         ).then(response => {
             console.log(response.data[0].email);
-            setValid(true);
+            setValid('1');
             console.log(valid);
             pass();
         }).catch(error => {
             console.log(error);
         });
+
+        await AsyncStorage.setItem('@entrada:value', valid);
+            console.log(await AsyncStorage.getItem('@entrada:value'));
     } 
 
 
     function submit() { (validate()) ? send_request() : console.log("Error",errors)};
 
     function pass(){
-        if(valid===true){
+        if(valid==='1'){
             navigation.navigate('HOME SCREEN');
         }
     }
