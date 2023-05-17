@@ -97,19 +97,14 @@ class UsuarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
-        $usuario = User::findOrFail($request->id);
-        $usuario->firstName = $request -> firstName;
-        $usuario->lastName = $request -> lastName;
-        $usuario->email = $request -> email;
-        $usuario->password = $request -> password;
-        $usuario->birthday = $request -> birthday;
-        $usuario->address = $request -> address;
-        $usuario->phone = $request -> phone;
-        $usuario->hireDate = $request -> hireDate;
-        $usuario->notes = $request -> notes;
+        $usuario = User::findOrFail($request->input('id'));
+        $usuario->firstName = $request ->input('nickname');
+        $usuario->email = $request -> input('email');
+        $usuario->password = $request -> input('password');
+        $usuario->phone = $request -> input('phone');
 
         $usuario->save();
         return $usuario;

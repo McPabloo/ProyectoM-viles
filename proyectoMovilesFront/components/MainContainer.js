@@ -15,6 +15,7 @@ import Login from './Login';
 import Register from './Register';
 import dashboardUsers from './dashboardUsers';
 import MainContainer2 from './MainContainer2';
+import EditUser from './EditUser';
 
 
 const Stack = createStackNavigator();
@@ -45,6 +46,7 @@ export default function MainContainer() {
                         <Drawer.Screen name="REGISTER" options={{ headerShown: false }} component={Register} />
 
                         <Drawer.Screen name="dashboardUsers" options={{ headerShown: false }} component={dashboardUsers} />
+                        <Drawer.Screen name="EditUser" options={{ headerShown: false }} component={EditUser} />
                     </>
                 ) : (
                     <>

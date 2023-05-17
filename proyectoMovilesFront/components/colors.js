@@ -1,5 +1,6 @@
 export default {
     primary: '#219ebc',
+    contrast: '#0098FF',
     secondary: '#8ecae6',
     success: '#28A745',
     danger: '#c1121f',
