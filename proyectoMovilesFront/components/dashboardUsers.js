@@ -8,6 +8,7 @@ import { ListItem, Avatar } from 'react-native-elements';
 export default function Users({navigation}) {
 
   const [listUser, setListUser] = useState([]);
+  const [eliminate, setEliminate] = useState([]);
 
   const [idUs, setIdUs] = useState([]);
 
@@ -20,6 +21,26 @@ export default function Users({navigation}) {
     console.log(res.data);
     setListUser(res.data);
   };
+
+  const eliminar=async(e)=>{
+    if (e && e.preventDefault()) e.preventDefault();
+    console.log(eliminate);
+    const formDatum = new FormData();
+        formDatum.append("id", eliminate);
+        const res = await axios.post("http://192.168.100.26:8000/api/delete_usuario", formDatum,
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json'
+            }
+        }
+    ).then(response => {
+
+        getUser();
+    }).catch(error => {
+        console.log(error);
+    });
+} 
 
 
   const styles = StyleSheet.create({
@@ -95,6 +116,10 @@ export default function Users({navigation}) {
       fontSize: 16,
       color: '#666',
     },
+    emaila: {
+      fontSize: 16,
+      color: colors.danger,
+    },
     cl: {
       flex: 1,
       alignItems: 'center',
@@ -120,7 +145,7 @@ export default function Users({navigation}) {
 
           <HStack space={2} mt={2}>
             <View >
-              <Button style={styles.button} onPress={() => navigation.navigate('HOME SCREEN')}>
+              <Button style={styles.button} onPress={() => navigation.navigate('CreateUser')}>
                 Crear Usuario
               </Button>
             </View>
@@ -143,7 +168,12 @@ export default function Users({navigation}) {
                   <Button style={styles.email} onPress={() => {navigation.navigate('EditUser',{userID: user.id})}}>
                     Editar
                   </Button>
-                  <Button style={styles.email} onPress={() => alert(user.id)}>
+                  <Button backgroundColor={colors.danger} 
+                    onPress={() => {
+                      console.log(user.id);
+                      setEliminate(user.id);
+                      eliminar();
+                    }}>
                     Eliminar
                   </Button> 
                 </HStack>

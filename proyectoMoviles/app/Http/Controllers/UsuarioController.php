@@ -52,7 +52,6 @@ class UsuarioController extends Controller
             'birthday' => 'required',
             'address' => 'required',
             'phone' => 'required',
-            'notes' => 'required',
         ]);
 
         if ($validator->fails()){
@@ -113,10 +112,10 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
         //
-        $usuario = User::find($request->id);
+        $usuario = User::find($request->input("id"));
         $usuario->delete();
 
         $usuario = User::all();
