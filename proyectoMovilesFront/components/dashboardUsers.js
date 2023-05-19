@@ -68,40 +68,41 @@ export default function Users({navigation}) {
     listItem: {
       marginTop: 10,
       flexDirection: 'row',
+      flex: 1,
+      justifyContent: 'center',
       alignItems: 'center',
       paddingVertical: 10,
       borderBottomWidth: 2,
-      width: 350,
+      width: 300,
       borderBottomColor: '#ffb703',
     },
     sep: {
       flexDirection: 'row',
       alignItems: 'center',
-      paddingVertical: 2,
-      borderBottomWidth: 2,
-      width: 260,
       paddingVertical: 10,
+      borderBottomWidth: 2,
+      width: 350,
       borderBottomColor: '#023047',
     },
     avatar: {
-      width: 40,
-      height: 40,
-      borderRadius: 20,
-      marginRight: 10,
+      width: 80,
+      height: 80,
+      borderRadius: 40,
+      marginRight: 15,
     },
     container: {
       backgroundColor: '#0098FF',
-      width: 40,
-      height: 40,
+      width: 30,
+      height: 30,
       borderRadius: 20,
-      marginRight: 25,
+      marginRight: 15,
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
     },
     imagen: {
-      width: 40, // O el valor deseado para el ancho de la imagen
-      height: 40, // O el valor deseado para la altura de la imagen
+      width: 30, // O el valor deseado para el ancho de la imagen
+      height: 30, // O el valor deseado para la altura de la imagen
     },
     imagenbtn: {
       width: 20, // O el valor deseado para el ancho de la imagen
@@ -165,7 +166,7 @@ export default function Users({navigation}) {
                 <Text style={styles.name}>{user.firstName}</Text>
                 <Text style={styles.email}>{user.email}</Text>
                 <HStack space={2} mt={2}>
-                  <Button style={styles.email} onPress={() => {navigation.navigate('EditUser',{userID: user.id})}}>
+                  <Button backgroundColor={colors.primary} onPress={() => {navigation.navigate('EditUser',{userID: user.id})}}>
                     Editar
                   </Button>
                   <Button backgroundColor={colors.danger} 

@@ -83,8 +83,15 @@ export default function UserC({navigation}) {
     button: {
       backgroundColor: '#023047',
       width: 150,
-      marginVertical: 60,
+      height: 40,
+      marginVertical: 30,
       alignSelf: 'center',
+    },
+    button1: {
+      backgroundColor: '#023047',
+      width: 60,
+      height: 40,
+      marginVertical: 10,
     },
     buttonText: {
       fontSize: 16,
@@ -94,32 +101,45 @@ export default function UserC({navigation}) {
     listItem: {
       marginTop: 10,
       flexDirection: 'row',
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingVertical: 10,
+      borderBottomWidth: 2,
+      width: 300,
+      borderBottomColor: '#ffb703',
+    },
+    sep: {
+      flexDirection: 'row',
       alignItems: 'center',
       paddingVertical: 10,
       borderBottomWidth: 2,
       width: 350,
-      borderBottomColor: '#ffb703',
+      borderBottomColor: '#023047',
     },
     avatar: {
-      width: 150,
-      height: 150,
-      marginVertical: 7,
-      borderRadius: 20,
-      marginRight: 10,
+      width: 80,
+      height: 80,
+      borderRadius: 40,
+      marginRight: 15,
     },
     container: {
       backgroundColor: '#0098FF',
-      width: 40,
-      height: 40,
+      width: 30,
+      height: 30,
       borderRadius: 20,
-      marginRight: 10,
+      marginRight: 15,
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
     },
     imagen: {
-      width: 40, // O el valor deseado para el ancho de la imagen
-      height: 40, // O el valor deseado para la altura de la imagen
+      width: 30, // O el valor deseado para el ancho de la imagen
+      height: 30, // O el valor deseado para la altura de la imagen
+    },
+    imagenbtn: {
+      width: 20, // O el valor deseado para el ancho de la imagen
+      height: 20, // O el valor deseado para la altura de la imagen
     },
     name: {
       fontWeight: 'bold',
@@ -129,6 +149,10 @@ export default function UserC({navigation}) {
     email: {
       fontSize: 16,
       color: '#666',
+    },
+    emaila: {
+      fontSize: 16,
+      color: colors.danger,
     },
     cl: {
       flex: 1,
@@ -146,7 +170,7 @@ export default function UserC({navigation}) {
             />
           </Button> 
           <Heading>
-            Editar
+            Nuevo
             <Text color={colors.warning}> Usuario           </Text>
           </Heading>
         </HStack>
