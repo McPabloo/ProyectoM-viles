@@ -6,30 +6,24 @@ import { TouchableOpacity, StyleSheet, TextInput, ScrollView } from 'react-nativ
 import { ListItem, Avatar } from 'react-native-elements';
 import { useRoute } from '@react-navigation/native';
 
-export default function UserE({navigation}) {
+export default function CompanyE({navigation}) {
 
   const route = useRoute();
  
 
-  const [listUser, setListUser] = useState({});
+  const [listCompany, setListCompany] = useState({});
 
   const [nam, setNam] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPass] = useState("");
+  const [location, setLocation] = useState("");
 
   const [formData, setFormData] = useState({
-    username: "",
-    lastname: "",
-    phone: "",
-    address: "",
-    password: "",
-    email: "",
+    companyName: "",
+    location: "",
   });  
 
   useEffect(() => {
-    console.log({userID})
-    getUser()
+    console.log({companyID})
+    getCompany()
   }, [])
 
   const HandleChangeText=(value)=>{
@@ -37,23 +31,15 @@ export default function UserE({navigation}) {
   }
 
   const HandleChangeEmail=(value)=>{
-    setEmail(value);
+    setLocation(value);
   }
 
-  const HandleChangePhone=(value)=>{
-    setPhone(value);
-  }
+  const { companyID } = route.params;
 
-  const HandleChangePassword=(value)=>{
-    setPass(value);
-  }
-
-  const { userID } = route.params;
-
-  const getUser = async () => {
-    const res = await axios.get(`http://192.168.1.74:8000/api/show_usuario/${userID}`);
+  const getCompany = async () => {
+    const res = await axios.get(`http://192.168.1.74:8000/api/show_company/${companyID}`);
     console.log(res.data);
-    setListUser(res.data);
+    setListCompany(res.data);
   };
 
 
@@ -127,7 +113,7 @@ export default function UserE({navigation}) {
         setErrors({})
         let isValid = true
         
-        if(nam == '' || email == '' || phone == '' || password == ''){
+        if(nam == '' || location == '' ){
             setErrors({...errors, aviso:'Todos los campos son requeridos'})
             isValid = false
         }
@@ -138,18 +124,14 @@ export default function UserE({navigation}) {
 
   const send_request=async()=>{
         console.log(nam);
-        console.log(password);
-        console.log(phone);
-        console.log(email);
-        console.log(userID);
+        console.log(location);
+        console.log(companyID);
         const formDatum = new FormData();
-            formDatum.append("id", userID);
-            formDatum.append("nickname", nam);
-            formDatum.append("password", password);
-            formDatum.append("phone", phone);
-            formDatum.append("email", email);
+            formDatum.append("id", companyID);
+            formDatum.append("companyName", nam);
+            formDatum.append("location", location);
             
-        const res1 = await axios.post('http://192.168.1.74:8000/api/update_usuario',formDatum,
+        const res1 = await axios.post('http://192.168.1.74:8000/api/update_company',formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -158,21 +140,21 @@ export default function UserE({navigation}) {
         });
         console.log(res1.data);
         
-        navigation.navigate('DashboardUsers')
+        navigation.navigate('Company')
 
     } 
 
     return <Center paddingTop={20}>
         <Container style={styles.contain}>
         <HStack space={2} mt={2}>
-          <Button style={styles.container} onPress={() => navigation.navigate('dashboardUsers')}>
+          <Button style={styles.container} onPress={() => navigation.navigate('Company')}>
             <Image
             source={require('./left-arrow.png')} style={styles.imagen} alt='hola' // Ruta relativa de la imagen dentro de la carpeta de assets
             />
           </Button> 
           <Heading>
             Editar
-            <Text color={colors.warning}> Usuario           </Text>
+            <Text color={colors.warning}> Compañia           </Text>
           </Heading>
         </HStack>
           
@@ -190,41 +172,21 @@ export default function UserE({navigation}) {
                 <TextInput
                     value={nam}
                     onChangeText={HandleChangeText}
-                    placeholder={listUser.firstName}
+                    placeholder={listCompany.companyName}
                     style={ styles.name }
                 />
               </View>
-              <Text style={styles.email}>Rellena con el nombre</Text>
+              <Text style={styles.email}>Rellena con el nombre de la compañía</Text>
 
               <View style={styles.listItem}>
                 <TextInput
-                    value={email}
+                    value={location}
                     onChangeText={HandleChangeEmail}
-                    placeholder={listUser.email}
+                    placeholder={listCompany.location}
                     style={ styles.name }
                 />
               </View>
-              <Text style={styles.email}>Escribe el nuevo correo electrónico</Text>
-
-              <View style={styles.listItem}>
-                <TextInput
-                    value={phone}
-                    onChangeText={HandleChangePhone}
-                    placeholder={listUser.phone}
-                    style={ styles.name }
-                />
-              </View>
-              <Text style={styles.email}>Escribe tu teléfono de contácto</Text>
-
-              <View style={styles.listItem}>
-                <TextInput
-                    value={password}
-                    placeholder="Ingresa tu nueva contraseña"
-                    onChangeText={HandleChangePassword}
-                    style={ styles.name }
-                />
-              </View>
-              <Text style={styles.email}>Escribe tu nueva contraseña</Text>
+              <Text style={styles.email}>Escribe la nueva localización</Text>
 
                 
             <Button style={styles.button} onPress={submit}>

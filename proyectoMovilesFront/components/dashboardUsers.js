@@ -27,7 +27,7 @@ export default function Users({navigation}) {
     console.log(eliminate);
     const formDatum = new FormData();
         formDatum.append("id", eliminate);
-        const res = await axios.post("http://192.168.100.26:8000/api/delete_usuario", formDatum,
+        const res = await axios.post("http://192.168.1.74:8000/api/delete_usuario", formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -131,7 +131,7 @@ export default function Users({navigation}) {
     return <Center paddingTop={20}>
         <Container style={styles.contain}>
         <HStack space={2} mt={2}>
-          <Button style={styles.container} onPress={() => navigation.navigate('HOME SCREEN')}>
+          <Button style={styles.container} onPress={() => navigation.navigate('Crud')}>
             <Image
             source={require('./left-arrow.png')} style={styles.imagen} alt='hola' // Ruta relativa de la imagen dentro de la carpeta de assets
             />

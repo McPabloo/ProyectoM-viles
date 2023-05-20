@@ -69,10 +69,10 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
-        $company = Company::findOrFail($request->id);
+        $company = Company::findOrFail($request->input('id'));
         $company->companyName = $request -> companyName;
         $company->location = $request -> location;
 
@@ -83,10 +83,10 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
         //
-        $company = Company::find($request->id);
+        $company = Company::find($request->input('id'));
         $company->delete();
 
         $company = Company::all();

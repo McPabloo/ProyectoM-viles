@@ -21,7 +21,7 @@ export default function Crud({ navigation }) {
                 CRUD of Category table
               </Text>
               <Text />
-              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Category')} >GO</Button>
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardCategory')} >GO</Button>
             </Box>
           </Box>
           <Text />
@@ -37,7 +37,7 @@ export default function Crud({ navigation }) {
                 CRUD of Client table
               </Text>
               <Text />
-              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Client')}>GO</Button>
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardClient')}>GO</Button>
             </Box>
           </Box>
           <Text />
@@ -53,7 +53,7 @@ export default function Crud({ navigation }) {
                 CRUD of Company table
               </Text>
               <Text />
-              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Companay')}>GO</Button>
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardCompany')}>GO</Button>
             </Box>
           </Box>
           <Text />
@@ -68,7 +68,7 @@ export default function Crud({ navigation }) {
                 CRUD of OrderDetails tables
               </Text>
               <Text />
-              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('OrderDetails')}>GO</Button>
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardOrderDetails')}>GO</Button>
             </Box>
           </Box>
           <Text />
@@ -83,7 +83,7 @@ export default function Crud({ navigation }) {
                 CRUD of Orders table
               </Text>
               <Text />
-              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Orders')}>GO</Button>
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardOrders')}>GO</Button>
             </Box>
           </Box>
 
@@ -98,7 +98,7 @@ export default function Crud({ navigation }) {
                 CRUD of Products table
               </Text>
               <Text />
-              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Products')}>GO</Button>
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardProducts')}>GO</Button>
             </Box>
           </Box>
 
@@ -113,7 +113,7 @@ export default function Crud({ navigation }) {
                 CRUD of Shipper table
               </Text>
               <Text />
-              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Shipper')}>GO</Button>
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardShipper')}>GO</Button>
             </Box>
           </Box>
 
@@ -128,7 +128,7 @@ export default function Crud({ navigation }) {
                 CRUD of Supliers table
               </Text>
               <Text />
-              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Supliers')}>GO</Button>
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardSupliers')}>GO</Button>
             </Box>
           </Box>
 
@@ -143,7 +143,7 @@ export default function Crud({ navigation }) {
                 CRUD of Users table
               </Text>
               <Text />
-              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('Users')}>GO</Button>
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardUsers')}>GO</Button>
             </Box>
           </Box>
         </Box>
