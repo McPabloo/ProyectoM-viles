@@ -22,7 +22,7 @@ export default function Register({navigation}){
         let isValid = true
         
         if(formData.nickname == '' || formData.password == '' ){
-            setErrors({...errors, nickname:'Nickname is required', password: 'Password is required'})
+            setErrors({...errors, notice:'All fields required'})
             isValid = false
         }else if(formData.nickname.length < 6){
             setErrors({...errors, nickname: 'Nickname is too short'})

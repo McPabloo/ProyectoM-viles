@@ -91,17 +91,17 @@ export default function UserE({navigation}) {
     },
     container: {
       backgroundColor: '#0098FF',
-      width: 40,
-      height: 40,
+      width: 30,
+      height: 30,
       borderRadius: 20,
-      marginRight: 10,
+      marginRight: 15,
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
     },
     imagen: {
-      width: 40, // O el valor deseado para el ancho de la imagen
-      height: 40, // O el valor deseado para la altura de la imagen
+      width: 30, // O el valor deseado para el ancho de la imagen
+      height: 30, // O el valor deseado para la altura de la imagen
     },
     name: {
       fontWeight: 'bold',

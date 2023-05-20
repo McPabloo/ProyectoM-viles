@@ -3,7 +3,7 @@ export default {
     contrast: '#0098FF',
     secondary: '#8ecae6',
     success: '#28A745',
-    danger: '#c1121f',
+    danger: '#F23746',
     warning: '#ffb703',
     info: '#023047',
     light: '#F8F9FA',

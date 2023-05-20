@@ -104,7 +104,7 @@ Route::get('/show_proveedor/{id}', [ProveedorController::class, 'show']);//done
 
 Route::get('/usuario_index', [UsuarioController::class, 'index']);//done
 Route::post('/create_usuario', [UsuarioController::class, 'store']);//done
-Route::post('/delete_usuario/{id}', [UsuarioController::class, 'destroy']);//done
+Route::post('/delete_usuario', [UsuarioController::class, 'destroy']);//done
 Route::post('/update_usuario', [UsuarioController::class, 'update']);//done
 Route::get('/show_usuario/{id}', [UsuarioController::class, 'show']);//done
 
