@@ -18,6 +18,7 @@ class OrdenDetailsSeeder extends Seeder
         $ordenDetails -> productID = 1;
         $ordenDetails -> quantity = 3;
         $ordenDetails -> discount = 0;
+        $ordenDetails -> orden_id = 1;
 
         $ordenDetails -> save();
 
@@ -26,6 +27,7 @@ class OrdenDetailsSeeder extends Seeder
         $ordenDetails -> productID = 2;
         $ordenDetails -> quantity = 1;
         $ordenDetails -> discount = 1000;
+        $ordenDetails -> orden_id = 1;
 
         $ordenDetails -> save();
 
@@ -34,6 +36,7 @@ class OrdenDetailsSeeder extends Seeder
         $ordenDetails -> productID = 3;
         $ordenDetails -> quantity = 2;
         $ordenDetails -> discount = 0;
+        $ordenDetails -> orden_id = 1;
 
         $ordenDetails -> save();
 

@@ -14,6 +14,7 @@ import HomeScreen from './Home';
 import Login from './Login';
 import Register from './Register';
 import dashboardUsers from './dashboardUsers';
+import dashboardOrders from './dashboardOrders';
 import MainContainer2 from './MainContainer2';
 import EditUser from './EditUser';
 import CreateUser from './CreateUser';
@@ -47,6 +48,7 @@ export default function MainContainer() {
                         <Drawer.Screen name="REGISTER" options={{ headerShown: false }} component={Register} />
 
                         <Drawer.Screen name="dashboardUsers" options={{ headerShown: false }} component={dashboardUsers} />
+                        <Drawer.Screen name="dashboardOrders" options={{ headerShown: false }} component={dashboardOrders} />
                         <Drawer.Screen name="EditUser" options={{ headerShown: false }} component={EditUser} />
                         <Drawer.Screen name="CreateUser" options={{ headerShown: false }} component={CreateUser} />
                     </>

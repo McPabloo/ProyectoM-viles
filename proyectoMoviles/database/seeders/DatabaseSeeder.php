@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoriasSeeder::class);
         $this->call(ClientesSeeder::class);
         $this->call(ProductosSeeder::class);
-        $this->call(OrdenDetailsSeeder::class);
         $this->call(OrdensSeeder::class);
+        $this->call(OrdenDetailsSeeder::class);
     }
 }

@@ -14,8 +14,11 @@ class OrdenController extends Controller
     public function index()
     {
         //
-        $orden = Orden::all();
-        return $orden;
+        $ordenes = Orden::join('users', 'ordens.employeeID', '=', 'users.id')
+            ->select('ordens.id', 'users.firstName', 'users.lastName', 'users.email', 'ordens.orderDate')
+            ->get();
+
+        return $ordenes;
 
     }
 
