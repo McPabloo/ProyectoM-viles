@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -73,8 +75,8 @@ class CompanyController extends Controller
     {
         //
         $company = Company::findOrFail($request->input('id'));
-        $company->companyName = $request -> companyName;
-        $company->location = $request -> location;
+        $company->companyName = $request -> input('companyName');
+        $company->location = $request -> input('location');
 
         $company->save();
         return $company;
@@ -86,7 +88,7 @@ class CompanyController extends Controller
     public function destroy(Request $request)
     {
         //
-        $company = Company::find($request->input('id'));
+        $company = Company::find($request->input("id"));
         $company->delete();
 
         $company = Company::all();

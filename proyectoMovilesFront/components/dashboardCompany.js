@@ -20,6 +20,8 @@ export default function Company({navigation}) {
     const res = await axios.get("http://192.168.1.74:8000/api/company_index")
     console.log(res.data);
     setListCompany(res.data);
+    setEliminate('');
+    console.log(eliminate);
   };
 
   const eliminar=async(e)=>{
@@ -27,6 +29,7 @@ export default function Company({navigation}) {
     console.log(eliminate);
     const formDatum = new FormData();
         formDatum.append("id", eliminate);
+        console.log('si entra');
         const res = await axios.post("http://192.168.1.74:8000/api/delete_company", formDatum,
         {
             headers: {
@@ -37,8 +40,8 @@ export default function Company({navigation}) {
     ).then(response => {
 
         getCompany();
-    }).catch(error => {
-        console.log(error);
+    }).catch(function(error) {
+      console.log(error.response.data);
     });
 } 
 

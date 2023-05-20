@@ -60,7 +60,7 @@ Route::get('/show_cliente/{id}', [ClienteController::class, 'show']); //done
 Route::get('/company_index', [CompanyController::class, 'index']);//done
 Route::post('/create_company', [CompanyController::class, 'store']);//done
 Route::post('/delete_company', [CompanyController::class, 'destroy']);//done
-Route::put('/update_company', [CompanyController::class, 'update']);//done
+Route::post('/update_company', [CompanyController::class, 'update']);//done
 Route::get('/show_company/{id}', [CompanyController::class, 'show']);//done
 
 

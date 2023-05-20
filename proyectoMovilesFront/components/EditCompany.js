@@ -30,7 +30,7 @@ export default function CompanyE({navigation}) {
     setNam(value);
   }
 
-  const HandleChangeEmail=(value)=>{
+  const HandleChangelocation=(value)=>{
     setLocation(value);
   }
 
@@ -137,17 +137,19 @@ export default function CompanyE({navigation}) {
                 'Content-Type': 'multipart/form-data',
                 'Accept': 'application/json'
             }
+        }).catch(error => {
+            console.log(error);
         });
         console.log(res1.data);
         
-        navigation.navigate('Company')
+        navigation.navigate('DashboardCompany')
 
     } 
 
     return <Center paddingTop={20}>
         <Container style={styles.contain}>
         <HStack space={2} mt={2}>
-          <Button style={styles.container} onPress={() => navigation.navigate('Company')}>
+          <Button style={styles.container} onPress={() => navigation.navigate('DashboardCompany')}>
             <Image
             source={require('./left-arrow.png')} style={styles.imagen} alt='hola' // Ruta relativa de la imagen dentro de la carpeta de assets
             />
@@ -181,7 +183,7 @@ export default function CompanyE({navigation}) {
               <View style={styles.listItem}>
                 <TextInput
                     value={location}
-                    onChangeText={HandleChangeEmail}
+                    onChangeText={HandleChangelocation}
                     placeholder={listCompany.location}
                     style={ styles.name }
                 />

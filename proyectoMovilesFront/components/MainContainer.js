@@ -35,8 +35,7 @@ export default function MainContainer() {
             <Stack.Navigator>
 
                         <Stack.Screen name="LOGIN" options={{ headerShown: false }} component={Login} />
-                        <Stack.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={MainContainer3} />
-                       
+                        <Stack.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={MainContainer3} />      
                         <Stack.Screen name="REGISTER" options={{ headerShown: false }} component={Register} />
             </Stack.Navigator>
         </NavigationContainer>

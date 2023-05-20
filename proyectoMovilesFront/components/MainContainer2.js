@@ -29,7 +29,7 @@ const Drawer = createDrawerNavigator();
 export default function MainContainer2() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="DashboardCrud" options={{ headerShown: false }} component={Crud} />
+            <Stack.Screen name="Crud" options={{ headerShown: false }} component={Crud} />
             <Stack.Screen name="DashboardCategory" options={{ headerShown: false }} component={Category} />
             <Stack.Screen name="DashboardClient" options={{ headerShown: false }} component={Client} />
             <Stack.Screen name="DashboardCompany" options={{ headerShown: false }} component={Company} />
