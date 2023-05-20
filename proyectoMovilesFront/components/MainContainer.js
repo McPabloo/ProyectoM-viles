@@ -17,7 +17,7 @@ import dashboardUsers from './dashboardUsers';
 import dashboardOrders from './dashboardOrders';
 import MainContainer2 from './MainContainer2';
 import EditUser from './EditUser';
-import CreateUser from './CreateUser';
+import MainContainer3 from './MainContainer3';
 
 
 const Stack = createStackNavigator();
@@ -25,17 +25,10 @@ const Drawer = createDrawerNavigator();
 ;
 
 
-const getIsSignedIn = () => {
-
-    return true;
-
-
-};
 
 
 export default function MainContainer() {
 
-    const isSignedIn = getIsSignedIn();
 
     return (
         <NavigationContainer>
