@@ -16,7 +16,6 @@ import Register from './Register';
 import dashboardUsers from './dashboardUsers';
 import MainContainer2 from './MainContainer2';
 import EditUser from './EditUser';
-import MainContainer3 from './MainContainer3';
 
 
 const Stack = createStackNavigator();
@@ -26,17 +25,16 @@ const Drawer = createDrawerNavigator();
 
 
 
-export default function MainContainer() {
+export default function MainContainer3() {
 
 
     return (
-        <NavigationContainer>
-            <Stack.Navigator>
-                        <Stack.Screen name="LOGIN" options={{ headerShown: false }} component={Login} />
-                        <Stack.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={MainContainer3} />                        
-                        <Stack.Screen name="REGISTER" options={{ headerShown: false }} component={Register} />
-            </Stack.Navigator>
+ 
+            <Drawer.Navigator>                    
+                        <Drawer.Screen name="HOME" options={{ headerShown: false, title: 'WELCOME' }} component={HomeScreen} />                        
+                        <Drawer.Screen name="CRUD" options={{ headerShown: false }} component={MainContainer2} />
+            </Drawer.Navigator>
 
-        </NavigationContainer>
+
     )
 }
