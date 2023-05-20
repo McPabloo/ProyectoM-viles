@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string("orderDate");
             $table->unsignedBigInteger("shipperID");
             $table->foreign('shipperID')->references('id')->on('cargadors');
-            $table->unsignedBigInteger("orderDetailsID");
-            $table->foreign('orderDetailsID')->references('id')->on('orden_detalles');
             $table->string("shipAddress");
             $table->timestamps();
         });

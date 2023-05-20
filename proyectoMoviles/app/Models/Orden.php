@@ -11,7 +11,7 @@ class Orden extends Model
 
     protected $fillable = [
         'id','customerID', 'employeeID', 'orderDate',
-        'shipperID', 'orderDetailsID', 'shipAddress',  
+        'shipperID', 'shipAddress',  
     ];
 
     public function cliente(){
@@ -26,9 +26,7 @@ class Orden extends Model
         return $this->hasMany(Cargador::class);
     }
 
-    public function ordenDetalles(){
-        return $this->hasMany(OrdenDetalles::class);
-    }
+    
 }
 
 
