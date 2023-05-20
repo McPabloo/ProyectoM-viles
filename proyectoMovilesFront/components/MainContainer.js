@@ -32,28 +32,13 @@ export default function MainContainer() {
 
     return (
         <NavigationContainer>
-            <Drawer.Navigator>
-                {isSignedIn ? (
-                    <>
-                        <Drawer.Screen name="LOGIN" options={{ headerShown: false }} component={Login} />
-                        <Drawer.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={HomeScreen} />
-                        <Drawer.Screen name="CRUD" options={{ headerShown: false }} component={MainContainer2} />
-                        <Drawer.Screen name="REGISTER" options={{ headerShown: false }} component={Register} />
+            <Stack.Navigator>
 
-                        <Drawer.Screen name="dashboardUsers" options={{ headerShown: false }} component={dashboardUsers} />
-                        <Drawer.Screen name="dashboardOrders" options={{ headerShown: false }} component={dashboardOrders} />
-                        <Drawer.Screen name="EditUser" options={{ headerShown: false }} component={EditUser} />
-                        <Drawer.Screen name="CreateUser" options={{ headerShown: false }} component={CreateUser} />
-                    </>
-                ) : (
-                    <>
-
-                        <Drawer.Screen name="LOGIN" options={{ headerShown: false }} component={Login} />
-                        <Drawer.Screen name="Register" options={{ headerShown: false }} component={Register} />
-                    </>
-                )}
-            </Drawer.Navigator>
-
+                        <Stack.Screen name="LOGIN" options={{ headerShown: false }} component={Login} />
+                        <Stack.Screen name="HOME SCREEN" options={{ headerShown: false, title: 'WELCOME' }} component={MainContainer3} />
+                       
+                        <Stack.Screen name="REGISTER" options={{ headerShown: false }} component={Register} />
+            </Stack.Navigator>
         </NavigationContainer>
     )
 }
