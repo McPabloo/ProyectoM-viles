@@ -8,7 +8,11 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 
 //Screens
+
+//Crud Screen
 import Crud from './Crud';
+
+//Dashboards Screens
 import Category from './dashboardCategory';
 import Client from './dashboardClient';
 import Company from './dashboardCompany';
@@ -18,8 +22,14 @@ import Products from './dashboardProducts'
 import Shipper from './dashboardShipper';
 import Suplier from './dashboardSuplier';
 import Users from './dashboardUsers';
+
+//Edit Screens
 import CompanyE from './EditCompany';
 import UserE from './EditUser';
+
+//Create Screens
+import UserC from './CreateUser';
+import CompanyC from './CreateCategory';
 
 
 const Stack = createStackNavigator();
@@ -30,6 +40,7 @@ export default function MainContainer2() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Crud" options={{ headerShown: false }} component={Crud} />
+
             <Stack.Screen name="DashboardCategory" options={{ headerShown: false }} component={Category} />
             <Stack.Screen name="DashboardClient" options={{ headerShown: false }} component={Client} />
             <Stack.Screen name="DashboardCompany" options={{ headerShown: false }} component={Company} />
@@ -39,8 +50,13 @@ export default function MainContainer2() {
             <Stack.Screen name="DashboardShipper" options={{ headerShown: false }} component={Shipper} />
             <Stack.Screen name="DashboardSuplier" options={{ headerShown: false }} component={Suplier} />
             <Stack.Screen name="DashboardUsers" options={{ headerShown: false }} component={Users} />
+
             <Stack.Screen name="EditCompany" options={{ headerShown: false }} component={CompanyE} />
             <Stack.Screen name="EditUser" options={{ headerShown: false }} component={UserE} />
+
+            <Stack.Screen name="CreateUser" options={{ headerShown: false }} component={UserC} />
+            <Stack.Screen name="CreateCompany" options={{ headerShown: false }} component={CompanyC} />
+
         </Stack.Navigator>
 
     )

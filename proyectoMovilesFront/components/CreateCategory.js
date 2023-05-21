@@ -1,16 +1,15 @@
 import React, { useEffect, useState, useLayoutEffect } from 'react';
-import { Center, Container, Image, Heading, HStack, Button, View, Text, Divider, Flex } from 'native-base';
+import { Center, Container, Image, Heading, HStack, Button, View, Text, Divider, Flex, FormControl } from 'native-base';
 import colors from './colors';
 import axios from "axios";
 import { TouchableOpacity, StyleSheet, TextInput, ScrollView } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
 import { useRoute } from '@react-navigation/native';
 
-export default function UserC({navigation}) {
+export default function CompanyC({navigation}) {
 
   //estados
-  const [formData, setData] = React.useState({nickname : '', password : '',
-  firstname : '', lastname : '' , phone : '' , address : '', birthday : '', notes : ''})
+  const [formData, setData] = React.useState({companyName : '', location : ''})
   const [errors, setErrors] = React.useState({})
   const [valid, setValid] = React.useState(false);
 
@@ -20,11 +19,8 @@ export default function UserC({navigation}) {
     setErrors({})
     let isValid = true
     
-    if(formData.nickname == '' || formData.password == '' || formData.firstname == '' || formData.lastname == '' || formData.address == '' || formData.birthday == '' || formData.phone == '' ){
+    if(formData.companyName == '' || formData.location == ''){
         setErrors({...errors, notice:'All fields required'})
-        isValid = false
-    }else if(formData.nickname.length < 10){
-        setErrors({...errors, nickname: 'Nickname is too short'})
         isValid = false
     }
     return isValid
@@ -34,15 +30,9 @@ export default function UserC({navigation}) {
       if (e && e.preventDefault()) e.preventDefault();
       console.log('ok',formData);
       const formDatum = new FormData();
-          formDatum.append("nickname", formData.nickname);
-          formDatum.append("password", formData.password);
-          formDatum.append("firstName", formData.firstname);
-          formDatum.append("lastName", formData.lastname);
-          formDatum.append("address", formData.address);
-          formDatum.append("phone", formData.phone);
-          formDatum.append("birthday", formData.birthday);
-          formDatum.append("notes", formData.notes);
-          const res = await axios.post("http://192.168.100.26:8000/api/create_usuario", formDatum,
+          formDatum.append("companyName", formData.companyName);
+          formDatum.append("location", formData.location);
+          const res = await axios.post("http://192.168.1.74:8000/api/create_company", formDatum,
           {
               headers: {
                   'Content-Type': 'multipart/form-data',
@@ -51,10 +41,10 @@ export default function UserC({navigation}) {
           }
       ).then(response => {
           if (response.data && response.data.length > 0) {
-              console.log(response.data[0].email);
+              console.log(response.data[0].companyName);
               setValid(true);
               console.log(valid);
-              navigation.navigate('dashboardUsers')
+              navigation.navigate('DashboardCompany')
               pass();
             } else {
               console.log('Empty response');
@@ -70,7 +60,7 @@ export default function UserC({navigation}) {
 
   function pass(){
       if(valid===true){
-          navigation.navigate('dashboardUser');
+          navigation.navigate('DashboardUser');
       }
   }
 
@@ -164,14 +154,14 @@ export default function UserC({navigation}) {
     return <Center paddingTop={20}>
         <Container style={styles.contain}>
         <HStack space={2} mt={2}>
-          <Button style={styles.container} onPress={() => navigation.navigate('DashboardUsers')}>
+          <Button style={styles.container} onPress={() => navigation.navigate('DashboardCompany')}>
             <Image
             source={require('./left-arrow.png')} style={styles.imagen} alt='hola' // Ruta relativa de la imagen dentro de la carpeta de assets
             />
           </Button> 
           <Heading>
-            Nuevo
-            <Text color={colors.warning}> Usuario           </Text>
+            Nueva
+            <Text color={colors.warning}> Compañia           </Text>
           </Heading>
         </HStack>
           
@@ -186,87 +176,26 @@ export default function UserC({navigation}) {
                 
               <View style={styles.listItem}>
                 <TextInput
-                    value={formData.firstname}
-                    onChangeText={value => setData({ ...formData, firstname: value })}
-                    placeholder=""
+                    value={formData.companyName}
+                    onChangeText={value => setData({ ...formData, companyName: value })}
+                    placeholder="write here "
                     style={ styles.name }
                 />
               </View>
-              <Text style={styles.email}>Rellena con el nombre</Text>
+              <Text style={styles.email}>Rellena con el nombre de la empresa</Text>
 
               <View style={styles.listItem}>
                 <TextInput
-                    value={formData.lastname}
-                    onChangeText={value => setData({ ...formData, lastname: value })}
-                    placeholder=""
+                    value={formData.location}
+                    onChangeText={value => setData({ ...formData, location: value })}
+                    placeholder="Write here "
                     style={ styles.name }
                 />
               </View>
-              <Text style={styles.email}>Rellena con tus apellidos</Text>
-
-              <View style={styles.listItem}>
-                <TextInput
-                    value={formData.nickname}
-                    onChangeText={value => setData({ ...formData, nickname: value })}
-                    placeholder=""
-                    style={ styles.name }
-                />
-              </View>
-              <Text style={styles.email}>Escribe tu correo electrónico</Text>
-
-              <View style={styles.listItem}>
-                <TextInput
-                    value={formData.phone}
-                    onChangeText={value => setData({ ...formData, phone: value })}
-                    placeholder=""
-                    style={ styles.name }
-                />
-              </View>
-              <Text style={styles.email}>Escribe tu teléfono de contácto</Text>
-
-              <View style={styles.listItem}>
-                <TextInput
-                    value={formData.email}
-                    placeholder=""
-                    onChangeText={value => setData({ ...formData, password: value })}
-                    style={ styles.name }
-                />
-              </View>
-              <Text style={styles.email}>Escribe tu contraseña</Text>
-
-              <View style={styles.listItem}>
-                <TextInput
-                    value={formData.address}
-                    placeholder=""
-                    onChangeText={value => setData({ ...formData, address: value })}
-                    style={ styles.name }
-                />
-              </View>
-              <Text style={styles.email}>Escribe tu dirección</Text>
-
-              <View style={styles.listItem}>
-                <TextInput
-                    value={formData.birthday}
-                    placeholder=""
-                    onChangeText={value => setData({ ...formData, birthday: value })}
-                    style={ styles.name }
-                />
-              </View>
-              <Text style={styles.email}>yy-mm-dd</Text>
-
-              <View style={styles.listItem}>
-                <TextInput
-                    value={formData.notes}
-                    placeholder=""
-                    onChangeText={value => setData({ ...formData, notes: value })}
-                    style={ styles.name }
-                />
-              </View>
-              <Text style={styles.email}>Notas adicionales acerca de este usuario</Text>
-
+              <Text style={styles.email}>Rellena con la localización de la empresa</Text>
                 
             <Button style={styles.button} onPress={submit}>
-                Actualizar
+                Crear
             </Button> 
                
               </View>

@@ -128,7 +128,7 @@ export default function Crud({ navigation }) {
                 CRUD of Supliers table
               </Text>
               <Text />
-              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardSupliers')}>GO</Button>
+              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardSuplier')}>GO</Button>
             </Box>
           </Box>
 
