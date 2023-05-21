@@ -86,6 +86,7 @@ export default function Crud({ navigation }) {
               <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardOrders')}>GO</Button>
             </Box>
           </Box>
+          <Text />
 
           {/*Quinto card*/}
 
@@ -101,6 +102,8 @@ export default function Crud({ navigation }) {
               <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardProducts')}>GO</Button>
             </Box>
           </Box>
+          <Text />
+
 
           {/*Quinto card*/}
 
@@ -116,6 +119,7 @@ export default function Crud({ navigation }) {
               <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardShipper')}>GO</Button>
             </Box>
           </Box>
+          <Text />
 
           {/*octavo card*/}
 
@@ -131,6 +135,7 @@ export default function Crud({ navigation }) {
               <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardSuplier')}>GO</Button>
             </Box>
           </Box>
+          <Text />
 
           {/*Noveno card*/}
 
@@ -146,6 +151,7 @@ export default function Crud({ navigation }) {
               <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardUsers')}>GO</Button>
             </Box>
           </Box>
+          <Text />
         </Box>
       </Box>
     </ScrollView>

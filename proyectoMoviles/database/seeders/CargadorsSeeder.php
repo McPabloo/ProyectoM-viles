@@ -15,18 +15,21 @@ class CargadorsSeeder extends Seeder
     {
         //
         $cargador = new Cargador();
+        $cargador -> name = "Juan";
         $cargador -> companyID = 1;
         $cargador -> phone = "523941230009";        
 
         $cargador -> save();
 
         $cargador = new Cargador();
+        $cargador -> name = "Francisco";
         $cargador -> companyID = 2;
         $cargador -> phone = "521234567890";        
 
         $cargador -> save();
 
         $cargador = new Cargador();
+        $cargador -> name = "Pedro";
         $cargador -> companyID = 3;
         $cargador -> phone = "520987654321";        
 

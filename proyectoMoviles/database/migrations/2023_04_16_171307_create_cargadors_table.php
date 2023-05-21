@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('cargadors', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
             $table->unsignedBigInteger("companyID");
             $table->foreign('companyID')->references('id')->on('companies');
             $table->string("phone");

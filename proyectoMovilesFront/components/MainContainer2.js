@@ -26,10 +26,12 @@ import Users from './dashboardUsers';
 //Edit Screens
 import CompanyE from './EditCompany';
 import UserE from './EditUser';
+import ShipperE from './EditShipper';
 
 //Create Screens
 import UserC from './CreateUser';
 import CompanyC from './CreateCategory';
+import ShipperC from './CreateShippers';
 
 
 const Stack = createStackNavigator();
@@ -53,9 +55,11 @@ export default function MainContainer2() {
 
             <Stack.Screen name="EditCompany" options={{ headerShown: false }} component={CompanyE} />
             <Stack.Screen name="EditUser" options={{ headerShown: false }} component={UserE} />
+            <Stack.Screen name="EditShipper" options={{ headerShown: false }} component={ShipperE} />
 
             <Stack.Screen name="CreateUser" options={{ headerShown: false }} component={UserC} />
             <Stack.Screen name="CreateCompany" options={{ headerShown: false }} component={CompanyC} />
+            <Stack.Screen name="CreateShipper" options={{ headerShown: false }} component={ShipperC} />
 
         </Stack.Navigator>
 

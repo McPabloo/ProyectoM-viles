@@ -32,8 +32,8 @@ Route::get('/create_token', [CargadorController::class,'create_token']);
 
 Route::get('/cargador_index', [CargadorController::class, 'index']); //done
 Route::post('/create_cargador', [CargadorController::class, 'store']); //done
-Route::post('/delete_cargador/{id}', [CargadorController::class, 'destroy']); //done
-Route::put('/update_cargador/{id}', [CargadorController::class, 'update']); //done
+Route::post('/delete_cargador', [CargadorController::class, 'destroy']); //done
+Route::post('/update_cargador', [CargadorController::class, 'update']); //done
 Route::get('/show_cargador/{id}', [CargadorController::class, 'show']); //done
 
 
@@ -86,8 +86,8 @@ Route::get('/show_ordendetalles/{id}', [OrdenDetallesController::class, 'show'])
 
 Route::get('/producto_index', [ProductoController::class, 'index']);//done
 Route::post('/create_producto', [ProductoController::class, 'store']);//done
-Route::post('/delete_producto/{id}', [ProductoController::class, 'destroy']);//done
-Route::put('/update_producto/{id}', [ProductoController::class, 'update']);//done
+Route::post('/delete_producto', [ProductoController::class, 'destroy']);//done
+Route::post('/update_producto', [ProductoController::class, 'update']);//done
 Route::get('/show_producto/{id}', [ProductoController::class, 'show']);//done
 
 

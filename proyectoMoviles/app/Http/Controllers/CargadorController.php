@@ -33,6 +33,7 @@ class CargadorController extends Controller
     {
         //
         $validator = Validator::make($request->all(),[
+            'name' => 'required',
             'companyID' => 'required',
             'phone' => 'required',
         ]);
@@ -42,10 +43,11 @@ class CargadorController extends Controller
         }
 
         $cargador = Cargador::create([
+            'name' => $request -> name,
             'companyID' => $request -> companyID,
             'phone' => $request -> phone,
         ]);
-        echo $request->companyID;
+        echo $request->name;
     }
 
     /**
@@ -68,12 +70,13 @@ class CargadorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
-        $cargador = Cargador::findOrFail($request->id);
-        $cargador->companyID = $request -> companyID;
-        $cargador->phone = $request -> phone;
+        $cargador = Cargador::findOrFail($request->input('id'));
+        $cargador->name = $request -> input('name');
+        $cargador->companyID = $request -> input('companyID');
+        $cargador->phone = $request -> input('phone');
 
         $cargador->save();
         return $cargador;
@@ -82,10 +85,10 @@ class CargadorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
         //
-        $cargador = Cargador::find($request->id);
+        $cargador = Cargador::find($request->input("id"));
         $cargador->delete();
 
         $cargador = Cargador::all();

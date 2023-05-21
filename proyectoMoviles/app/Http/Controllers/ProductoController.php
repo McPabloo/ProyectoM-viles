@@ -77,16 +77,16 @@ class ProductoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
-        $producto = Producto::findOrFail($request->id);
-        $producto->categoryID = $request -> categoryID;
-        $producto->supplierID = $request -> supplierID;
-        $producto->stock = $request -> stock;
-        $producto->price = $request -> price;
-        $producto->discontinued = $request -> discontinued;
-        $producto->productName = $request -> productName;
+        $producto = Producto::findOrFail($request->input('id'));
+        $producto->categoryID = $request -> input('categoryID');
+        $producto->supplierID = $request -> input('supplierID');
+        $producto->stock = $request -> input('stock');
+        $producto->price = $request -> input('price');
+        $producto->discontinued = $request -> ibput('discontinued');
+        $producto->productName = $request -> input('productName');
 
         $producto->save();
         return $producto;
@@ -95,10 +95,10 @@ class ProductoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
         //
-        $producto = Producto::find($request->id);
+        $producto = Producto::find($request->input('id'));
         $producto->delete();
 
         $producto = Producto::all();

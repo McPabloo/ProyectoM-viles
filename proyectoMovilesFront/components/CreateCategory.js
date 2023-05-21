@@ -40,6 +40,7 @@ export default function CompanyC({navigation}) {
               }
           }
       ).then(response => {
+        console.log(response.data);
           if (response.data && response.data.length > 0) {
               console.log(response.data[0].companyName);
               setValid(true);
@@ -60,7 +61,7 @@ export default function CompanyC({navigation}) {
 
   function pass(){
       if(valid===true){
-          navigation.navigate('DashboardUser');
+          navigation.navigate('DashboardCompany');
       }
   }
 
