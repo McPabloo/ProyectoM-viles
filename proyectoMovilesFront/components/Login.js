@@ -6,13 +6,14 @@ import { useState } from "react";
 import axios from "axios";
 import colors from './colors';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from '@react-navigation/native';
 
 
-export default function Login({navigation}){
+export default function Login({ navigation }) {
     AsyncStorage.clear();
 
     //estados
-    const [formData, setData] = React.useState({nickname : '', password : ''})
+    const [formData, setData] = React.useState({ nickname: '', password: '' })
     const [errors, setErrors] = React.useState({})
     const [valid, setValid] = React.useState('0');
 
@@ -21,24 +22,24 @@ export default function Login({navigation}){
 
         setErrors({})
         let isValid = true
-        
-        if(formData.nickname == '' || formData.password == ''){
-            setErrors({...errors, nickname:'Nickname is required', password: 'Password is required'})
+
+        if (formData.nickname == '' || formData.password == '') {
+            setErrors({ ...errors, nickname: 'Nickname is required', password: 'Password is required' })
             isValid = false
-        }else if(formData.nickname.length < 6){
-            setErrors({...errors, nickname: 'Nickname is too short'})
+        } else if (formData.nickname.length < 6) {
+            setErrors({ ...errors, nickname: 'Nickname is too short' })
             isValid = false
         }
         return isValid
     }
 
-    const send_request=async(e)=>{
+    const send_request = async (e) => {
         if (e && e.preventDefault()) e.preventDefault();
-        console.log('ok',formData);
+        console.log('ok', formData);
         const formDatum = new FormData();
-            formDatum.append("nickname", formData.nickname);
-            formDatum.append("password", formData.password);
-            const res = await axios.post("http://192.168.1.74:8000/api/login", formDatum,
+        formDatum.append("nickname", formData.nickname);
+        formDatum.append("password", formData.password);
+        const res = await axios.post("http://192.168.1.72:8000/api/login", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -51,21 +52,21 @@ export default function Login({navigation}){
                 setValid('1');
                 console.log(valid);
                 pass();
-              } else {
+            } else {
                 console.log('Empty response');
                 // Aquí puedes manejar el caso de una respuesta vacía según tus necesidades
-              }
+            }
         }).catch(error => {
             console.log(error);
         });
 
-    } 
+    }
 
 
-    function submit() { (validate()) ? send_request() : console.log("Error",errors)};
+    function submit() { (validate()) ? send_request() : console.log("Error", errors) };
 
-    function pass(){
-        if(valid==='1'){
+    function pass() {
+        if (valid === '1') {
             navigation.navigate('HOME SCREEN');
         }
     }
@@ -74,75 +75,75 @@ export default function Login({navigation}){
         container: {
             justifyContent: 'center',
             alignItems: 'center',
-          },
+        },
         button: {
-          borderBottomWidth: 1,
-          borderBottomColor: 'white',
-          paddingVertical: 5,
+            borderBottomWidth: 1,
+            borderBottomColor: 'white',
+            paddingVertical: 5,
         },
         buttonText: {
-          fontSize: 16,
-          paddingTop: 10,
-          color: '#F8F9FA',
+            fontSize: 16,
+            paddingTop: 10,
+            color: '#F8F9FA',
         },
-      });
+    });
 
-    return  (
+    return (
 
-        <Center flex={1}  style={{ backgroundColor: colors.dark }}>
+        <Center flex={1} style={{ backgroundColor: colors.dark }}>
 
-        <Text bold color="white" fontSize="60" mb="4">
-            B A G G I O
-        </Text>
+            <Text bold color="white" fontSize="60" mb="4">
+                B A G G I O
+            </Text>
 
-        <VStack>
-    
-        <FormControl isRequired isInvalid={'nickname' in errors}>
-            <FormControl.Label>Nickname</FormControl.Label>
-            <Input p={2} color="white" fontSize={18} name="nickname" placeholder="Enter your nickname"
-                onChangeText={value => setData({ ...formData, nickname: value })} />    
-    
-            {'nickname' in errors ? <Text>{errors.nickname}</Text>
-                : <FormControl.HelperText>
-                    You must enter a least 6 characters
-                  </FormControl.HelperText>
-            }
-    
-        </FormControl>
-    
-        
-    
-        <FormControl isRequired isInvalid={'password' in errors}>
-            <FormControl.Label>Password</FormControl.Label>
-            <Input p={2} color="white" fontSize={18} name="password" placeholder="Enter password"
-                onChangeText={value => setData({ ...formData, password: value })} />    
-    
-            {'password' in errors ? <Text>{errors.password}</Text>
-                : <FormControl.HelperText>
-                    Keep your password safe
-                  </FormControl.HelperText>
-            }
-    
-        </FormControl>
-    
-        <Button style={{ backgroundColor: colors.primary }}
-            onPress={submit}>
-            Login
-        </Button>
+            <VStack>
 
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('dashboardOrders')}>
-                <Text style={styles.buttonText}>Registrarme</Text>
-            </TouchableOpacity>
-        </View>
-        
-        
-    </VStack>
-    </Center>
-    
-        
+                <FormControl isRequired isInvalid={'nickname' in errors}>
+                    <FormControl.Label>Nickname</FormControl.Label>
+                    <Input p={2} color="white" fontSize={18} name="nickname" placeholder="Enter your nickname"
+                        onChangeText={value => setData({ ...formData, nickname: value })} />
+
+                    {'nickname' in errors ? <Text>{errors.nickname}</Text>
+                        : <FormControl.HelperText>
+                            You must enter a least 6 characters
+                        </FormControl.HelperText>
+                    }
+
+                </FormControl>
+
+
+
+                <FormControl isRequired isInvalid={'password' in errors}>
+                    <FormControl.Label>Password</FormControl.Label>
+                    <Input p={2} color="white" fontSize={18} name="password" placeholder="Enter password"
+                        onChangeText={value => setData({ ...formData, password: value })} />
+
+                    {'password' in errors ? <Text>{errors.password}</Text>
+                        : <FormControl.HelperText>
+                            Keep your password safe
+                        </FormControl.HelperText>
+                    }
+
+                </FormControl>
+
+                <Button style={{ backgroundColor: colors.primary }}
+                    onPress={submit}>
+                    Login
+                </Button>
+
+                <View style={styles.container}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('REGISTER')}>
+                        <Text style={styles.buttonText}>Registrarme</Text>
+                    </TouchableOpacity>
+                </View>
+
+
+            </VStack>
+        </Center>
+
+
     );
 
-    
-    
+
+
 }

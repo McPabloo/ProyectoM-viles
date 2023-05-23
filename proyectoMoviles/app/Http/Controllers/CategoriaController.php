@@ -69,12 +69,12 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
-        $categoria = Categoria::findOrFail($request->id);
-        $categoria->categoryName = $request -> categoryName;
-        $categoria->description = $request -> description;
+        $categoria = Categoria::findOrFail($request->input('id'));
+        $categoria->categoryName = $request -> input('categoryName');
+        $categoria->description = $request -> input('description');
 
         $categoria->save();
         return $categoria;
@@ -83,10 +83,10 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
         //
-        $categoria = Categoria::find($request->id);
+        $categoria = Categoria::find($request->input('id'));
         $categoria->delete();
 
         $categoria = Categoria::all();

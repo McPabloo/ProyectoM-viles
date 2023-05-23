@@ -57,6 +57,7 @@ class ClienteController extends Controller
             'phone' => $request -> phone,
             'companyName' => $request -> companyName,
         ]);
+        
         echo $request->firstName;
     }
 
@@ -81,30 +82,31 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
-        $cliente = Cliente::findOrFail($request->id);
-        $cliente->firstName = $request -> firstName;
-        $cliente->lastName = $request -> lastName;
-        $cliente->email = $request -> email;
-        $cliente->password = $request -> password;
-        $cliente->birthday = $request -> birthday;
-        $cliente->address = $request -> address;
-        $cliente->phone = $request -> phone;
-        $cliente->companyName = $request -> companyName;
+        $cliente = Cliente::findOrFail($request->input('id'));
+        $cliente->firstName = $request -> input('firstName');
+        $cliente->lastName = $request -> input('lastName');
+        $cliente->email = $request -> input('email');
+        $cliente->password = $request -> input('password');
+        $cliente->birthday = $request ->input('birthday');
+        $cliente->address = $request -> input('address');
+        $cliente->phone = $request -> input('phone');
+        $cliente->companyName = $request -> input('companyName');
 
         $cliente->save();
         return $cliente;
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
         //
-        $cliente = Cliente::find($request->id);
+        $cliente = Cliente::find($request->input('id'));
         $cliente->delete();
 
         $cliente = Cliente::all();

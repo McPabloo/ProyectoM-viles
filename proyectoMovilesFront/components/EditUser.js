@@ -149,7 +149,7 @@ export default function UserE({navigation}) {
             formDatum.append("phone", phone);
             formDatum.append("email", email);
             
-        const res1 = await axios.post('http://192.168.1.74:8000/api/update_usuario',formDatum,
+        const res1 = await axios.post('http://192.168.1.72:8000/api/update_usuario',formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -165,7 +165,7 @@ export default function UserE({navigation}) {
     return <Center paddingTop={20}>
         <Container style={styles.contain}>
         <HStack space={2} mt={2}>
-          <Button style={styles.container} onPress={() => navigation.navigate('dashboardUsers')}>
+          <Button style={styles.container} onPress={() => navigation.navigate('DashboardUsers')}>
             <Image
             source={require('./left-arrow.png')} style={styles.imagen} alt='hola' // Ruta relativa de la imagen dentro de la carpeta de assets
             />

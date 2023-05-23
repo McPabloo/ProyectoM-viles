@@ -26,8 +26,8 @@ export default function Company({navigation}) {
  
 
   const eliminar=async(e)=>{
-    console.log('id a eliminar: ',eliminate);
     if (e && e.preventDefault()) e.preventDefault();
+    console.log(eliminate);
     const formDatum = new FormData();
         formDatum.append("id", eliminate);
         const res = await axios.post("http://192.168.1.74:8000/api/delete_company", formDatum,

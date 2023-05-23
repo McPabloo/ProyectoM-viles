@@ -41,8 +41,8 @@ Route::get('/show_cargador/{id}', [CargadorController::class, 'show']); //done
 
 Route::get('/category_index', [CategoriaController::class, 'index']); //done
 Route::post('/create_category', [CategoriaController::class, 'store']); //done
-Route::post('/delete_category/{id}', [CategoriaController::class, 'destroy']); //done
-Route::put('/update_category/{id}', [CategoriaController::class, 'update']); //done
+Route::post('/delete_category', [CategoriaController::class, 'destroy']); //done
+Route::post('/update_category', [CategoriaController::class, 'update']); //done
 Route::get('/show_category/{id}', [CategoriaController::class, 'show']); //done
 
 
@@ -50,8 +50,8 @@ Route::get('/show_category/{id}', [CategoriaController::class, 'show']); //done
 
 Route::get('/cliente_index', [ClienteController::class, 'index']); //done
 Route::post('/create_cliente', [ClienteController::class, 'store']); //done
-Route::post('/delete_cliente/{id}', [ClienteController::class, 'destroy']); //done
-Route::put('/update_cliente/{id}', [ClienteController::class, 'update']); //done
+Route::post('/delete_cliente', [ClienteController::class, 'destroy']); //done
+Route::post('/update_cliente', [ClienteController::class, 'update']); //done
 Route::get('/show_cliente/{id}', [ClienteController::class, 'show']); //done
 
 
@@ -95,8 +95,8 @@ Route::get('/show_producto/{id}', [ProductoController::class, 'show']);//done
 
 Route::get('/proveedor_index', [ProveedorController::class, 'index']);//done
 Route::post('/create_proveedor', [ProveedorController::class, 'store']);//done
-Route::post('/delete_proveedor/{id}', [ProveedorController::class, 'destroy']);//done
-Route::put('/update_proveedor/{id}', [ProveedorController::class, 'update']);//done
+Route::post('/delete_proveedor', [ProveedorController::class, 'destroy']);//done
+Route::post('/update_proveedor', [ProveedorController::class, 'update']);//done
 Route::get('/show_proveedor/{id}', [ProveedorController::class, 'show']);//done
 
 
