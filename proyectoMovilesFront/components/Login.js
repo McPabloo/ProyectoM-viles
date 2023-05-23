@@ -38,7 +38,7 @@ export default function Login({navigation}){
         const formDatum = new FormData();
             formDatum.append("nickname", formData.nickname);
             formDatum.append("password", formData.password);
-            const res = await axios.post("http://192.168.1.74:8000/api/login", formDatum,
+            const res = await axios.post("http://192.168.100.27:8000/api/login", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -131,7 +131,7 @@ export default function Login({navigation}){
         </Button>
 
         <View style={styles.container}>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('dashboardOrders')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('REGISTER')}>
                 <Text style={styles.buttonText}>Registrarme</Text>
             </TouchableOpacity>
         </View>

@@ -62,21 +62,6 @@ export default function Crud({ navigation }) {
           <Box width="100%" rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
             <Box alignItems='center'>
               <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
-                ORDER DETAILS
-              </Text>
-              <Text textAlign={"justify"} mt="2" fontSize="sm" color="coolGray.700">
-                CRUD of OrderDetails tables
-              </Text>
-              <Text />
-              <Button colorScheme={"emerald"} onPress={() => navigation.navigate('DashboardOrderDetails')}>GO</Button>
-            </Box>
-          </Box>
-          <Text />
-          {/*Quinto card*/}
-
-          <Box width="100%" rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
-            <Box alignItems='center'>
-              <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
                 ORDERS
               </Text>
               <Text textAlign={"justify"} mt="2" fontSize="sm" color="coolGray.700">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrdenDetalles;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -11,12 +13,21 @@ class OrdenDetallesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-        $ordenDetalles = OrdenDetalles::all();
-        return $ordenDetalles;
-    }
+    public function index(Request $request)
+{
+    $userID = $request->input('userID');
+
+    
+    // Realiza la consulta con el valor de userID
+    $ordenesDetalles = DB::table('orden_detalles')
+        ->join('ordens', 'orden_detalles.orden_id', '=', 'ordens.id')
+        ->join('productos', 'orden_detalles.productID', '=', 'productos.id')
+        ->select('orden_detalles.id', 'productos.productName', 'productos.price')
+        ->where('ordens.employeeID', '=', $userID)
+        ->get();
+
+    return $ordenesDetalles;
+}
 
     /**
      * Show the form for creating a new resource.
