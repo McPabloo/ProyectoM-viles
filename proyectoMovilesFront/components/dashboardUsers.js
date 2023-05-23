@@ -17,7 +17,7 @@ export default function Users({navigation}) {
   }, [])
 
   const getUser = async () => {
-    const res = await axios.get("http://192.168.1.74:8000/api/usuario_index")
+    const res = await axios.get("http://192.168.100.27:8000/api/usuario_index")
     console.log(res.data);
     setListUser(res.data);
   };
@@ -27,7 +27,7 @@ export default function Users({navigation}) {
     console.log(eliminate);
     const formDatum = new FormData();
         formDatum.append("id", eliminate);
-        const res = await axios.post("http://192.168.1.74:8000/api/delete_usuario", formDatum,
+        const res = await axios.post("http://192.168.100.27:8000/api/delete_usuario", formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',
