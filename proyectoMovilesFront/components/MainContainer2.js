@@ -32,7 +32,7 @@ import ClientE from './EditClient';
 
 //Create Screens
 import UserC from './CreateUser';
-import CompanyC from './CreateCategory';
+import CompanyC from './CreateCompany';
 import ShipperC from './CreateShippers';
 import CategoryC from './CreateCategory';
 import ClientC from './CreateClient';

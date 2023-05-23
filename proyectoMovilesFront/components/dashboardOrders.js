@@ -99,14 +99,14 @@ export default function C_card({navigation}){
     }, [])
 
     const getOrders = async () => {
-      const res = await axios.get("http://192.168.0.107:8000/api/orden_index")
+      const res = await axios.get("http://192.168.100.27:8000/api/orden_index")
       console.log(res.data);
       setListUser(res.data);
     };
       
-  return <Box alignItems="center">
+  return <View alignItems="center">
 
-      <Container paddingTop={20} style={styles.contain}>
+      <Container paddingTop={10} style={styles.contain}>
         <HStack space={2} mt={2}>
           <Button style={styles.container} onPress={() => navigation.navigate('HOME SCREEN')}>
             <Image
@@ -137,29 +137,16 @@ export default function C_card({navigation}){
         
      
         <ScrollView>
+          <View>
           {listUser.map((user) => (
-            <Box key={user.id} maxW="350" maxHeight="500" marginTop={10} rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
-              borderColor: "coolGray.600",
-              backgroundColor: "gray.700"
-            }} _web={{
-              shadow: 2,
-              borderWidth: 0
-            }} _light={{
-              backgroundColor: "gray.50"
-            }}>
+            <View key={user.id} maxW="350" marginBottom={2} rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1">
                 <Box>
                   <AspectRatio w="100%" ratio={16 / 9}>
                     <Image source={{
                     uri: "https://th.bing.com/th/id/OIP.RVcGikeBB-Ji9p64lKop4QHaFj?pid=ImgDet&rs=1"
                   }} alt="image" />
                   </AspectRatio>
-                  <Center bg={colors.contrast} _dark={{
-                  bg: colors.contrast
-                }} _text={{
-                  color: "warmGray.50",
-                  fontWeight: "700",
-                  fontSize: "xs"
-                }} position="absolute" bottom="0" px="3" py="1.5">
+                  <Center bg={colors.contrast} position="absolute" bottom="0" px="3" py="1.5">
                     FOTO
                   </Center>
                 </Box>
@@ -169,20 +156,16 @@ export default function C_card({navigation}){
                       <Text color="coolGray.600" >Cliente: </Text>
                       <Text color={colors.warning}>{user.firstName} { user.lastName} </Text>
                     </Heading>
-                      <Text fontSize="xs" _light={{
-                    color: colors.contrast
-                  }} _dark={{
-                    color: colors.dark
-                  }} fontWeight="500" ml="-1" mt="-1">
+                      <Text fontSize="xs" color={colors.contrast} fontWeight="500" ml="-1" mt="-1">
                       {user.email} 
                     </Text>
                   </Stack>
                 
                   <HStack alignItems="center" justifyContent="space-between">
-                    <Text color="coolGray.600" _dark={{ color: "warmGray.200" }} fontWeight="400">
+                    <Text color="coolGray.600" fontWeight="400">
                       {user.orderDate}
                     </Text>
-                    <Button style={styles.button1}>
+                    <Button style={styles.button1} onPress={() => navigation.navigate("DashboardOrderDetails",{userID: user.id})}>
                       <Image
                         source={require('./add.png')}
                         style={styles.imagenbtn}
@@ -192,11 +175,13 @@ export default function C_card({navigation}){
                   </HStack>
         
                 </Stack>
-            </Box>      
+            </View>     
           ))}
+          </View>
+          
         </ScrollView>
       
 
       
-    </Box>;
+    </View>;
 }

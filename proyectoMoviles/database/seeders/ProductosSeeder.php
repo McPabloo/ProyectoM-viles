@@ -15,7 +15,8 @@ class ProductosSeeder extends Seeder
     {
         //
         $producto = new Producto();
-        $producto -> productName = "Gel ego 350ml";
+        $producto -> productName = "Gel ego 250ml";
+        $producto -> image = "https://www.egoparahombres.com.mx/content/dam/brands/ego/mexico/1643060-67410593-ego-for-men-gel-black-24x250ml.png";
         $producto -> categoryID = 1;
         $producto -> supplierID = 1;
         $producto -> stock = 40;
@@ -27,6 +28,7 @@ class ProductosSeeder extends Seeder
 
         $producto = new Producto();
         $producto -> productName = "Laptop HP";
+        $producto -> image = "https://d22k5h68hofcrd.cloudfront.net/catalog/product/cache/b3b166914d87ce343d4dc5ec5117b502/6/G/6G1Q0LA-1_T1679652939.png";
         $producto -> categoryID = 2;
         $producto -> supplierID = 3;
         $producto -> stock = 10;
@@ -38,6 +40,7 @@ class ProductosSeeder extends Seeder
 
         $producto = new Producto();
         $producto -> productName = "Bolsa zanahoria";
+        $producto -> image = "https://s.cornershopapp.com/product-images/5862113.jpg?versionId=T3HnY0AHFpUn8hQt6WmS9PvZimyEFv_n";
         $producto -> categoryID = 3;
         $producto -> supplierID = 1;
         $producto -> stock = 50;
