@@ -142,36 +142,34 @@ const getUser = async () => {
         <Text>----------------------</Text>
 
 
-        <ScrollView>
-          <View>
-          {listUser.map((user) => (
-            <View key={user.id} maxW="350" marginBottom={2} rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1">
-                <Box>
-                  <AspectRatio w="100%" ratio={16 / 9}>
-                    <Image source={{
-                    uri: "https://th.bing.com/th/id/OIP.RVcGikeBB-Ji9p64lKop4QHaFj?pid=ImgDet&rs=1"
-                  }} alt="image" />
-                  </AspectRatio>
-                  <Center bg={colors.contrast} position="absolute" bottom="0" px="3" py="1.5">
-                    FOTO
-                  </Center>
-                </Box>
-                <Stack p="4" space={3}>
-                  <Stack space={2}>
-                    <Heading size="md" ml="-1">
-                      <Text color="coolGray.600" >Producto: </Text>
-                      <Text color={colors.warning}>{user.productName}</Text>
-                    </Heading>
-                      <Text fontSize="xs" color={colors.contrast} fontWeight="500" ml="-1" mt="-1">
-                      $ {user.price} 
-                    </Text>
-                  </Stack>
-                </Stack>
-            </View>     
-          ))}
-          </View>
-          
-        </ScrollView>
+        <ScrollView horizontal={true}>
+  {listUser.map((user) => (
+    <View key={user.id} style={{ width: 350, marginRight: 10 }}>
+      <View marginBottom={2} rounded="lg" overflow="hidden" borderColor="coolGray.300" borderWidth="1">
+        <Box>
+          <AspectRatio w="100%" ratio={16 / 9}>
+            <Image source={{ uri: "https://th.bing.com/th/id/OIP.RVcGikeBB-Ji9p64lKop4QHaFj?pid=ImgDet&rs=1" }} alt="image" />
+          </AspectRatio>
+          <Center bg={colors.contrast} position="absolute" bottom="0" px="3" py="1.5">
+            FOTO
+          </Center>
+        </Box>
+        <Stack p="4" space={3}>
+          <Stack space={2}>
+            <Heading size="md" ml="-1">
+              <Text color="coolGray.600">Producto: </Text>
+              <Text color={colors.warning}>{user.productName}</Text>
+            </Heading>
+            <Text fontSize="xs" color={colors.contrast} fontWeight="500" ml="-1" mt="-1">
+              $ {user.price}
+            </Text>
+          </Stack>
+        </Stack>
+      </View>
+    </View>
+  ))}
+</ScrollView>
+
 
 
         </Container>
