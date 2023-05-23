@@ -153,7 +153,7 @@ export default function Product({navigation}) {
                 Crear Producto
               </Button>
             </View>
-            <Button style={styles.button1} onPress={() => getCompany()}>
+            <Button style={styles.button1} onPress={() => getProduct()}>
               <Image
               source={require('./rotate-right.png')} style={styles.imagenbtn} alt='hola' // Ruta relativa de la imagen dentro de la carpeta de assets
               />
