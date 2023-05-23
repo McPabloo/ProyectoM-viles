@@ -30,7 +30,7 @@ import ShipperE from './EditShipper';
 
 //Create Screens
 import UserC from './CreateUser';
-import CompanyC from './CreateCategory';
+import CompanyC from './CreateCompany';
 import ShipperC from './CreateShippers';
 
 

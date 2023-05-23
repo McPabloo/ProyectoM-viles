@@ -47,6 +47,7 @@ class ProductoController extends Controller
 
         $producto = Producto::create([
             'categoryID' => $request -> categoryID,
+            'image' => $request -> image,
             'supplierID' => $request -> supplierID,
             'stock' => $request -> stock,
             'price' => $request -> price,
@@ -87,6 +88,7 @@ class ProductoController extends Controller
         $producto->price = $request -> input('price');
         $producto->discontinued = $request -> ibput('discontinued');
         $producto->productName = $request -> input('productName');
+        $producto->image = $request -> input ('image');
 
         $producto->save();
         return $producto;
