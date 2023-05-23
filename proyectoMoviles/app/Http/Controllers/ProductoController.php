@@ -86,7 +86,7 @@ class ProductoController extends Controller
         $producto->supplierID = $request -> input('supplierID');
         $producto->stock = $request -> input('stock');
         $producto->price = $request -> input('price');
-        $producto->discontinued = $request -> ibput('discontinued');
+        $producto->discontinued = $request -> input('discontinued');
         $producto->productName = $request -> input('productName');
         $producto->image = $request -> input ('image');
 
