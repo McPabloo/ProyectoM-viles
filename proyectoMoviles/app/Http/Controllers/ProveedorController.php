@@ -77,16 +77,15 @@ class ProveedorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
-        $proveedor = Proveedor::findOrFail($request->id);
-        $proveedor->companyID = $request -> companyID;
-        $proveedor->contactName = $request -> contactName;
-        $proveedor->address = $request -> address;
-        $proveedor->city = $request -> city;
-        $proveedor->country = $request -> country;
-        $proveedor->phone = $request -> phone;
+        $proveedor = Proveedor::findOrFail($request->input('id'));
+        $proveedor->contactName = $request -> input('contactName');
+        $proveedor->address = $request -> input('address');
+        $proveedor->city = $request -> input('city');
+        $proveedor->country = $request -> input('country');
+        $proveedor->phone = $request -> input('phone');
 
         $proveedor->save();
         return $proveedor;
@@ -95,10 +94,10 @@ class ProveedorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
         //
-        $proveedor = Proveedor::find($request->id);
+        $proveedor = Proveedor::find($request->input('id'));
         $proveedor->delete();
 
         $proveedor = Proveedor::all();

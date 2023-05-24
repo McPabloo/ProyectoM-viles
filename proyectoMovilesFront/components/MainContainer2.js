@@ -29,6 +29,7 @@ import UserE from './EditUser';
 import ShipperE from './EditShipper';
 import CategoryE from './EditCategory';
 import ClientE from './EditClient';
+import SuplierE from './EditSuplier';
 
 //Create Screens
 import UserC from './CreateUser';
@@ -36,6 +37,7 @@ import CompanyC from './CreateCompany';
 import ShipperC from './CreateShippers';
 import CategoryC from './CreateCategory';
 import ClientC from './CreateClient';
+import SuplierC from './CreateSupliers';
 
 
 const Stack = createStackNavigator();
@@ -62,12 +64,14 @@ export default function MainContainer2() {
             <Stack.Screen name="EditShipper" options={{ headerShown: false }} component={ShipperE} />
             <Stack.Screen name="EditCategory" options={{ headerShown: false }} component={CategoryE} />
             <Stack.Screen name="EditClient" options={{ headerShown: false }} component={ClientE} />
+            <Stack.Screen name="EditSuplier" options={{ headerShown: false }} component={SuplierE} />
 
             <Stack.Screen name="CreateUser" options={{ headerShown: false }} component={UserC} />
             <Stack.Screen name="CreateCompany" options={{ headerShown: false }} component={CompanyC} />
             <Stack.Screen name="CreateShipper" options={{ headerShown: false }} component={ShipperC} />
             <Stack.Screen name="CreateCategory" options={{ headerShown: false }} component={CategoryC} />
             <Stack.Screen name="CreateClient" options={{ headerShown: false }} component={ClientC} />
+            <Stack.Screen name="CreateSupliers" options={{ headerShown: false }} component={SuplierC} />
 
         </Stack.Navigator>
 
