@@ -10,6 +10,7 @@ export default function OrderDetails({navigation}) {
 
   const route = useRoute();
   const [listUser, setListUser] = useState([]);
+  const [precio, setPrecio] = useState([]);
 
   const { userID } = route.params;
   
@@ -29,6 +30,40 @@ const getUser = async () => {
 
     console.log(res.data);
     setListUser(res.data);
+    getPrice();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const getPrice = async () => {
+  try {
+    const res = await axios.get(`http://192.168.100.27:8000/api/precio?userID=${userID}`, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Accept': 'application/json'
+      }
+    });
+
+    console.log(res.data);
+    setPrecio(res.data);
+    
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const deleteProduct = async (productId) => {
+  try {
+    const res = await axios.post(`http://192.168.100.27:8000/api/delete_ordendetalles/${productId}`, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Accept': 'application/json'
+      }
+    });
+
+    console.log(res.data);
+    getUser();
   } catch (error) {
     console.error(error);
   }
@@ -148,7 +183,7 @@ const getUser = async () => {
       <View marginBottom={2} rounded="lg" overflow="hidden" borderColor="coolGray.300" borderWidth="1">
         <Box>
           <AspectRatio w="100%" ratio={16 / 9}>
-            <Image source={{ uri: "https://th.bing.com/th/id/OIP.RVcGikeBB-Ji9p64lKop4QHaFj?pid=ImgDet&rs=1" }} alt="image" />
+            <Image source={{ uri: user.image }} alt="image" />
           </AspectRatio>
           <Center bg={colors.contrast} position="absolute" bottom="0" px="3" py="1.5">
             FOTO
@@ -160,17 +195,31 @@ const getUser = async () => {
               <Text color="coolGray.600">Producto: </Text>
               <Text color={colors.warning}>{user.productName}</Text>
             </Heading>
-            <Text fontSize="xs" color={colors.contrast} fontWeight="500" ml="-1" mt="-1">
+            <Text fontSize="xs" color={colors.contrast} fontWeight="700" ml="-1" mt="-1">
               $ {user.price}
             </Text>
           </Stack>
         </Stack>
+        <Button onPress={() => deleteProduct(user.id)}>
+          Eliminar
+        </Button>
       </View>
     </View>
   ))}
 </ScrollView>
 
+<Button marginBottom={10} onPress={() => navigation.navigate("CreateOrderDetails",{orderID: userID})}>
+          Agregar
+        </Button>
+        <Button marginBottom={10} onPress={() => getUser}>
+          Refresh
+        </Button>
 
+          <Heading marginBottom={10}>
+            Total:
+            <Text color={colors.warning}> ${precio}</Text>
+          </Heading>  
+          
 
         </Container>
       </Center>;

@@ -76,6 +76,7 @@ Route::get('/show_orden/{id}', [OrdenController::class, 'show']);//done
 //routes Orden detalles
 
 Route::get('/ordendetalles_index', [OrdenDetallesController::class, 'index']);//done
+Route::get('/precio', [OrdenDetallesController::class, 'precio']);//done
 Route::post('/create_ordendetalles', [OrdenDetallesController::class, 'store']);//done
 Route::post('/delete_ordendetalles/{id}', [OrdenDetallesController::class, 'destroy']);//done
 Route::put('/update_ordendetalles/{id}', [OrdenDetallesController::class, 'update']);//done
