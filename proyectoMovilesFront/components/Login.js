@@ -16,6 +16,7 @@ export default function Login({ navigation }) {
     const [formData, setData] = React.useState({ nickname: '', password: '' })
     const [errors, setErrors] = React.useState({})
     const [valid, setValid] = React.useState('0');
+    const [userID, setUserID] = React.useState('');
 
     //validacion
     const validate = () => {
@@ -37,9 +38,9 @@ export default function Login({ navigation }) {
         if (e && e.preventDefault()) e.preventDefault();
         console.log('ok', formData);
         const formDatum = new FormData();
-            formDatum.append("nickname", formData.nickname);
-            formDatum.append("password", formData.password);
-            const res = await axios.post("http://192.168.1.72:8000/api/login", formDatum,
+        formDatum.append("nickname", formData.nickname);
+        formDatum.append("password", formData.password);
+        const res = await axios.post("http://192.168.1.72:8000/api/login", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -50,6 +51,28 @@ export default function Login({ navigation }) {
             if (response.data && response.data.length > 0) {
                 console.log(response.data[0].email);
                 setValid('1');
+                setUserID(response.data[0].id);
+                AsyncStorage.setItem('userID', userID);
+                AsyncStorage.setItem('userID', response.data[0].id.toString()) // Almacenar el ID como una cadena de texto
+                    .then(() => {
+                        AsyncStorage.getItem('userID')
+                            .then(value => {
+                                // Acceder al valor almacenado y convertirlo a un número, si es necesario
+                                const numero = parseFloat(value);
+                                if (!isNaN(numero)) {
+                                    const cadena = numero.toString();
+                                    console.log(cadena);
+                                } else {
+                                    console.log('El valor obtenido no es un número válido.');
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
                 console.log(valid);
                 pass();
             } else {
