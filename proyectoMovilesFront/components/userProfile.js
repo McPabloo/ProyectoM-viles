@@ -18,6 +18,7 @@ export default function UserE({ navigation }) {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPass] = useState("");
+    const [ID, setID] = useState("");
 
     const [formData, setFormData] = useState({
         username: "",
@@ -54,15 +55,17 @@ export default function UserE({ navigation }) {
             // Acceder al valor almacenado y convertirlo a un número, si es necesario
             const numero = parseFloat(value);
             if (!isNaN(numero)) {
-                const cadena = numero.toString();
-                console.log(cadena);
+                setID(numero.toString());
+            
+                console.log(ID);
             } else {
                 console.log('El valor obtenido no es un número válido.');
             }
         });
 
     const getUser = async () => {
-        const res = await axios.get(`http://192.168.1.72:8000/api/show_usuario/${userID}`);
+        console.log(ID);
+        const res = await axios.get(`http://192.168.100.27:8000/api/show_usuario/${ID}`);
         console.log(res.data);
         setListUser(res.data);
     };
