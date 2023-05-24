@@ -22,12 +22,27 @@ class OrdenDetallesController extends Controller
     $ordenesDetalles = DB::table('orden_detalles')
         ->join('ordens', 'orden_detalles.orden_id', '=', 'ordens.id')
         ->join('productos', 'orden_detalles.productID', '=', 'productos.id')
-        ->select('orden_detalles.id', 'productos.productName', 'productos.price')
+        ->select('productos.image','orden_detalles.id', 'productos.productName', 'productos.price')
         ->where('ordens.employeeID', '=', $userID)
         ->get();
 
     return $ordenesDetalles;
 }
+
+public function precio(Request $request)
+{
+    $userID = $request->input('userID');
+
+    // Realiza la consulta con el valor de userID y obtiene la suma de los precios
+    $totalPrice = DB::table('orden_detalles')
+        ->join('ordens', 'orden_detalles.orden_id', '=', 'ordens.id')
+        ->join('productos', 'orden_detalles.productID', '=', 'productos.id')
+        ->where('ordens.employeeID', '=', $userID)
+        ->sum('productos.price');
+
+    return $totalPrice;
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -44,9 +59,8 @@ class OrdenDetallesController extends Controller
     {
         //
         $validator = Validator::make($request->all(),[
-            'productID' => 'required',
-            'quantity' => 'required',
-            'discount' => 'required',
+            'idprod' => 'required',
+            'idorden' => 'required',
         ]);
 
         if ($validator->fails()){
@@ -54,11 +68,11 @@ class OrdenDetallesController extends Controller
         }
 
         $ordenDetalles = OrdenDetalles::create([
-            'productID' => $request -> productID,
-            'quantity' => $request -> quantity,
-            'discount' => $request -> discount,
+            'productID' => $request -> input('idprod'),
+            'quantity' => 1,
+            'discount' => 0,
+            'orden_id' => $request -> input('idorden'),
         ]);
-        echo $request->productID;
         
     }
 

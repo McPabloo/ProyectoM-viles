@@ -40,6 +40,7 @@ import CategoryC from './CreateCategory';
 import ClientC from './CreateClient';
 import SuplierC from './CreateSupliers';
 import ProductC from './CreateProducts';
+import OrderC from './CreateOrderDetails';
 
 
 const Stack = createStackNavigator();
@@ -76,6 +77,7 @@ export default function MainContainer2() {
             <Stack.Screen name="CreateClient" options={{ headerShown: false }} component={ClientC} />
             <Stack.Screen name="CreateSupliers" options={{ headerShown: false }} component={SuplierC} />
             <Stack.Screen name="CreateProduct" options={{ headerShown: false }} component={ProductC} />
+            <Stack.Screen name="CreateOrderDetails" options={{ headerShown: false }} component={OrderC} />
 
         </Stack.Navigator>
 

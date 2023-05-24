@@ -21,7 +21,7 @@ import Profile from './UserProfile';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-;
+
 
 
 
