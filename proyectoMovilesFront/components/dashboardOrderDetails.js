@@ -17,7 +17,6 @@ export default function OrderDetails({navigation}) {
   useEffect(() => {
     console.log(userID);
     getUser();
-    getPrice();
 }, []);
 
 const getUser = async () => {
@@ -31,6 +30,7 @@ const getUser = async () => {
 
     console.log(res.data);
     setListUser(res.data);
+    getPrice();
   } catch (error) {
     console.error(error);
   }
@@ -211,7 +211,7 @@ const deleteProduct = async (productId) => {
 <Button marginBottom={10} onPress={() => navigation.navigate("CreateOrderDetails",{orderID: userID})}>
           Agregar
         </Button>
-        <Button marginBottom={10} onPress={getUser}>
+        <Button marginBottom={10} onPress={() => getUser}>
           Refresh
         </Button>
 
