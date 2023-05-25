@@ -15,9 +15,11 @@ export default function UserE({ navigation }) {
     const [listUser, setListUser] = useState({});
 
     const [nam, setNam] = useState("");
+    const [lastNam, setlastNam] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
-    const [password, setPass] = useState("");
+    const [addRess, setAddress] = useState("");
+    const [birthDay, setBirthday] = useState("");
     const [ID, setID] = useState("");
 
     const [formData, setFormData] = useState({
@@ -34,22 +36,6 @@ export default function UserE({ navigation }) {
         getUser()
     }, [])
 
-    const HandleChangeText = (value) => {
-        setNam(value);
-    }
-
-    const HandleChangeEmail = (value) => {
-        setEmail(value);
-    }
-
-    const HandleChangePhone = (value) => {
-        setPhone(value);
-    }
-
-    const HandleChangePassword = (value) => {
-        setPass(value);
-    }
-
     const { userID } = AsyncStorage.getItem('userID')
         .then(value => {
             // Acceder al valor almacenado y convertirlo a un número, si es necesario
@@ -65,7 +51,7 @@ export default function UserE({ navigation }) {
 
     const getUser = async () => {
         console.log(ID);
-        const res = await axios.get(`http://192.168.100.27:8000/api/show_usuario/${ID}`);
+        const res = await axios.get(`http://192.168.1.72:8000/api/show_usuario/${ID}`);
         console.log(res.data);
         setListUser(res.data);
     };
@@ -135,58 +121,20 @@ export default function UserE({ navigation }) {
 
     const [errors, setErrors] = React.useState({})
 
-    //validacion
-    const validate = () => {
-
-        setErrors({})
-        let isValid = true
-
-        if (nam == '' || email == '' || phone == '' || password == '') {
-            setErrors({ ...errors, aviso: 'Todos los campos son requeridos' })
-            isValid = false
-        }
-        return isValid
-    }
-
     function submit() { (validate()) ? send_request() : console.log("Error", errors) };
 
-    const send_request = async () => {
-        console.log(nam);
-        console.log(password);
-        console.log(phone);
-        console.log(email);
-        console.log(1);
-        const formDatum = new FormData();
-        formDatum.append("id", 1);
-        formDatum.append("nickname", nam);
-        formDatum.append("password", password);
-        formDatum.append("phone", phone);
-        formDatum.append("email", email);
-
-        const res1 = await axios.post('http://192.168.1.72:8000/api/update_usuario', formDatum,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Accept': 'application/json'
-                }
-            });
-        console.log(res1.data);
-
-        navigation.navigate('DashboardUsers')
-
-    }
 
     return <Center paddingTop={20}>
         <Container style={styles.contain}>
             <HStack space={2} mt={2}>
-                <Button style={styles.container} onPress={() => navigation.navigate('DashboardUsers')}>
+                <Button style={styles.container} onPress={() => navigation.navigate('HOME')}>
                     <Image
                         source={require('./left-arrow.png')} style={styles.imagen} alt='hola' // Ruta relativa de la imagen dentro de la carpeta de assets
                     />
                 </Button>
                 <Heading>
-                    Editar
-                    <Text color={colors.warning}> Usuario           </Text>
+                    Perfil
+                    <Text color={colors.warning}> de Usuario           </Text>
                 </Heading>
             </HStack>
 
@@ -195,7 +143,7 @@ export default function UserE({ navigation }) {
             <ScrollView>
                 <View>
 
-                    <Image alt='usuario' source={{ uri: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" }} style={[styles.avatar, { alignSelf: "center" }]} />
+                    <Image alt='usuario' source={{ uri: "https://w7.pngwing.com/pngs/527/663/png-transparent-logo-person-user-person-icon-rectangle-photography-computer-wallpaper.png" }} style={[styles.avatar, { alignSelf: "center" }]} />
 
                     <View>
                         <View>
@@ -203,45 +151,58 @@ export default function UserE({ navigation }) {
                             <View style={styles.listItem}>
                                 <TextInput
                                     value={nam}
-                                    onChangeText={HandleChangeText}
                                     placeholder={listUser.firstName}
                                     style={styles.name}
                                 />
                             </View>
-                            <Text style={styles.email}>Rellena con el nombre</Text>
+                            <Text style={styles.email}>Nombre de usuario</Text>
+                            
+                            <View style={styles.listItem}>
+                                <TextInput
+                                    value={lastNam}
+                                    placeholder={listUser.lastName}
+                                    style={styles.name}
+                                />
+                            </View>
+                            <Text style={styles.email}>Apellidos</Text>
 
                             <View style={styles.listItem}>
                                 <TextInput
                                     value={email}
-                                    onChangeText={HandleChangeEmail}
                                     placeholder={listUser.email}
                                     style={styles.name}
                                 />
                             </View>
-                            <Text style={styles.email}>Escribe el nuevo correo electrónico</Text>
+                            <Text style={styles.email}>Correo electrónico</Text>
 
                             <View style={styles.listItem}>
                                 <TextInput
                                     value={phone}
-                                    onChangeText={HandleChangePhone}
                                     placeholder={listUser.phone}
                                     style={styles.name}
                                 />
                             </View>
-                            <Text style={styles.email}>Escribe tu teléfono de contácto</Text>
+                            <Text style={styles.email}>Número de teléfono</Text>
 
                             <View style={styles.listItem}>
                                 <TextInput
-                                    value={password}
-                                    placeholder="Ingresa tu nueva contraseña"
-                                    onChangeText={HandleChangePassword}
+                                    value={addRess}
+                                    placeholder={listUser.address}
                                     style={styles.name}
                                 />
                             </View>
-                            <Text style={styles.email}>Escribe tu nueva contraseña</Text>
+                            <Text style={styles.email}>Domicilio</Text>
 
+                            <View style={styles.listItem}>
+                                <TextInput
+                                    value={birthDay}
+                                    placeholder={listUser.birthday}
+                                    style={styles.birthday}
+                                />
+                            </View>
+                            <Text style={styles.email}>Fecha de nacimiento</Text>
 
-                            <Button style={styles.button} onPress={submit}>
+                            <Button style={styles.button} onPress={getUser}>
                                 Actualizar
                             </Button>
 
