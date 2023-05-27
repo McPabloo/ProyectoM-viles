@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
@@ -106,4 +107,14 @@ class ProductoController extends Controller
         $producto = Producto::all();
         return $producto;
     }
+
+    /*less 1 quantity */
+    public function reduction()
+    {
+        $sto = DB::table('productos')->select('stock')->where('id', "=", "2")->first()->stock;
+
+        $update = Producto::where('id', "=", "2")->update(['stock'=>$sto-1]);
+        return 'echos';
+    }
+
 }

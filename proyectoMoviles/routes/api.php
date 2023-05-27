@@ -90,6 +90,7 @@ Route::post('/create_producto', [ProductoController::class, 'store']);//done
 Route::post('/delete_producto', [ProductoController::class, 'destroy']);//done
 Route::post('/update_producto', [ProductoController::class, 'update']);//done
 Route::get('/show_producto/{id}', [ProductoController::class, 'show']);//done
+Route::get('/reduction', [ProductoController::class, 'reduction']);
 
 
 //routes Proveedor
