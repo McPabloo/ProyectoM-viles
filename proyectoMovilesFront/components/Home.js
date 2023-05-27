@@ -10,13 +10,13 @@ export default function HomeScreen({navigation}){
         <ScrollView>
             <Box safeAreaTop>
                 <Heading textAlign={"center"} bg={"#219ebc"} size="2xl" color={"white"} 
-                shadow="9">ROBERTO BAGGIO</Heading>
+                shadow="9">SAFE INVENTORY</Heading>
                 <Text/>
                 <Center>
                     {/* primeros textos */}
                     <VStack >
                         <HStack >
-                            <Text textAlign={"center"} fontSize='3xl' color='red' >El hombre que murió de pie</Text>
+                            <Text textAlign={"center"} fontSize='3xl' color='red' ></Text>
                         </HStack>
                         <HStack>
                             <Text width={"90%"} textAlign={"justify"} fontSize='md' color='red' >Esta es una aplicacion en la cual 
