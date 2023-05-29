@@ -40,7 +40,7 @@ export default function Login({ navigation }) {
         const formDatum = new FormData();
         formDatum.append("nickname", formData.nickname);
         formDatum.append("password", formData.password);
-        const res = await axios.post("http://192.168.1.72:8000/api/login", formDatum,
+        const res = await axios.post("http://192.168.1.74:8000/api/login", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -66,21 +66,21 @@ export default function Login({ navigation }) {
                                     console.log('El valor obtenido no es un número válido.');
                                 }
                             })
-                            .catch(error => {
-                                console.log(error);
+                            .catch(function(error) {
+                                console.log(error.response.data);
                             });
                     })
-                    .catch(error => {
-                        console.log(error);
+                    .catch(function(error) {
+                        console.log(error.response.data);
                     });
-                console.log(valid);
+                console.log('si llega');
                 pass();
             } else {
                 console.log('Empty response');
                 // Aquí puedes manejar el caso de una respuesta vacía según tus necesidades
             }
-        }).catch(error => {
-            console.log(error);
+        }).catch(function(error) {
+            console.log(error.response.data);
         });
 
     }
@@ -91,6 +91,8 @@ export default function Login({ navigation }) {
     function pass() {
         if (valid === '1') {
             navigation.navigate('HOME SCREEN');
+        }else{
+            console.log('valid: ', valid);
         }
     }
 

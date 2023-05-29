@@ -7,7 +7,7 @@ import { ListItem, Avatar } from 'react-native-elements';
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function UserE({ navigation }) {
+export default function UserProfile({ navigation }) {
 
     const route = useRoute();
 
@@ -51,7 +51,7 @@ export default function UserE({ navigation }) {
 
     const getUser = async () => {
         console.log(ID);
-        const res = await axios.get(`http://192.168.1.72:8000/api/show_usuario/${ID}`);
+        const res = await axios.get(`http://192.168.1.74:8000/api/show_usuario/${ID}`);
         console.log(res.data);
         setListUser(res.data);
     };

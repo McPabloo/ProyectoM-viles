@@ -42,7 +42,7 @@ export default function ClientC({navigation}) {
           formDatum.append("address", formData.address);
           formDatum.append("companyName", formData.companyName);
           formDatum.append("phone", formData.phone);
-          const res = await axios.post("http://192.168.1.72:8000/api/create_cliente", formDatum,
+          const res = await axios.post("http://192.168.1.74:8000/api/create_cliente", formDatum,
           {
               headers: {
                   'Content-Type': 'multipart/form-data',

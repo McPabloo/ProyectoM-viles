@@ -17,7 +17,7 @@ export default function Client({navigation}) {
   }, [])
 
   const getClient = async () => {
-    const res = await axios.get("http://192.168.1.72:8000/api/cliente_index")
+    const res = await axios.get("http://192.168.1.74:8000/api/cliente_index")
     console.log(res.data);
     setListClient(res.data);
   };
@@ -27,7 +27,7 @@ export default function Client({navigation}) {
     console.log(eliminate);
     const formDatum = new FormData();
         formDatum.append("id", eliminate);
-        const res = await axios.post("http://192.168.1.72:8000/api/delete_cliente", formDatum,
+        const res = await axios.post("http://192.168.1.74:8000/api/delete_cliente", formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',

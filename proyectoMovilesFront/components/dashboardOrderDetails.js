@@ -21,7 +21,7 @@ export default function OrderDetails({navigation}) {
 
 const getUser = async () => {
   try {
-    const res = await axios.get(`http://192.168.100.27:8000/api/ordendetalles_index?userID=${userID}`, {
+    const res = await axios.get(`http://192.168.1.74:8000/api/ordendetalles_index?userID=${userID}`, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Accept': 'application/json'
@@ -38,7 +38,7 @@ const getUser = async () => {
 
 const getPrice = async () => {
   try {
-    const res = await axios.get(`http://192.168.100.27:8000/api/precio?userID=${userID}`, {
+    const res = await axios.get(`http://192.168.1.74:8000/api/precio?userID=${userID}`, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Accept': 'application/json'
@@ -55,7 +55,7 @@ const getPrice = async () => {
 
 const deleteProduct = async (productId) => {
   try {
-    const res = await axios.post(`http://192.168.100.27:8000/api/delete_ordendetalles/${productId}`, {
+    const res = await axios.post(`http://192.168.1.74:8000/api/delete_ordendetalles/${productId}`, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Accept': 'application/json'
@@ -164,7 +164,7 @@ const deleteProduct = async (productId) => {
     return <Center paddingTop={20}>
         <Container style={styles.contain}>
         <HStack space={2} mt={2}>
-          <Button style={styles.container} onPress={() => navigation.navigate('dashboardUsers')}>
+          <Button style={styles.container} onPress={() => navigation.navigate('DashboardOrders')}>
             <Image
             source={require('./left-arrow.png')} style={styles.imagen} alt='imagen' // Ruta relativa de la imagen dentro de la carpeta de assets
             />

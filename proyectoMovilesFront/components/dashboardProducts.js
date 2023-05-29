@@ -4,6 +4,7 @@ import colors from './colors';
 import axios from "axios";
 import { TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
+import { color } from 'react-native-elements/dist/helpers';
 
 export default function Product({navigation}) {
 
@@ -20,10 +21,8 @@ export default function Product({navigation}) {
     const res = await axios.get("http://192.168.1.74:8000/api/producto_index")
     console.log(res.data);
     setListProduct(res.data);
-
   };
 
- 
 
   const eliminar=async(e)=>{
     console.log('id a eliminar: ',eliminate);

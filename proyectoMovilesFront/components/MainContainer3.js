@@ -16,7 +16,7 @@ import Register from './Register';
 import dashboardUsers from './dashboardUsers';
 import MainContainer2 from './MainContainer2';
 import EditUser from './EditUser';
-import Profile from './UserProfile';
+import UserProfile from './userProfile';
 
 
 const Stack = createStackNavigator();
@@ -34,7 +34,7 @@ export default function MainContainer3() {
             <Drawer.Navigator>                    
                         <Drawer.Screen name="HOME" options={{ headerShown: false, title: 'WELCOME' }} component={HomeScreen} />                        
                         <Drawer.Screen name="CRUD" options={{ headerShown: false }} component={MainContainer2} />
-                        <Drawer.Screen name="USERDATA" options={{ headerShown: false, title: 'PERFIL DE USUARIO' }} component={Profile} />
+                        <Drawer.Screen name="USERDATA" options={{ headerShown: false, title: 'PERFIL DE USUARIO' }} component={UserProfile} />
                         <Drawer.Screen name="LOGOUT" options={{ headerShown: false, title: 'CERRAR SESIÓN' }} component={Login} />
             </Drawer.Navigator>
 

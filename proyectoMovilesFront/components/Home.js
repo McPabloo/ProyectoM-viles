@@ -16,10 +16,11 @@ export default function HomeScreen({navigation}){
                     {/* primeros textos */}
                     <VStack >
                         <HStack >
-                            <Text textAlign={"center"} fontSize='3xl' color='red' ></Text>
+                            <Text textAlign={"center"} fontSize='3xl' color='red' >Keep your inventory safe</Text>
                         </HStack>
+                        <Text/>
                         <HStack>
-                            <Text width={"90%"} textAlign={"justify"} fontSize='md' color='red' >Esta es una aplicacion en la cual 
+                            <Text textAlign={"justify"} fontSize='md' color='red' >Esta es una aplicacion en la cual 
                                 puedes administrar tu empresa. Desde un control de inventario hasta uno de personal, etc. </Text>
                         </HStack>
                     </VStack>
@@ -31,27 +32,22 @@ export default function HomeScreen({navigation}){
                     }} alt="Alternate Text" size="2xl" />
                     <Text/>
 
-                    {/* Card Asesoria*/}
+                    {/* Card Products*/}
                     
-                    <Box rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
-                        <Box>
-                            <Text color="emerald.500" mt="3" fontWeight="medium" fontSize="md">
-                                SIN COSTO
-                            </Text>
-                        </Box>
+                    <Box rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5"> 
                         <Box alignItems='center'>
                             <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
-                                CONSULTA EXPRESS
+                                ADMINISTRACIÓN
                             </Text>
                             <Text textAlign={"center"}  mt="2" fontSize="sm" color="coolGray.700">
-                                Atención médica de especialistas
+                                Ver administración
                             </Text>
                             <Text/>
-                            <HStack space={3}>
+                            <HStack space={5}>
                                 <VStack>
-                                    <Box alignItems={"center"}>
+                                    <Box space={10}  alignItems={"center"}>
                                         <Image source={{
-                                        uri:"https://img.freepik.com/vector-gratis/concepto-ambulancia-emergencia_23-2148539599.jpg?w=2000"
+                                        uri:"https://ferreenjesuscarranzaychazaro.files.wordpress.com/2013/05/articulos-electricos-y-ferreteria-en-general.jpg"
                                         }} alt="Alternate Text" size="lg" />
                                         <Text/>
                                     </Box>
@@ -62,46 +58,47 @@ export default function HomeScreen({navigation}){
                         </Box> 
                         <Box alignItems={"center"}>
                             <HStack space={3}>
-                                <Button >Agendar ahora</Button>
+                                <Button onPress={() => navigation.navigate('Crud')} >Ver</Button>
                                 <Button onPress={()=> toast.show({
-                                    title:"Para más información contactanos",
+                                    title:"Picale al boton de a lado",
                                     placement:"bottom"})}
                                     leftIcon={<Icon color={"blue.100"} as={QuestionOutlineIcon} />} variant="outline">Details</Button>
                             </HStack>
                         </Box>
                     </Box>
                     <Text/>
-                    {/* Card consulta express*/}
+
+                    {/* Card call suppliers*/}
 
                  
                     <Box rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
                         <Box alignItems='center'>
                             <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
-                                Asesoría de salud
+                                PROVEEDORES
                             </Text>
                             <Text textAlign={"center"}  mt="2" fontSize="sm" color="coolGray.700">
-                                Habla con un experto
+                                Llama a un proveedor
                             </Text>
                             <Text/>
                             <HStack space={3}>
                                 <VStack>
                                     <Box alignItems={"center"}>
                                         <Image source={{
-                                        uri:"https://t1.ea.ltmcdn.com/es/posts/5/6/2/10_caracteristicas_de_los_perros_24265_600_square.jpg"
+                                        uri:"https://thumbs.dreamstime.com/z/vector-del-mapa-de-m%C3%A9xico-y-de-la-bandera-nacional-57156274.jpg"
                                         }} alt="Alternate Text" size="lg" />
                                         <Text/>
-                                        <Text fontSize="sm" color="coolGray.700">Medicina veterinaria</Text><Text/>
-                                        <Button rounded={"full"} bg={"emerald.500"} color={"white"} >$100 MXM</Button>
+                                        <Text fontSize="sm" color="coolGray.700">Nacional</Text><Text/>
+                                        <Button rounded={"full"} bg={"emerald.500"} color={"white"} >Llamar</Button>
                                     </Box>
                                 </VStack>
                                 <VStack>
                                     <Box alignItems={"center"}>
                                         <Image source={{
-                                        uri:"https://img.freepik.com/vector-gratis/fondo-personaje-doctor_1270-84.jpg?w=2000"
+                                        uri:"https://www.tlattorneys.com/images/editor-content/1ebfbe2d0671ac6800a453d760303dd0_International.jpg"
                                         }} alt="Alternate Text"  size="lg" />
                                         <Text/>
-                                        <Text fontSize="sm" color="coolGray.700">Médico general</Text><Text/>
-                                        <Button rounded={"full"} bg={"emerald.500"} color={"white"} >$100 MXM</Button>
+                                        <Text fontSize="sm" color="coolGray.700">Internacional</Text><Text/>
+                                        <Button rounded={"full"} bg={"emerald.500"} color={"white"} >Llamar</Button>
                                     </Box>
                                 </VStack>
                             </HStack>
@@ -115,41 +112,7 @@ export default function HomeScreen({navigation}){
                         </Box>
                     </Box>
                     <Text/>
-                    {/* Card Medicos especialistas*/}
-                    
-                    <Box rounded="8" overflow="hidden" borderWidth="1" borderColor="coolGray.300" maxW="96" shadow="3" bg="coolGray.100" p="5">
-                        <Box alignItems='center'>
-                            <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
-                                Médicos especialistas
-                            </Text>
-                            <Text textAlign={"center"}  mt="2" fontSize="sm" color="coolGray.700">
-                                Tu directorio médico especialista
-                            </Text>
-                            
-                            <HStack space={3}>
-                                <VStack>
-                                    <Box alignItems={"center"}>
-                                        <Image source={{
-                                        uri:"https://img.freepik.com/vector-gratis/gente-caminando-sentada-edificio-hospital-exterior-cristal-clinica-ciudad-ilustracion-vector-plano-ayuda-medica-emergencia-arquitectura-concepto-salud_74855-10130.jpg"
-                                        }} alt="Alternate Text" size="xl" />
-                                        
-                                    </Box>
-                                </VStack>
-                            </HStack>
-                            
-                            
-                        </Box> 
-                        <Box alignItems={"center"}>
-                            <HStack space={3}>
-                                <Button >Ver directorio</Button>
-                                <Button onPress={()=> toast.show({
-                                    title:"Para más información contactanos",
-                                    placement:"bottom"})}
-                                    leftIcon={<Icon color={"blue.100"} as={QuestionOutlineIcon} />} variant="outline">Details</Button>
-                            </HStack>
-                        </Box>
-                    </Box>
-                                    
+       
                 </Center>
             </Box>
         </ScrollView>

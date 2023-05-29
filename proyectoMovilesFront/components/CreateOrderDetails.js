@@ -22,7 +22,7 @@ export default function Product({navigation}) {
   }, [])
 
   const getProduct = async () => {
-    const res = await axios.get("http://192.168.100.27:8000/api/producto_index")
+    const res = await axios.get("http://192.168.1.74:8000/api/producto_index")
     console.log(res.data);
     setListProduct(res.data);
 
@@ -36,7 +36,7 @@ export default function Product({navigation}) {
         formDatum.append("idprod", eliminate);
         formDatum.append("idorden", orderID);
         console.log(formDatum);
-        const res = await axios.post("http://192.168.100.27:8000/api/create_ordendetalles", formDatum,
+        const res = await axios.post("http://192.168.1.74:8000/api/create_ordendetalles", formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -139,7 +139,7 @@ export default function Product({navigation}) {
     return <Center paddingTop={20}>
         <Container style={styles.contain}>
         <HStack space={2} mt={2}>
-          <Button style={styles.container} onPress={() => navigation.navigate('Crud')}>
+          <Button style={styles.container} onPress={() => navigation.navigate('DashboardOrders')}>
             <Image
             source={require('./left-arrow.png')} style={styles.imagen} alt='hola' // Ruta relativa de la imagen dentro de la carpeta de assets
             />

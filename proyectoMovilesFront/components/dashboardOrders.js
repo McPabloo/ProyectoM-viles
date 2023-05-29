@@ -99,7 +99,7 @@ export default function C_card({navigation}){
     }, [])
 
     const getOrders = async () => {
-      const res = await axios.get("http://192.168.100.27:8000/api/orden_index")
+      const res = await axios.get("http://192.168.1.74:8000/api/orden_index")
       console.log(res.data);
       setListUser(res.data);
     };
@@ -108,7 +108,7 @@ export default function C_card({navigation}){
 
       <Container paddingTop={10} style={styles.contain}>
         <HStack space={2} mt={2}>
-          <Button style={styles.container} onPress={() => navigation.navigate('HOME SCREEN')}>
+          <Button style={styles.container} onPress={() => navigation.navigate('Crud')}>
             <Image
             source={require('./left-arrow.png')} style={styles.imagen} alt='hola' // Ruta relativa de la imagen dentro de la carpeta de assets
             />
@@ -124,7 +124,7 @@ export default function C_card({navigation}){
 
           <HStack space={2} mt={2}>
             <View >
-              <Button style={styles.button} onPress={() => navigation.navigate('CreateUser')}>
+              <Button style={styles.button}>
                 Nueva Orden
               </Button>
             </View>

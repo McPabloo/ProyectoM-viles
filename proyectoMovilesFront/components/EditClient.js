@@ -73,7 +73,7 @@ export default function ClientE({ navigation }) {
     const { clientID } = route.params;
 
     const getClient = async () => {
-        const res = await axios.get(`http://192.168.1.72:8000/api/show_cliente/${clientID}`);
+        const res = await axios.get(`http://192.168.1.74:8000/api/show_cliente/${clientID}`);
         console.log(res.data);
         setListClient(res.data);
     };
