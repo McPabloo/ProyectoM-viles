@@ -108,7 +108,7 @@ export default function C_card({navigation}){
 
       <Container paddingTop={10} style={styles.contain}>
         <HStack space={2} mt={2}>
-          <Button style={styles.container} onPress={() => navigation.navigate('HOME SCREEN')}>
+          <Button style={styles.container} onPress={() => navigation.navigate('Crud')}>
             <Image
             source={require('./left-arrow.png')} style={styles.imagen} alt='hola' // Ruta relativa de la imagen dentro de la carpeta de assets
             />

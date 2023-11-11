@@ -37,7 +37,7 @@ export default function SuplierC({navigation}) {
           formDatum.append("city", formData.city);
           formDatum.append("country", formData.country);
           formDatum.append("phone", formData.phone);
-          const res = await axios.post("http://192.168.1.72:8000/api/create_proveedor", formDatum,
+          const res = await axios.post("http://192.168.1.74:8000/api/create_proveedor", formDatum,
           {
               headers: {
                   'Content-Type': 'multipart/form-data',

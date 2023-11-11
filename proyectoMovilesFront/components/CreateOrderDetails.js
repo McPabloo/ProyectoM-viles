@@ -139,7 +139,7 @@ export default function Product({navigation}) {
     return <Center paddingTop={20}>
         <Container style={styles.contain}>
         <HStack space={2} mt={2}>
-          <Button style={styles.container} onPress={() => navigation.navigate('Crud')}>
+          <Button style={styles.container} onPress={() => navigation.navigate('DashboardOrders')}>
             <Image
             source={require('./left-arrow.png')} style={styles.imagen} alt='hola' // Ruta relativa de la imagen dentro de la carpeta de assets
             />

@@ -55,7 +55,7 @@ export default function SuplierE({ navigation }) {
     const { suplierID } = route.params;
 
     const getSuplier = async () => {
-        const res = await axios.get(`http://192.168.1.72:8000/api/show_proveedor/${suplierID}`);
+        const res = await axios.get(`http://192.168.1.74:8000/api/show_proveedor/${suplierID}`);
         console.log(res.data);
         setListSuplier(res.data);
     };

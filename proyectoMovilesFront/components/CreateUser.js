@@ -42,7 +42,7 @@ export default function UserC({navigation}) {
           formDatum.append("phone", formData.phone);
           formDatum.append("birthday", formData.birthday);
           formDatum.append("notes", formData.notes);
-          const res = await axios.post("http://192.168.100.26:8000/api/create_usuario", formDatum,
+          const res = await axios.post("http://192.168.1.74:8000/api/create_usuario", formDatum,
           {
               headers: {
                   'Content-Type': 'multipart/form-data',

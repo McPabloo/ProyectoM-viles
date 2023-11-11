@@ -37,7 +37,7 @@ export default function CategoryE({ navigation }) {
     const { categoryID } = route.params;
 
     const getCategory = async () => {
-        const res = await axios.get(`http://192.168.1.72:8000/api/show_category/${categoryID}`);
+        const res = await axios.get(`http://192.168.1.74:8000/api/show_category/${categoryID}`);
         console.log(res.data);
         setListCategory(res.data);
     };

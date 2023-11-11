@@ -88,14 +88,14 @@ export default function Login({ navigation }) {
                                     console.log('El valor obtenido no es un número válido.');
                                 }
                             })
-                            .catch(error => {
-                                console.log(error);
+                            .catch(function(error) {
+                                console.log(error.response.data);
                             });
                     })
-                    .catch(error => {
-                        console.log(error);
+                    .catch(function(error) {
+                        console.log(error.response.data);
                     });
-                console.log(valid);
+                console.log('si llega');
                 pass();
             } else {
                 console.log('Empty response');
@@ -113,6 +113,8 @@ export default function Login({ navigation }) {
     function pass() {
         if (valid === '1') {
             navigation.navigate('HOME SCREEN');
+        }else{
+            console.log('valid: ', valid);
         }
     }
 

@@ -164,7 +164,7 @@ const deleteProduct = async (productId) => {
     return <Center paddingTop={20}>
         <Container style={styles.contain}>
         <HStack space={2} mt={2}>
-          <Button style={styles.container} onPress={() => navigation.navigate('dashboardUsers')}>
+          <Button style={styles.container} onPress={() => navigation.navigate('DashboardOrders')}>
             <Image
             source={require('./left-arrow.png')} style={styles.imagen} alt='imagen' // Ruta relativa de la imagen dentro de la carpeta de assets
             />
