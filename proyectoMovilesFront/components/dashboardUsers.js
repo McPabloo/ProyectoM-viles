@@ -17,7 +17,7 @@ export default function Users({navigation}) {
   }, [])
 
   const getUser = async () => {
-    const res = await axios.get("http://192.168.1.72:8000/api/usuario_index")
+    const res = await axios.get("http://192.168.0.109:8000/api/usuario_index")
     console.log(res.data);
     setListUser(res.data);
   };

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Orden;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Models\Cliente;
+use App\Models\User;
+use App\Models\Cargador;
 
 class OrdenController extends Controller
 {
@@ -21,6 +24,35 @@ class OrdenController extends Controller
         return $ordenes;
 
     }
+
+    public function shipper()
+    {
+        //
+        $shippers = Cargador::all();
+
+        return $shippers;
+
+    }
+
+    public function customer()
+    {
+        //
+        $clientes = Cliente::all(['id', 'firstName'])->pluck('firstName', 'id');
+
+        return $clientes;
+
+    }
+
+    public function employee()
+    {
+        //
+        $empleados = User::all(['id', 'firstName'])->pluck('firstName', 'id');
+
+        return $empleados;
+
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

@@ -39,7 +39,7 @@ export default function ShipperE({navigation}) {
   const { shipperID } = route.params;
 
   const getShipper = async () => {
-    const res = await axios.get(`http://192.168.1.74:8000/api/show_cargador/${shipperID}`);
+    const res = await axios.get(`http://192.168.0.109:8000/api/show_cargador/${shipperID}`);
     console.log(res.data);
     setListShipper(res.data);
   };

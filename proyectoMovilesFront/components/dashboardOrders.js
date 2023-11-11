@@ -99,7 +99,7 @@ export default function C_card({navigation}){
     }, [])
 
     const getOrders = async () => {
-      const res = await axios.get("http://192.168.100.27:8000/api/orden_index")
+      const res = await axios.get("http://192.168.0.109:8000/api/orden_index")
       console.log(res.data);
       setListUser(res.data);
     };
@@ -124,7 +124,7 @@ export default function C_card({navigation}){
 
           <HStack space={2} mt={2}>
             <View >
-              <Button style={styles.button} onPress={() => navigation.navigate('CreateUser')}>
+              <Button style={styles.button} onPress={() => navigation.navigate('CreateOrders')}>
                 Nueva Orden
               </Button>
             </View>

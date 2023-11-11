@@ -67,6 +67,9 @@ Route::get('/show_company/{id}', [CompanyController::class, 'show']);//done
 //routes Orden
 
 Route::get('/orden_index', [OrdenController::class, 'index']);//done
+Route::get('/orden_employee', [OrdenController::class, 'employee']);//done
+Route::get('/orden_customer', [OrdenController::class, 'customer']);//done
+Route::get('/orden_shipper', [OrdenController::class, 'shipper']);//done
 Route::post('/create_orden', [OrdenController::class, 'store']);//done
 Route::post('/delete_orden/{id}', [OrdenController::class, 'destroy']);//done
 Route::put('/update_orden/{id}', [OrdenController::class, 'update']);//done

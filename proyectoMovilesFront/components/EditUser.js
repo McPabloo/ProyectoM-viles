@@ -51,7 +51,7 @@ export default function UserE({navigation}) {
   const { userID } = route.params;
 
   const getUser = async () => {
-    const res = await axios.get(`http://192.168.100.27:8000/api/show_usuario/${userID}`);
+    const res = await axios.get(`http://192.168.0.106:8000/api/show_usuario/${userID}`);
     console.log(res.data);
     setListUser(res.data);
   };

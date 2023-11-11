@@ -17,7 +17,7 @@ export default function Client({navigation}) {
   }, [])
 
   const getClient = async () => {
-    const res = await axios.get("http://192.168.1.72:8000/api/cliente_index")
+    const res = await axios.get("http://192.168.0.106:8000/api/cliente_index")
     console.log(res.data);
     setListClient(res.data);
   };

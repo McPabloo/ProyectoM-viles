@@ -1,217 +1,280 @@
 import React from "react";
-import { Button, FormControl, View, Input, VStack, Text, Center, CheckIcon, WarningOutlineIcon } from "native-base";
-import { TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import { validate } from "react-native-web/dist/cjs/exports/StyleSheet/validate";
-import { useState } from "react";
+import {
+  Button,
+  FormControl,
+  View,
+  Input,
+  VStack,
+  Text,
+  Center,
+} from "native-base";
+import { TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 import axios from "axios";
-import colors from './colors';
+import colors from "./colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Register({navigation}){
+export default function Register({ navigation }) {
+  const [formData, setData] = React.useState({
+    nickname: "",
+    password: "",
+    firstname: "",
+    lastname: "",
+    phone: "",
+    address: "",
+    birthday: "",
+    notes: "",
+  });
+  const [errors, setErrors] = React.useState({});
+  const [valid, setValid] = React.useState(true);
 
-    //estados
-    const [formData, setData] = React.useState({nickname : '', password : '',
-    firstname : '', lastname : '' , phone : '' , address : '', birthday : '', notes : ''})
-    const [errors, setErrors] = React.useState({})
-    const [valid, setValid] = React.useState(false);
+  const validate = () => {
+    setErrors({});
+    let isValid = true;
 
-    //validacion
-    const validate = () => {
-
-        setErrors({})
-        let isValid = true
-        
-        if(formData.nickname == '' || formData.password == '' ){
-            setErrors({...errors, notice:'All fields required'})
-            isValid = false
-        }else if(formData.nickname.length < 6){
-            setErrors({...errors, nickname: 'Nickname is too short'})
-            isValid = false
-        }
-        return isValid
+    if (
+      formData.nickname === "" ||
+      formData.password === "" ||
+      formData.phone === "" ||
+      formData.firstname === "" ||
+      formData.lastname === "" ||
+      formData.address === "" ||
+      formData.birthday === "" ||
+      formData.notes === ""
+    ) {
+      setErrors({ notice: "All fields required" });
+      isValid = false;
+    } else if (formData.nickname.length < 6) {
+      setErrors({ nickname: "Nickname is too short (minimum 6 characters)" });
+      isValid = false;
     }
 
-    const send_request=async(e)=>{
-        if (e && e.preventDefault()) e.preventDefault();
-        console.log('ok',formData);
-        const formDatum = new FormData();
-            formDatum.append("nickname", formData.nickname);
-            formDatum.append("password", formData.password);
-            formDatum.append("firstName", formData.firstname);
-            formDatum.append("lastName", formData.lastname);
-            formDatum.append("address", formData.address);
-            formDatum.append("phone", formData.phone);
-            formDatum.append("birthday", formData.birthday);
-            formDatum.append("notes", formData.notes);
-            const res = await axios.post("http://192.168.100.26:8000/api/create_usuario", formDatum,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Accept': 'application/json'
-                }
-            }
-        ).then(response => {
-            if (response.data && response.data.length > 0) {
-                console.log(response.data[0].email);
-                setValid(true);
-                console.log(valid);
-                pass();
-              } else {
-                console.log('Empty response');
-                // Aquí puedes manejar el caso de una respuesta vacía según tus necesidades
-              }
-        }).catch(error => {
-            console.log(error);
-        });
-    } 
-
-
-    function submit() { (validate()) ? send_request() : console.log("Error",errors)};
-
-    function pass(){
-        if(valid===true){
-            navigation.navigate('LOGIN');
-        }
+    // Validar el formato del teléfono usando regex (solo números)
+    const phoneRegex = /^\d+$/;
+    if (!phoneRegex.test(formData.phone)) {
+      setErrors({ phone: "Invalid phone number (only numbers allowed)" });
+      isValid = false;
     }
 
-    const styles = StyleSheet.create({
-        container: {
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexGrow: 1,
-            paddingVertical: 20,
-          },
-          button: {
-            borderBottomWidth: 1,
-            borderBottomColor: 'white',
-            paddingVertical: 5,
-          },
-          buttonText: {
-            fontSize: 16,
-            paddingTop: 10,
-            color: '#F8F9FA',
-          },
+    // Validar el formato de la fecha (ejemplo: YYYY-MM-DD)
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(formData.birthday)) {
+      setErrors({
+        birthday: "Invalid date format (use YYYY-MM-DD)",
       });
+      isValid = false;
+    }
 
-    return  (
+    return isValid;
+  };
 
-        <Center flex={1}  style={{ backgroundColor: colors.dark }}>
+  const sendRequest = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    console.log("ok", formData);
+    const formDatum = new FormData();
+    formDatum.append("nickname", formData.nickname);
+    formDatum.append("password", formData.password);
+    formDatum.append("firstName", formData.firstname);
+    formDatum.append("lastName", formData.lastname);
+    formDatum.append("address", formData.address);
+    formDatum.append("phone", formData.phone);
+    formDatum.append("birthday", formData.birthday);
+    formDatum.append("notes", formData.notes);
 
-        <Text bold color="white" fontSize="60" mt="10">
-            Formulario de Registro
-        </Text>
+    try {
+      const response = await axios.post(
+        "http://192.168.0.104:8000/api/create_usuario",
+        formDatum,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Accept: "application/json",
+          },
+        }
+      );
 
-        <ScrollView contentContainerStyle={styles.container} width="80%">
-            <VStack width="100%">
-        
-            <FormControl isRequired isInvalid={'nickname' in errors}>
-                <FormControl.Label>Email</FormControl.Label>
-                <Input p={2} color="white" fontSize={18} name="nickname" placeholder="Enter your nickname"
-                    onChangeText={value => setData({ ...formData, nickname: value })} />    
-                {'nickname' in errors ? <Text>{errors.nickname}</Text>
-                    : <FormControl.HelperText>
-                        You must enter a least 6 characters
-                    </FormControl.HelperText>
-                }
-            </FormControl>
-            
-        
-            <FormControl isRequired isInvalid={'password' in errors}>
-                <FormControl.Label>Password</FormControl.Label>
-                <Input p={2} color="white" fontSize={18} name="password" placeholder="Enter password"
-                    onChangeText={value => setData({ ...formData, password: value })} />    
-                {'password' in errors ? <Text>{errors.password}</Text>
-                    : <FormControl.HelperText>
-                        Keep your password safe
-                    </FormControl.HelperText>
-                }
-            </FormControl>
+      if (response.data && response.data.length > 0) {
+        console.log(response.data[0].email);
+        //setValid(true);
+        console.log(valid);
+        pass();
+      } else {
+        console.log("Empty response");
+      }
+    } catch (error) {
+      console.log("Error al registrar usuario, podría haber datos duplicados");
+    }
+  };
 
-            <FormControl isRequired isInvalid={'nickname' in errors}>
-                <FormControl.Label>Phone</FormControl.Label>
-                <Input p={2} color="white" fontSize={18} name="phone" placeholder="Enter your phone"
-                    onChangeText={value => setData({ ...formData, phone: value })} />    
-                {'nickname' in errors ? <Text>{errors.nickname}</Text>
-                    : <FormControl.HelperText>
-                        You must enter a least 6 characters
-                    </FormControl.HelperText>
-                }
-            </FormControl>
+  const submit = () => {
+    validate() ? sendRequest() : console.log("Error", errors);
+  };
 
-            <FormControl isRequired isInvalid={'nickname' in errors}>
-                <FormControl.Label>Firstname</FormControl.Label>
-                <Input p={2} color="white" fontSize={18} name="firstname" placeholder="Enter your firstname"
-                    onChangeText={value => setData({ ...formData, firstname: value })} />    
-                {'nickname' in errors ? <Text>{errors.nickname}</Text>
-                    : <FormControl.HelperText>
-                        You must enter a least 6 characters
-                    </FormControl.HelperText>
-                }
-            </FormControl>
+  const pass = () => {
+    if (valid === true) {
+      navigation.navigate("LOGIN");
+    }
+  };
 
-            <FormControl isRequired isInvalid={'nickname' in errors}>
-                <FormControl.Label>Lastname</FormControl.Label>
-                <Input p={2} color="white" fontSize={18} name="lastname" placeholder="Enter your lastname"
-                    onChangeText={value => setData({ ...formData, lastname: value })} />    
-                {'nickname' in errors ? <Text>{errors.nickname}</Text>
-                    : <FormControl.HelperText>
-                        You must enter a least 6 characters
-                    </FormControl.HelperText>
-                }
-            </FormControl>
+  const styles = StyleSheet.create({
+    container: {
+      justifyContent: "center",
+      alignItems: "center",
+      flexGrow: 1,
+      paddingVertical: 20,
+    },
+    button: {
+      borderBottomWidth: 1,
+      borderBottomColor: "white",
+      paddingVertical: 5,
+    },
+    buttonText: {
+      fontSize: 16,
+      paddingTop: 10,
+      color: "#F8F9FA",
+    },
+  });
 
-            <FormControl isRequired isInvalid={'nickname' in errors}>
-                <FormControl.Label>Birthday</FormControl.Label>
-                <Input p={2} color="white" fontSize={18} name="birthday" placeholder="Enter your birthday"
-                    onChangeText={value => setData({ ...formData, birthday: value })} />    
-                {'nickname' in errors ? <Text>{errors.nickname}</Text>
-                    : <FormControl.HelperText>
-                        You must enter a least 6 characters
-                    </FormControl.HelperText>
-                }
-            </FormControl>
+  return (
+    <Center flex={1} style={{ backgroundColor: colors.dark }}>
+      <Text bold color="white" fontSize="60" mt="10">
+        Formulario de Registro
+      </Text>
 
-            <FormControl isRequired isInvalid={'nickname' in errors}>
-                <FormControl.Label>Address</FormControl.Label>
-                <Input p={2} color="white" fontSize={18} name="address" placeholder="Enter your address"
-                    onChangeText={value => setData({ ...formData, address: value })} />    
-                {'nickname' in errors ? <Text>{errors.nickname}</Text>
-                    : <FormControl.HelperText>
-                        You must enter a least 6 characters
-                    </FormControl.HelperText>
-                }
-            </FormControl>
+      <ScrollView contentContainerStyle={styles.container} width="80%">
+        <VStack width="100%">
+          <FormControl isRequired isInvalid={"nickname" in errors}>
+            <FormControl.Label>Email</FormControl.Label>
+            <Input
+              p={2}
+              color="white"
+              fontSize={18}
+              name="nickname"
+              placeholder="Enter your nickname"
+              onChangeText={(value) =>
+                setData({ ...formData, nickname: value })
+              }
+            />
+            {"nickname" in errors ? <Text>{errors.nickname}</Text> : null}
+          </FormControl>
 
-            <FormControl isRequired isInvalid={'nickname' in errors}>
-                <FormControl.Label>Notes</FormControl.Label>
-                <Input p={2} color="white" fontSize={18} name="notes" placeholder="Personal notes"
-                    onChangeText={value => setData({ ...formData, notes: value })} />    
-                {'nickname' in errors ? <Text>{errors.nickname}</Text>
-                    : <FormControl.HelperText>
-                        You must enter a least 6 characters
-                    </FormControl.HelperText>
-                }
-            </FormControl>
-        
-            <Button style={{ backgroundColor: colors.primary }}
-                onPress={submit}>
-                    Registrarme
-            </Button>
+          <FormControl isRequired isInvalid={"password" in errors}>
+            <FormControl.Label>Password</FormControl.Label>
+            <Input
+              p={2}
+              color="white"
+              fontSize={18}
+              name="password"
+              placeholder="Enter password"
+              onChangeText={(value) =>
+                setData({ ...formData, password: value })
+              }
+            />
+            {"password" in errors ? <Text>{errors.password}</Text> : null}
+          </FormControl>
 
-            <View style={styles.container}>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LOGIN')}>
-                    <Text style={styles.buttonText}>Volver</Text>
-                </TouchableOpacity>
-            </View>
-            
+          <FormControl isRequired isInvalid={"phone" in errors}>
+            <FormControl.Label>Phone</FormControl.Label>
+            <Input
+              p={2}
+              color="white"
+              fontSize={18}
+              name="phone"
+              placeholder="Enter your phone"
+              onChangeText={(value) => setData({ ...formData, phone: value })}
+            />
+            {"phone" in errors ? <Text>{errors.phone}</Text> : null}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={"firstname" in errors}>
+            <FormControl.Label>Firstname</FormControl.Label>
+            <Input
+              p={2}
+              color="white"
+              fontSize={18}
+              name="firstname"
+              placeholder="Enter your firstname"
+              onChangeText={(value) =>
+                setData({ ...formData, firstname: value })
+              }
+            />
+            {"firstname" in errors ? <Text>{errors.firstname}</Text> : null}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={"lastname" in errors}>
+            <FormControl.Label>Lastname</FormControl.Label>
+            <Input
+              p={2}
+              color="white"
+              fontSize={18}
+              name="lastname"
+              placeholder="Enter your lastname"
+              onChangeText={(value) =>
+                setData({ ...formData, lastname: value })
+              }
+            />
+            {"lastname" in errors ? <Text>{errors.lastname}</Text> : null}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={"birthday" in errors}>
+            <FormControl.Label>Birthday</FormControl.Label>
+            <Input
+              p={2}
+              color="white"
+              fontSize={18}
+              name="birthday"
+              placeholder="Enter your birthday (YYYY-MM-DD)"
+              onChangeText={(value) =>
+                setData({ ...formData, birthday: value })
+              }
+            />
+            {"birthday" in errors ? <Text>{errors.birthday}</Text> : null}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={"address" in errors}>
+            <FormControl.Label>Address</FormControl.Label>
+            <Input
+              p={2}
+              color="white"
+              fontSize={18}
+              name="address"
+              placeholder="Enter your address"
+              onChangeText={(value) =>
+                setData({ ...formData, address: value })
+              }
+            />
+            {"address" in errors ? <Text>{errors.address}</Text> : null}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={"notes" in errors}>
+            <FormControl.Label>Notes</FormControl.Label>
+            <Input
+              p={2}
+              color="white"
+              fontSize={18}
+              name="notes"
+              placeholder="Personal notes"
+              onChangeText={(value) => setData({ ...formData, notes: value })}
+            />
+            {"notes" in errors ? <Text>{errors.notes}</Text> : null}
+          </FormControl>
+
+          <Button
+            style={{ backgroundColor: colors.primary }}
+            onPress={submit}
+          >
+            Registrarme
+          </Button>
+
+          <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate("LOGIN")}
+            >
+              <Text style={styles.buttonText}>Volver</Text>
+            </TouchableOpacity>
+          </View>
         </VStack>
-    </ScrollView>
-
+      </ScrollView>
     </Center>
-    
-        
-    );
-
-    
-    
+  );
 }

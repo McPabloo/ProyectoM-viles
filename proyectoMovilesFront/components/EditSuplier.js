@@ -155,7 +155,7 @@ export default function SuplierE({ navigation }) {
         formDatum.append("country", sCountry);
         formDatum.append("phone", phNumber);
 
-        const res1 = await axios.post('http://192.168.1.72:8000/api/update_proveedor', formDatum,
+        const res1 = await axios.post('http://192.168.0.106:8000/api/update_proveedor', formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',

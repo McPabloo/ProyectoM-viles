@@ -17,7 +17,7 @@ export default function Shipper({navigation}) {
   }, [])
 
   const getShipper = async () => {
-    const res = await axios.get("http://192.168.1.74:8000/api/cargador_index")
+    const res = await axios.get("http://192.168.0.109:8000/api/cargador_index")
     console.log(res.data);
     setListShipper(res.data);
 

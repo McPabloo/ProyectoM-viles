@@ -17,7 +17,7 @@ export default function Product({navigation}) {
   }, [])
 
   const getProduct = async () => {
-    const res = await axios.get("http://192.168.1.74:8000/api/producto_index")
+    const res = await axios.get("http://192.168.0.106:8000/api/producto_index")
     console.log(res.data);
     setListProduct(res.data);
 

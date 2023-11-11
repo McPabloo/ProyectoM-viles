@@ -20,19 +20,41 @@ export default function Login({ navigation }) {
 
     //validacion
     const validate = () => {
-
-        setErrors({})
-        let isValid = true
-
-        if (formData.nickname == '' || formData.password == '') {
-            setErrors({ ...errors, nickname: 'Nickname is required', password: 'Password is required' })
-            isValid = false
+        setErrors({});
+        let isValid = true;
+      
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+      
+        if (formData.nickname === '' || formData.password === '') {
+          setErrors({ ...errors, nickname: 'Nickname and Password are required' });
+          isValid = false;
         } else if (formData.nickname.length < 6) {
-            setErrors({ ...errors, nickname: 'Nickname is too short' })
-            isValid = false
+          setErrors({ ...errors, nickname: 'Nickname is too short (minimum 6 characters)' });
+          isValid = false;
         }
-        return isValid
-    }
+      
+        // Validar el formato del correo electrónico usando regex
+        if (!emailRegex.test(formData.nickname)) {
+          setErrors({ ...errors, nickname: 'Invalid email address' });
+          isValid = false;
+        }
+      
+        // Validar la fortaleza de la contraseña usando regex
+        if (!passwordRegex.test(formData.password)) {
+          setErrors({
+            ...errors,
+            password:
+              'Password must be at least 8 characters long and contain at least one letter and one number',
+          });
+          isValid = false;
+        }
+      
+        return isValid;
+    };
+
+    //AL PRIMER CLIC EL ESTADO QUEDA APUNTADO AL ESTADO ANTERIOR, POR ELLO ES NECESARIO USAR DOBLE CLIC
+    //PARA RENDERIZARLO
 
     const send_request = async (e) => {
         if (e && e.preventDefault()) e.preventDefault();
@@ -40,7 +62,7 @@ export default function Login({ navigation }) {
         const formDatum = new FormData();
         formDatum.append("nickname", formData.nickname);
         formDatum.append("password", formData.password);
-        const res = await axios.post("http://192.168.1.72:8000/api/login", formDatum,
+        const res = await axios.post("http://192.168.0.104:8000/api/login", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -80,7 +102,7 @@ export default function Login({ navigation }) {
                 // Aquí puedes manejar el caso de una respuesta vacía según tus necesidades
             }
         }).catch(error => {
-            console.log(error);
+            console.log(error.response.data);
         });
 
     }
