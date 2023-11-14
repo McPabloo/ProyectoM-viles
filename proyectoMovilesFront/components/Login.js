@@ -62,7 +62,7 @@ export default function Login({ navigation }) {
         const formDatum = new FormData();
         formDatum.append("nickname", formData.nickname);
         formDatum.append("password", formData.password);
-        const res = await axios.post("http://192.168.0.104:8000/api/login", formDatum,
+        const res = await axios.post("http://192.168.1.70:8000/api/login", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',

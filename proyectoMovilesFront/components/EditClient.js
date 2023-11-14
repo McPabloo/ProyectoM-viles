@@ -73,7 +73,7 @@ export default function ClientE({ navigation }) {
     const { clientID } = route.params;
 
     const getClient = async () => {
-        const res = await axios.get(`http://192.168.1.74:8000/api/show_cliente/${clientID}`);
+        const res = await axios.get(`http://192.168.1.70:8000/api/show_cliente/${clientID}`);
         console.log(res.data);
         setListClient(res.data);
     };
@@ -179,7 +179,7 @@ export default function ClientE({ navigation }) {
         formDatum.append("companyName", cnyName);
         formDatum.append("phone", phNumber);
 
-        const res1 = await axios.post('http://192.168.1.72:8000/api/update_cliente', formDatum,
+        const res1 = await axios.post('http://192.168.1.70:8000/api/update_cliente', formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',

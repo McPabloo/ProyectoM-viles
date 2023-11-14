@@ -17,7 +17,7 @@ export default function Company({navigation}) {
   }, [])
 
   const getCompany = async () => {
-    const res = await axios.get("http://192.168.1.74:8000/api/company_index")
+    const res = await axios.get("http://192.168.1.70:8000/api/company_index")
     console.log(res.data);
     setListCompany(res.data);
 
@@ -30,7 +30,7 @@ export default function Company({navigation}) {
     console.log(eliminate);
     const formDatum = new FormData();
         formDatum.append("id", eliminate);
-        const res = await axios.post("http://192.168.1.74:8000/api/delete_company", formDatum,
+        const res = await axios.post("http://192.168.1.70:8000/api/delete_company", formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',

@@ -20,6 +20,7 @@ class ProductosSeeder extends Seeder
         $producto -> categoryID = 1;
         $producto -> supplierID = 1;
         $producto -> stock = 40;
+        $producto -> code = 'ml';
         $producto -> price = 29;
         $producto -> discontinued = false;
 
@@ -32,6 +33,7 @@ class ProductosSeeder extends Seeder
         $producto -> categoryID = 2;
         $producto -> supplierID = 3;
         $producto -> stock = 10;
+        $producto -> code = 'pzs';
         $producto -> price = 21000;
         $producto -> discontinued = false;
 
@@ -44,6 +46,7 @@ class ProductosSeeder extends Seeder
         $producto -> categoryID = 3;
         $producto -> supplierID = 1;
         $producto -> stock = 50;
+        $producto -> code = 'kg';
         $producto -> price = 75;
         $producto -> discontinued = false;
 

@@ -17,7 +17,7 @@ export default function Shipper({navigation}) {
   }, [])
 
   const getShipper = async () => {
-    const res = await axios.get("http://192.168.0.109:8000/api/cargador_index")
+    const res = await axios.get("http://192.168.1.70:8000/api/cargador_index")
     console.log(res.data);
     setListShipper(res.data);
 
@@ -30,7 +30,7 @@ export default function Shipper({navigation}) {
     if (e && e.preventDefault()) e.preventDefault();
     const formDatum = new FormData();
         formDatum.append("id", eliminate);
-        const res = await axios.post("http://192.168.1.74:8000/api/delete_cargador", formDatum,
+        const res = await axios.post("http://192.168.1.70:8000/api/delete_cargador", formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',

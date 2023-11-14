@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('supplierID')->references('id')->on('proveedors');
             $table->integer("stock");
             $table->integer("price");
+            $table->string("code");
             $table->boolean("discontinued");
             $table->timestamps();
         });

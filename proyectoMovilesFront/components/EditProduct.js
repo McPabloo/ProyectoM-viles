@@ -52,7 +52,7 @@ export default function ProductE({navigation}) {
   const { productID } = route.params;
 
   const getProduct = async () => {
-    const res = await axios.get(`http://192.168.1.74:8000/api/show_producto/${productID}`);
+    const res = await axios.get(`http://192.168.1.70:8000/api/show_producto/${productID}`);
     console.log(res.data);
     setListProduct(res.data);
   };
@@ -146,7 +146,7 @@ export default function ProductE({navigation}) {
         const formDatum = new FormData();
             formDatum.append("id", productID);
             formDatum.append("productName", productName);
-            formDatum.append("image", image);
+            formDatum.append("image", "https://png.pngtree.com/png-vector/20210522/ourlarge/pngtree-dairy-product-vector-illustration-with-cartoon-style-png-image_3337218.jpg");
             formDatum.append("stock", stock);
             formDatum.append("price", price);
             formDatum.append("discontinued", discontinued);
@@ -154,7 +154,7 @@ export default function ProductE({navigation}) {
             formDatum.append("supplierID", listProduct.supplierID);
 
 
-        const res1 = await axios.post('http://192.168.1.74:8000/api/update_producto',formDatum,
+        const res1 = await axios.post('http://192.168.1.70:8000/api/update_producto',formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',

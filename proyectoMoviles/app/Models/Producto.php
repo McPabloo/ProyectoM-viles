@@ -11,7 +11,7 @@ class Producto extends Model
 
     protected $fillable = [
         'id','categoryID', 'supplierID', 'stock', 
-        'price', 'discontinued', 'productName', 'image'
+        'price', 'discontinued', 'productName', 'image','code'
     ];
 
     public function orden(){

@@ -17,7 +17,7 @@ export default function Suplier({navigation}) {
   }, [])
 
   const getSuplier = async () => {
-    const res = await axios.get("http://192.168.0.109:8000/api/proveedor_index")
+    const res = await axios.get("http://192.168.1.70:8000/api/proveedor_index")
     console.log(res.data);
     setListSuplier(res.data);
   };
@@ -27,7 +27,7 @@ export default function Suplier({navigation}) {
     console.log(eliminate);
     const formDatum = new FormData();
         formDatum.append("id", eliminate);
-        const res = await axios.post("http://192.168.1.74:8000/api/delete_proveedor", formDatum,
+        const res = await axios.post("http://192.168.1.70:8000/api/delete_proveedor", formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',

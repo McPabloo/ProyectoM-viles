@@ -37,7 +37,7 @@ export default function CategoryE({ navigation }) {
     const { categoryID } = route.params;
 
     const getCategory = async () => {
-        const res = await axios.get(`http://192.168.1.74:8000/api/show_category/${categoryID}`);
+        const res = await axios.get(`http://192.168.1.70:8000/api/show_category/${categoryID}`);
         console.log(res.data);
         setListCategory(res.data);
     };
@@ -131,7 +131,7 @@ export default function CategoryE({ navigation }) {
         formDatum.append("categoryName", namC);
         formDatum.append("description", descC);
 
-        const res1 = await axios.post('http://192.168.1.72:8000/api/update_category', formDatum,
+        const res1 = await axios.post('http://192.168.1.70:8000/api/update_category', formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',

@@ -18,7 +18,7 @@ export default function Product({navigation}) {
   }, [])
 
   const getProduct = async () => {
-    const res = await axios.get("http://192.168.0.106:8000/api/producto_index")
+    const res = await axios.get("http://192.168.1.70:8000/api/producto_index")
     console.log(res.data);
     setListProduct(res.data);
   };
@@ -29,7 +29,7 @@ export default function Product({navigation}) {
     if (e && e.preventDefault()) e.preventDefault();
     const formDatum = new FormData();
         formDatum.append("id", eliminate);
-        const res = await axios.post("http://192.168.1.74:8000/api/delete_producto", formDatum,
+        const res = await axios.post("http://192.168.1.70:8000/api/delete_producto", formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -166,11 +166,12 @@ export default function Product({navigation}) {
               <Image alt='company' source={{ uri:product.image }} style={styles.avatar} />
               <View>
                 <Text style={styles.name}>{product.productName}</Text>
-                <Text style={styles.email}>Category ID{product.categoryID}</Text>
-                <Text style={styles.email}>supplier ID:{product.supplierID}</Text>
-                <Text style={styles.email}>stock: {product.stock}</Text>
+                <Text style={styles.email}>Categoría ID: {product.categoryID}</Text>
+                <Text style={styles.email}>Proveedor ID: {product.supplierID}</Text>
+                <Text style={styles.email}>Stock: {product.stock}</Text>
+                <Text style={styles.email}>Codigo: {product.code}</Text>
                 <Text style={styles.email}>${product.price}</Text>
-                <Text style={styles.email}>{product.discontinued}</Text>
+                <Text style={styles.email}>En existencia: {product.discontinued}</Text>
                 <HStack space={2} mt={2}>
                   <Button backgroundColor={colors.primary} onPress={() => {navigation.navigate('EditProduct',{productID: product.id})}}>
                     Editar

@@ -32,7 +32,7 @@ export default function CompanyC({navigation}) {
       const formDatum = new FormData();
           formDatum.append("companyName", formData.companyName);
           formDatum.append("location", formData.location);
-          const res = await axios.post("http://192.168.1.74:8000/api/create_company", formDatum,
+          const res = await axios.post("http://192.168.1.70:8000/api/create_company", formDatum,
           {
               headers: {
                   'Content-Type': 'multipart/form-data',
