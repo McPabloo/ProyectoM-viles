@@ -82,7 +82,7 @@ export default function Register({ navigation }) {
 
     try {
       const response = await axios.post(
-        "http://192.168.204.142:8000/api/create_usuario",
+        "http://192.168.1.70:8000/api/create_usuario",
         formDatum,
         {
           headers: {

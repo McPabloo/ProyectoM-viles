@@ -99,7 +99,7 @@ export default function C_card({navigation}){
     }, [])
 
     const getOrders = async () => {
-      const res = await axios.get("http://192.168.1.78:8000/api/orden_index")
+      const res = await axios.get("http://192.168.1.70:8000/api/orden_index")
       console.log(res.data);
       setListUser(res.data);
     };
@@ -123,11 +123,6 @@ export default function C_card({navigation}){
       <View style={styles.sep}></View>
 
           <HStack space={2} mt={2}>
-            <View >
-              <Button style={styles.button} onPress={() => navigation.navigate('CreateOrders')}>
-                Nueva Orden
-              </Button>
-            </View>
             <Button style={styles.button1} onPress={() => getOrders()}>
               <Image
               source={require('./rotate-right.png')} style={styles.imagenbtn} alt='hola' // Ruta relativa de la imagen dentro de la carpeta de assets

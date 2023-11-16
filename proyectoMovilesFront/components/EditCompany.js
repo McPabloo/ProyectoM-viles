@@ -131,7 +131,7 @@ export default function CompanyE({navigation}) {
             formDatum.append("companyName", nam);
             formDatum.append("location", location);
             
-        const res1 = await axios.post('http://192.168.204.142:8000/api/update_company',formDatum,
+        const res1 = await axios.post('http://192.168.1.70:8000/api/update_company',formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',

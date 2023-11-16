@@ -10,7 +10,7 @@ export default function ProductC({navigation}) {
 
   //estados
   const [formData, setData] = React.useState({productName : '', image : '', 
-  stock : '', price : '', discontinued : '', categoryID : '', supplierID: ''})
+  stock : '', price : '', discontinued : '', categoryID : '', supplierID: '', code: ''})
   const [errors, setErrors] = React.useState({})
   const [valid, setValid] = React.useState(false);
 
@@ -21,7 +21,7 @@ export default function ProductC({navigation}) {
     let isValid = true
     
     if(formData.productName == '' || formData.image == '' || formData.stock == '' || formData.price == ''
-    || formData.discontinued=='' || formData.categoryID == '', formData.supplierID==''){
+    || formData.discontinued=='' || formData.categoryID == '' || formData.supplierID==''){
         setErrors({...errors, notice:'All fields required'})
         isValid = false
     }
@@ -38,8 +38,9 @@ export default function ProductC({navigation}) {
       formDatum.append("price", formData.price);
       formDatum.append("discontinued", formData.discontinued);
       formDatum.append("categoryID", formData.categoryID);
+      formDatum.append("code", formData.code);
       formDatum.append("supplierID", formData.supplierID);
-          const res = await axios.post("http://192.168.1.78:8000/api/create_producto", formDatum,
+          const res = await axios.post("http://192.168.1.70:8000/api/create_producto", formDatum,
           {
               headers: {
                   'Content-Type': 'multipart/form-data',
@@ -231,6 +232,16 @@ export default function ProductC({navigation}) {
                 />
               </View>
               <Text style={styles.email}>Escribe 1 si está descontinuado, 0 si está en existencia</Text>
+
+              <View style={styles.listItem}>
+                <TextInput
+                    value={formData.code}
+                    onChangeText={value => setData({ ...formData, code: value })}
+                    placeholder="Write here "
+                    style={ styles.name }
+                />
+              </View>
+              <Text style={styles.email}>Escribe el tipo de unidad</Text>
 
               <View style={styles.listItem}>
                 <TextInput

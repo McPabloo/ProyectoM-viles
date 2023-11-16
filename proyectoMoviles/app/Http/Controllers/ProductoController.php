@@ -39,6 +39,7 @@ class ProductoController extends Controller
             'stock' => 'required',
             'price' => 'required',
             'discontinued' => 'required',
+            'code' => 'required',
             'productName' => 'required',
         ]);
 
@@ -52,6 +53,7 @@ class ProductoController extends Controller
             'supplierID' => $request -> supplierID,
             'stock' => $request -> stock,
             'price' => $request -> price,
+            'code' => $request -> code,
             'discontinued' => $request -> discontinued,
             'productName' => $request -> productName,
         ]);
