@@ -33,7 +33,7 @@ export default function ShipperC({navigation}) {
           formDatum.append("name", formData.name);
           formDatum.append("companyID", formData.companyID);
           formDatum.append("phone", formData.phone);
-          const res = await axios.post("http://192.168.1.74:8000/api/create_cargador", formDatum,
+          const res = await axios.post("http://192.168.204.142:8000/api/create_cargador", formDatum,
           {
               headers: {
                   'Content-Type': 'multipart/form-data',

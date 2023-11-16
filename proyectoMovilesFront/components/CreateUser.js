@@ -6,29 +6,63 @@ import { TouchableOpacity, StyleSheet, TextInput, ScrollView } from 'react-nativ
 import { ListItem, Avatar } from 'react-native-elements';
 import { useRoute } from '@react-navigation/native';
 
-export default function UserC({navigation}) {
-
-  //estados
-  const [formData, setData] = React.useState({nickname : '', password : '',
-  firstname : '', lastname : '' , phone : '' , address : '', birthday : '', notes : ''})
-  const [errors, setErrors] = React.useState({})
+export default function UserC({ navigation }) {
+  const [formData, setData] = React.useState({
+    nickname: '',
+    password: '',
+    firstname: '',
+    lastname: '',
+    phone: '',
+    address: '',
+    birthday: '',
+    notes: '',
+  });
+  const [errors, setErrors] = React.useState({});
   const [valid, setValid] = React.useState(false);
 
-  //validacion
   const validate = () => {
+    setErrors({});
+    let isValid = true;
 
-    setErrors({})
-    let isValid = true
-    
-    if(formData.nickname == '' || formData.password == '' || formData.firstname == '' || formData.lastname == '' || formData.address == '' || formData.birthday == '' || formData.phone == '' ){
-        setErrors({...errors, notice:'All fields required'})
-        isValid = false
-    }else if(formData.nickname.length < 10){
-        setErrors({...errors, nickname: 'Nickname is too short'})
-        isValid = false
+    if (
+      formData.nickname === '' ||
+      formData.password === '' ||
+      formData.firstname === '' ||
+      formData.lastname === '' ||
+      formData.address === '' ||
+      formData.birthday === '' ||
+      formData.phone === ''
+    ) {
+      setErrors({ ...errors, notice: 'All fields required' });
+      isValid = false;
+    } else if (formData.nickname.length < 10) {
+      setErrors({ ...errors, nickname: 'Email is too short' });
+      isValid = false;
     }
-    return isValid
-}
+
+    // Validación regex para el correo electrónico
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.nickname)) {
+      setErrors({ ...errors, nickname: 'Invalid email format' });
+      isValid = false;
+    }
+
+    // Validación regex para el teléfono (asumimos un formato específico, ajusta según necesites)
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(formData.phone)) {
+      setErrors({ ...errors, phone: 'Invalid phone number' });
+      isValid = false;
+    }
+
+    // Validación regex para la fecha de nacimiento (yy-mm-dd)
+    const birthdayRegex = /^\d{2}-\d{2}-\d{2}$/;
+    if (!birthdayRegex.test(formData.birthday)) {
+      setErrors({ ...errors, birthday: 'Invalid date format (yy-mm-dd)' });
+      isValid = false;
+    }
+
+    return isValid;
+  };
 
   const send_request=async(e)=>{
       if (e && e.preventDefault()) e.preventDefault();
@@ -42,7 +76,7 @@ export default function UserC({navigation}) {
           formDatum.append("phone", formData.phone);
           formDatum.append("birthday", formData.birthday);
           formDatum.append("notes", formData.notes);
-          const res = await axios.post("http://192.168.1.74:8000/api/create_usuario", formDatum,
+          const res = await axios.post("http://192.168.100.26:8000/api/create_usuario", formDatum,
           {
               headers: {
                   'Content-Type': 'multipart/form-data',

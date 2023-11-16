@@ -32,7 +32,7 @@ export default function CategoryC({ navigation }) {
         const formDatum = new FormData();
         formDatum.append("categoryName", formData.categoryName);
         formDatum.append("description", formData.description);
-        const res = await axios.post("http://192.168.1.74:8000/api/create_category", formDatum,
+        const res = await axios.post("http://192.168.100.26:8000/api/create_category", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',

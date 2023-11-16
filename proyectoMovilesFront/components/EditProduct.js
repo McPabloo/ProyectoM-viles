@@ -52,7 +52,7 @@ export default function ProductE({navigation}) {
   const { productID } = route.params;
 
   const getProduct = async () => {
-    const res = await axios.get(`http://192.168.1.74:8000/api/show_producto/${productID}`);
+    const res = await axios.get(`http://192.168.1.78:8000/api/show_producto/${productID}`);
     console.log(res.data);
     setListProduct(res.data);
   };
@@ -154,7 +154,7 @@ export default function ProductE({navigation}) {
             formDatum.append("supplierID", listProduct.supplierID);
 
 
-        const res1 = await axios.post('http://192.168.1.74:8000/api/update_producto',formDatum,
+        const res1 = await axios.post('http://192.168.1.78:8000/api/update_producto',formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',

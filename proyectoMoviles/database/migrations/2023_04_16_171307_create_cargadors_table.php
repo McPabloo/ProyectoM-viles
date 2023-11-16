@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->unsignedBigInteger("companyID");
-            $table->foreign('companyID')->references('id')->on('companies');
+            $table->foreign('companyID')->references('id')->on('companies')->onDelete('SET NULL');
             $table->string("phone");
             $table->timestamps();
         });

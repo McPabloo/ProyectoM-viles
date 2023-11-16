@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string("productName");
             $table->string("image");
             $table->unsignedBigInteger("categoryID");
-            $table->foreign('categoryID')->references('id')->on('categorias');
+            $table->foreign('categoryID')->references('id')->on('categorias')->onDelete('SET NULL');
             $table->unsignedBigInteger("supplierID");
-            $table->foreign('supplierID')->references('id')->on('proveedors');
+            $table->foreign('supplierID')->references('id')->on('proveedors')->onDelete('SET NULL');
             $table->integer("stock");
             $table->integer("price");
             $table->boolean("discontinued");

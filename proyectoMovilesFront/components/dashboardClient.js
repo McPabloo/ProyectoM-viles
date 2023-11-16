@@ -27,7 +27,7 @@ export default function Client({navigation}) {
     console.log(eliminate);
     const formDatum = new FormData();
         formDatum.append("id", eliminate);
-        const res = await axios.post("http://192.168.1.74:8000/api/delete_cliente", formDatum,
+        const res = await axios.post("http://192.168.1.78:8000/api/delete_cliente", formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',

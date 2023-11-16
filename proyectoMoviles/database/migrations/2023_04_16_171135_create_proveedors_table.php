@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('proveedors', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("companyID");
-            $table->foreign('companyID')->references('id')->on('companies');
+            $table->foreign('companyID')->references('id')->on('companies')->onDelete('SET NULL');
             $table->string("contactName");
             $table->string("address");
             $table->string("city");

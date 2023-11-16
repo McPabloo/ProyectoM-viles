@@ -39,7 +39,7 @@ export default function ProductC({navigation}) {
       formDatum.append("discontinued", formData.discontinued);
       formDatum.append("categoryID", formData.categoryID);
       formDatum.append("supplierID", formData.supplierID);
-          const res = await axios.post("http://192.168.1.74:8000/api/create_producto", formDatum,
+          const res = await axios.post("http://192.168.1.78:8000/api/create_producto", formDatum,
           {
               headers: {
                   'Content-Type': 'multipart/form-data',

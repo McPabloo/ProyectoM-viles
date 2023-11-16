@@ -99,7 +99,7 @@ export default function C_card({navigation}){
     }, [])
 
     const getOrders = async () => {
-      const res = await axios.get("http://192.168.0.109:8000/api/orden_index")
+      const res = await axios.get("http://192.168.1.78:8000/api/orden_index")
       console.log(res.data);
       setListUser(res.data);
     };

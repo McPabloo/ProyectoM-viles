@@ -18,7 +18,7 @@ export default function Product({navigation}) {
   }, [])
 
   const getProduct = async () => {
-    const res = await axios.get("http://192.168.0.106:8000/api/producto_index")
+    const res = await axios.get("http://192.168.1.78:8000/api/producto_index")
     console.log(res.data);
     setListProduct(res.data);
   };
@@ -29,7 +29,7 @@ export default function Product({navigation}) {
     if (e && e.preventDefault()) e.preventDefault();
     const formDatum = new FormData();
         formDatum.append("id", eliminate);
-        const res = await axios.post("http://192.168.1.74:8000/api/delete_producto", formDatum,
+        const res = await axios.post("http://192.168.1.78:8000/api/delete_producto", formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',

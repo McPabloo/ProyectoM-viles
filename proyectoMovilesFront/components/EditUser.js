@@ -51,7 +51,7 @@ export default function UserE({navigation}) {
   const { userID } = route.params;
 
   const getUser = async () => {
-    const res = await axios.get(`http://192.168.0.106:8000/api/show_usuario/${userID}`);
+    const res = await axios.get(`http://192.168.1.78:8000/api/show_usuario/${userID}`);
     console.log(res.data);
     setListUser(res.data);
   };
@@ -149,7 +149,7 @@ export default function UserE({navigation}) {
             formDatum.append("phone", phone);
             formDatum.append("email", email);
             
-        const res1 = await axios.post('http://192.168.1.72:8000/api/update_usuario',formDatum,
+        const res1 = await axios.post('http://192.168.1.78:8000/api/update_usuario',formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',

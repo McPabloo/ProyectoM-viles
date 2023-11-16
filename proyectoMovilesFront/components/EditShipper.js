@@ -39,7 +39,7 @@ export default function ShipperE({navigation}) {
   const { shipperID } = route.params;
 
   const getShipper = async () => {
-    const res = await axios.get(`http://192.168.0.109:8000/api/show_cargador/${shipperID}`);
+    const res = await axios.get(`http://192.168.204.142:8000/api/show_cargador/${shipperID}`);
     console.log(res.data);
     setListShipper(res.data);
   };
@@ -133,7 +133,7 @@ export default function ShipperE({navigation}) {
             formDatum.append("companyID", listShipper.companyID);
             formDatum.append("phone", phone);
             
-        const res1 = await axios.post('http://192.168.1.74:8000/api/update_cargador',formDatum,
+        const res1 = await axios.post('http://192.168.204.142:8000/api/update_cargador',formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',

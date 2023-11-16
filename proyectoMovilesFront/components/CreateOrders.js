@@ -29,7 +29,7 @@ export default function CompanyCoo({ navigation }) {
 
     const getCus = async () => {
         try {
-            const response = await axios.get("http://192.168.0.107:8000/api/orden_customer");
+            const response = await axios.get("http://192.168.1.78:8000/api/orden_customer");
             setClientes(response.data);
         } catch (error) {
             console.error(error);
@@ -38,7 +38,7 @@ export default function CompanyCoo({ navigation }) {
 
     const getCarg = async () => {
         try {
-            const response = await axios.get("http://192.168.0.107:8000/api/orden_shipper");
+            const response = await axios.get("http://192.168.1.78:8000/api/orden_shipper");
             setShippers(response.data);
         } catch (error) {
             console.error(error);
@@ -47,7 +47,7 @@ export default function CompanyCoo({ navigation }) {
 
     const getEmp = async () => {
         try {
-            const response = await axios.get("http://192.168.0.107:8000/api/orden_employee");
+            const response = await axios.get("http://192.168.1.78:8000/api/orden_employee");
             setEmpleados(response.data);
         } catch (error) {
             console.error(error);
@@ -74,7 +74,7 @@ export default function CompanyCoo({ navigation }) {
         const formDatum = new FormData();
         formDatum.append("companyName", formData.companyName);
         formDatum.append("location", formData.location);
-        const res = await axios.post("http://192.168.1.74:8000/api/create_company", formDatum,
+        const res = await axios.post("http://192.168.1.78:8000/api/create_company", formDatum,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',

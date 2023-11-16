@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('ordens', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("customerID");
-            $table->foreign('customerID')->references('id')->on('clientes');
+            $table->foreign('customerID')->references('id')->on('clientes')->onDelete('SET NULL');
             $table->unsignedBigInteger("employeeID");
-            $table->foreign('employeeID')->references('id')->on('users');
+            $table->foreign('employeeID')->references('id')->on('users')->onDelete('SET NULL');
             $table->string("orderDate");
             $table->unsignedBigInteger("shipperID");
-            $table->foreign('shipperID')->references('id')->on('cargadors');
+            $table->foreign('shipperID')->references('id')->on('cargadors')->onDelete('SET NULL');
             $table->string("shipAddress");
             $table->timestamps();
         });

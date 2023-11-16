@@ -37,7 +37,7 @@ export default function CompanyE({navigation}) {
   const { companyID } = route.params;
 
   const getCompany = async () => {
-    const res = await axios.get(`http://192.168.1.74:8000/api/show_company/${companyID}`);
+    const res = await axios.get(`http://192.168.100.26:8000/api/show_company/${companyID}`);
     console.log(res.data);
     setListCompany(res.data);
   };
@@ -131,7 +131,7 @@ export default function CompanyE({navigation}) {
             formDatum.append("companyName", nam);
             formDatum.append("location", location);
             
-        const res1 = await axios.post('http://192.168.1.74:8000/api/update_company',formDatum,
+        const res1 = await axios.post('http://192.168.204.142:8000/api/update_company',formDatum,
         {
             headers: {
                 'Content-Type': 'multipart/form-data',
